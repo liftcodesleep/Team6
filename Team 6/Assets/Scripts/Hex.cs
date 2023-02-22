@@ -1,28 +1,16 @@
 using System.Collections;
-
 using System.Collections.Generic;
-
 using UnityEngine;
 
 
-
-
-
 /// <summary>
-
 /// The Hex class defines the grid position, world space position, size,
-
 /// neighbours,etc.. of a Hex Tile. However, it doesn NOT interact with 
-
 /// Unity directly in any way.
-
 /// </summary>
 
 
-
-
-
-public class Hex
+public class Hex 
 {
 
     public readonly int Q;  //Column
@@ -159,12 +147,11 @@ public class Hex
 
         if (elevation > 99)
         {
-            return 99;
+            return 4;
         } 
-        Debug.Log(elevation);
-        return elevation;
+        
+        return elevation / 20;
     }
-
 
 
 

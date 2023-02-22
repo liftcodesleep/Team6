@@ -12,32 +12,32 @@ public class HexMap : MonoBehaviour
 
     public GameObject HexPrefab;
     public Material[] HexMaterials;
-    public readonly int NumRows = 60;
-    public readonly int NumColumns = 120;
+    public readonly int NumRows = 50;
+    public readonly int NumColumns = 50;
+
+    private Hex[,] map;
 
     //int numRows = 20;
     //int numColumns = 40;
 
     public void GenerateMap()
     {
+        map = new Hex[NumRows,NumColumns];
 
         for (int column = 0; column < NumColumns; column++)
         {
-
             for (int row = 0; row < NumRows; row++)
             {
 
                 Hex h = new Hex(column, row);
-
-
+                
+                
                 Vector3 pos = h.PositionFromCamera(
                  Camera.main.transform.position,
                  NumRows,
                  NumColumns
                 );
-
-
-
+                
                 GameObject hexGo = (GameObject)Instantiate(
                  HexPrefab,
                  pos,
@@ -45,10 +45,18 @@ public class HexMap : MonoBehaviour
                  this.transform
                  );
 
-                MeshRenderer mr = hexGo.GetComponentInChildren<MeshRenderer>();
+                HexComponent component = hexGo.GetComponent<HexComponent>();
 
+                component.Hex = h;
+                component.HexMap = this;
+
+                MeshRenderer mr = hexGo.GetComponentInChildren<MeshRenderer>();
+                
                 //mr.material = HexMaterials[Random.Range(0, HexMaterials.Length)];
-                mr.material = HexMaterials[(int)( h.getElevation() / 20)];
+                mr.material = HexMaterials[h.getElevation()];
+                
+                map[row, column] = h;
+              
             }
 
         }
@@ -56,8 +64,6 @@ public class HexMap : MonoBehaviour
     }
 
 
-
-    // Use this for initialization
 
     void Start()
     {

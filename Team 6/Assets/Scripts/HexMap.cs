@@ -19,53 +19,36 @@ public class HexMap : MonoBehaviour
     //int numColumns = 40;
 
     public void GenerateMap()
-
     {
 
         for (int column = 0; column < NumColumns; column++)
-
         {
 
             for (int row = 0; row < NumRows; row++)
-
             {
-
-                //Instantiate a Hex
 
                 Hex h = new Hex(column, row);
 
 
-
                 Vector3 pos = h.PositionFromCamera(
-
                  Camera.main.transform.position,
-
                  NumRows,
-
                  NumColumns
-
                 );
 
 
 
                 GameObject hexGo = (GameObject)Instantiate(
-
                  HexPrefab,
-
                  pos,
-
                  Quaternion.identity,
-
                  this.transform
-
                  );
 
                 MeshRenderer mr = hexGo.GetComponentInChildren<MeshRenderer>();
 
-                
-
-                mr.material = HexMaterials[Random.Range(0, HexMaterials.Length)];
-
+                //mr.material = HexMaterials[Random.Range(0, HexMaterials.Length)];
+                mr.material = HexMaterials[(int)( h.getElevation() / 20)];
             }
 
         }

@@ -7,7 +7,7 @@ Fill out the table below
 |    :---:        |     :---:                   |     :---:       |
 |   Kobe Shelby   |   kshelby@mail.sfsu.edu     |   Kobe040102    |
 | Jacob Lawrence  |   jlawrence2@sfsu.edu       |  liftcodesleep  |
-|                 |                             |                 |
+|   Matthew Bush  |   mbush@sfsu.edu            |   fattymatty15  |
 |                 |                             |                 |
 |                 |                             |                 |
 |                 |                             |                 |

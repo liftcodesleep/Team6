@@ -25,124 +25,71 @@ using UnityEngine;
 public class Hex
 {
 
-
-
-    public Hex(int q, int r)
-
-    {
-
-        this.Q = q;
-
-        this.R = r;
-
-        this.S = -(q + r);
-
-    }
-
-
-
-    // Q + R + S = 0
-
-    // S = - (Q+R)
-
-
-
     public readonly int Q;  //Column
-
     public readonly int R;  // Row
-
     public readonly int S;  //Some --- Not need
-
 
 
     static readonly float WIDTH_MULTIPLIER = Mathf.Sqrt(3) / 2;
 
-
-
     float radius = 1f;
-
     bool allowWrapEastWest = true;
-
     bool allowWrapNorthSouth = false;
 
+    private static int offset = Random.Range(0, 200);
 
+    public Hex(int q, int r)
+    {
+        this.Q = q;
+        this.R = r;
+        this.S = -(q + r);
+    }
 
-
-
+    // Q + R + S = 0
+    // S = - (Q+R)
     /// <summary>
-
     /// Returns the world space position on this hex
-
     /// </summary>
 
     public Vector3 Position()
-
     {
 
         return new Vector3(
-
          HexHorizontalSpacing() * (this.Q + this.R / 2f),
-
          0,
-
          HexVerticalSpacing() * this.R
-
         );
-
-
 
     }
 
 
 
     public float HexHeight()
-
     {
-
         return radius * 2;
-
     }
-
-
 
     public float HexWidth()
-
     {
-
         return WIDTH_MULTIPLIER * HexHeight();
-
     }
-
-
 
     public float HexVerticalSpacing()
-
     {
-
         return HexHeight() * 0.75f;
-
     }
 
-
-
-
-
     public float HexHorizontalSpacing()
-
     {
-
         return HexWidth();
-
     }
 
 
 
     public Vector3 PositionFromCamera(Vector3 cameraPosition, float numRows, float numColumns)
-
     {
 
         float mapHeight = numRows * HexVerticalSpacing();
-
         float mapWidth = numColumns * HexHorizontalSpacing();
 
 
@@ -158,54 +105,41 @@ public class Hex
             float howManyWidthsFromCamera = (position.x - cameraPosition.x) / mapWidth;
 
 
-
             //We want howmanyWidthsFromCamera to be between -0.5 to 0.5
 
             if (howManyWidthsFromCamera > 0)
-
+            {
                 howManyWidthsFromCamera += 0.5f;
-
+            }
             else
-
+            {
                 howManyWidthsFromCamera -= 0.5f;
-
-
+            }
 
             int howManyWidthToFix = (int)howManyWidthsFromCamera;
 
 
-
             position.x -= howManyWidthToFix * mapWidth;
-
-
 
         }
 
 
-
         if (allowWrapNorthSouth)
-
         {
 
             float howManyHeightsFromCamera = (position.z - cameraPosition.z) / mapHeight;
 
-
-
             //We want howmanyWidthsFromCamera to be between -0.5 to 0.5
 
             if (howManyHeightsFromCamera > 0)
-
+            {
                 howManyHeightsFromCamera += 0.5f;
-
-            else
-
+            }else
+            {
                 howManyHeightsFromCamera -= 0.5f;
-
-
+            }
 
             int howManyHeightsToFix = (int)howManyHeightsFromCamera;
-
-
 
             position.z -= howManyHeightsToFix * mapHeight;
 
@@ -216,7 +150,20 @@ public class Hex
     }
 
 
+    public int getElevation()
+    {
 
+        float scale = 10;
+
+        int elevation =  (int)(Mathf.PerlinNoise((Q+ offset) / scale, (R+offset)/scale) * 100) ;
+
+        if (elevation > 99)
+        {
+            return 99;
+        } 
+        Debug.Log(elevation);
+        return elevation;
+    }
 
 
 

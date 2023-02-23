@@ -6,6 +6,7 @@ public class CameraMotion : MonoBehaviour
 {
 
     private Vector3 oldPosition;
+    int speed = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,14 @@ public class CameraMotion : MonoBehaviour
     void Update()
     {
         CheckIfCameraMoved();
+
+        float xChange = Input.GetAxis("Horizontal");
+        float yChange = Input.GetAxis("Vertical");
+
+        Vector3 change = new Vector3(xChange, 0, yChange);
+
+        this.transform.position += change * Time.deltaTime * speed;
+
     }
 
 

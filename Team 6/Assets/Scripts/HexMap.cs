@@ -50,6 +50,8 @@ public class HexMap : MonoBehaviour
                 component.Hex = h;
                 component.HexMap = this;
 
+                hexGo.GetComponentInChildren<TextMesh>().text = string.Format("{0},{1}", column, row);
+
                 MeshRenderer mr = hexGo.GetComponentInChildren<MeshRenderer>();
                 
                 //mr.material = HexMaterials[Random.Range(0, HexMaterials.Length)];

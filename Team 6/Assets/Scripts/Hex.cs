@@ -22,7 +22,7 @@ public class Hex
 
     float radius = 1f;
     bool allowWrapEastWest = true;
-    bool allowWrapNorthSouth = false;
+    bool allowWrapNorthSouth = true;
 
     private static int offset = Random.Range(0, 200);
 

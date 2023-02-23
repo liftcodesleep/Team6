@@ -12,8 +12,8 @@ public class HexMap : MonoBehaviour
 
     public GameObject HexPrefab;
     public Material[] HexMaterials;
-    public readonly int NumRows = 70;
-    public readonly int NumColumns = 70;
+    public readonly int NumRows = 50;
+    public readonly int NumColumns = 50;
 
     private Hex[,] map;
 

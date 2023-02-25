@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 /// <summary>
@@ -25,6 +26,9 @@ public class Hex
     bool allowWrapNorthSouth = false;
 
     private static int offset = Random.Range(0, 200);
+
+    private HashSet<Unit> units;
+    
 
     public Hex(int q, int r)
     {
@@ -73,7 +77,10 @@ public class Hex
     }
 
 
-
+    public Vector3 PositionFromCamera()
+    {
+        return HexMap.GetHexPosition(this);
+    }
     public Vector3 PositionFromCamera(Vector3 cameraPosition, float numRows, float numColumns)
     {
 
@@ -138,12 +145,12 @@ public class Hex
     }
 
 
-    public int getElevation()
+    public int GetElevation()
     {
 
         float scale = 10;
 
-        int elevation =  (int)(Mathf.PerlinNoise((Q+ offset) / scale, (R+offset)/scale) * 100) ;
+        int elevation =  (int)(Mathf.PerlinNoise((Q+ offset+(int)(R/2)) / scale, (R+offset)/scale) * 100) ;
 
         if (elevation > 99)
         {
@@ -154,5 +161,30 @@ public class Hex
     }
 
 
+    public void AddUnit(Unit unit)
+    {
 
+        if(units == null)
+        {
+            units = new HashSet<Unit>();
+        }
+
+        units.Add(unit);
+
+    }
+
+
+
+    public void RemoveUnit(Unit unit)
+    {
+        if(units != null)
+        {
+            units.Remove(unit);
+        }
+    }
+
+    public Unit[] Units()
+    {
+        return units.ToArray();
+    }
 }

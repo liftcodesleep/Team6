@@ -26,6 +26,7 @@ public class CameraMotion : MonoBehaviour
 
         this.transform.position += change * Time.deltaTime * speed;
 
+
     }
 
 
@@ -38,8 +39,6 @@ public class CameraMotion : MonoBehaviour
     {
         if(this.oldPosition != this.transform.position)
         {
-            Debug.Log("Moved");
-
             oldPosition = this.transform.position;
 
             HexComponent[] hexes = GameObject.FindObjectsOfType<HexComponent>();

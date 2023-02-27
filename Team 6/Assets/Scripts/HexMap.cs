@@ -11,16 +11,19 @@ public class HexMap : MonoBehaviour
 
     public GameObject HexPrefab;
     public Material[] HexMaterials;
-    public static readonly int NumRows = 30;
-    public static readonly int NumColumns = 30;
+    public static readonly int NumRows = 10;
+    public static readonly int NumColumns = 15;
 
     public GameObject unit;
+    public GameObject enemy;
 
     private static Hex[,] hexes;
     private HashSet<Unit> units;
 
-    private Dictionary<Hex, GameObject> hexToGameObject;
-    private Dictionary<Unit, GameObject> unitToGameObject;
+    public static Dictionary<Hex, GameObject> hexToGameObject;
+    public static Dictionary<Unit, GameObject> unitToGameObject;
+
+    private readonly bool debug = false;
 
     //int numRows = 20;
     //int numColumns = 40;
@@ -30,7 +33,15 @@ public class HexMap : MonoBehaviour
         GenerateMap();
         Unit u = new Unit();
 
-        SpawnUnitAt(u, unit, 5, 5);
+        SpawnUnitAt(new Unit(), unit, 5, 5);
+        SpawnUnitAt(new Unit(), unit, 5, 7);
+        SpawnUnitAt(new Unit(), unit, 8, 6);
+        SpawnUnitAt(new Unit(), unit, 9, 5);
+
+        SpawnUnitAt(new Unit(), enemy, 6, 2);
+        SpawnUnitAt(new Unit(), enemy, 8, 2);
+        SpawnUnitAt(new Unit(), enemy, 10, 2);
+        SpawnUnitAt(new Unit(), enemy, 10, 3);
 
     }
 
@@ -78,8 +89,15 @@ public class HexMap : MonoBehaviour
 
                 component.Hex = h;
                 component.HexMap = this;
-
-                hexGo.GetComponentInChildren<TextMesh>().text = string.Format("{0},{1}",column,row);
+                if (debug)
+                {
+                    hexGo.GetComponentInChildren<TextMesh>().text = string.Format("{0},{1}", column, row);
+                }
+                else
+                {
+                    hexGo.GetComponentInChildren<TextMesh>().text = "";
+                }
+                
 
                 hexGo.name = string.Format("{0},{1}", column, row);
 
@@ -101,6 +119,37 @@ public class HexMap : MonoBehaviour
     {
         return hexes[row, col % NumColumns];
     }
+
+    public static Hex gameObjectToHex(GameObject hex)
+    {
+        
+        foreach(var item in hexToGameObject)
+        {
+            if(item.Value == hex)
+            {
+                return item.Key;
+            }
+        }
+
+        return null;
+
+    }
+
+    public static Unit gameObjectToUnit(GameObject unit)
+    {
+
+        foreach (var item in unitToGameObject)
+        {
+            if (item.Value == unit)
+            {
+                return item.Key;
+            }
+        }
+
+        return null;
+
+    }
+
 
     public static float distanceFrom2Hexs(Hex a, Hex b)
     {

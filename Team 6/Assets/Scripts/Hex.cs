@@ -24,7 +24,7 @@ public class Hex
     float radius = 1f;
     bool allowWrapEastWest = true;
     bool allowWrapNorthSouth = false;
-
+   
     private static int offset = Random.Range(0, 200);
 
     private HashSet<Unit> units;
@@ -35,6 +35,7 @@ public class Hex
         this.Q = q;
         this.R = r;
         this.S = -(q + r);
+        Random.seed = 42;
     }
 
     // Q + R + S = 0
@@ -186,5 +187,11 @@ public class Hex
     public Unit[] Units()
     {
         return units.ToArray();
+    }
+
+    public int BaseMovementCost()
+    {
+
+        return 1;
     }
 }

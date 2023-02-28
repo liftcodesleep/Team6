@@ -11,11 +11,18 @@ public class HexMap : MonoBehaviour
 
     public GameObject HexPrefab;
     public Material[] HexMaterials;
+	
+	//TODO: remove moved to HexMapStats
     public static readonly int NumRows = 30;
     public static readonly int NumColumns = 30;
-
+	
+	/* TODO: 
+	public static readonly bool allowWrapEastWest = true;
+    public static readonly bool allowWrapNorthSouth = false;
+	*/
     public GameObject unit;
 
+	//TODO: remove moved to HexMapStats
     private static Hex[,] hexes;
     private HashSet<Unit> units;
 

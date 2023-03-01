@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 /// <summary>
@@ -17,14 +18,19 @@ public class Hex
     public readonly int R;  // Row
     public readonly int S;  //Some --- Not need
 
-
+	//TODO: remove now in HexDem
     static readonly float WIDTH_MULTIPLIER = Mathf.Sqrt(3) / 2;
-
     float radius = 1f;
+	
+	//TODO: remove now in Hexmap
     bool allowWrapEastWest = true;
     bool allowWrapNorthSouth = true;
 
+	//TODO: remove now in HexDem
     private static int offset = Random.Range(0, 200);
+
+    private HashSet<Unit> units;
+    
 
     public Hex(int q, int r)
     {
@@ -51,29 +57,33 @@ public class Hex
     }
 
 
-
+	//TODO: remove now in HexDem
     public float HexHeight()
     {
         return radius * 2;
     }
-
+	//TODO: remove now in HexDem
     public float HexWidth()
     {
         return WIDTH_MULTIPLIER * HexHeight();
     }
-
+	//TODO: remove now in HexDem
     public float HexVerticalSpacing()
     {
         return HexHeight() * 0.75f;
     }
-
+	//TODO: remove now in HexDem
     public float HexHorizontalSpacing()
     {
         return HexWidth();
     }
 
-
-
+	//TODO: remove now in HexComp
+    public Vector3 PositionFromCamera()
+    {
+        return HexMap.GetHexPosition(this);
+    }
+	//TODO: remove now in HexComp
     public Vector3 PositionFromCamera(Vector3 cameraPosition, float numRows, float numColumns)
     {
 
@@ -138,12 +148,12 @@ public class Hex
     }
 
 
-    public int getElevation()
+    public int GetElevation()
     {
 
         float scale = 10;
 
-        int elevation =  (int)(Mathf.PerlinNoise((Q+ offset) / scale, (R+offset)/scale) * 100) ;
+        int elevation =  (int)(Mathf.PerlinNoise((Q+ offset+(int)(R/2)) / scale, (R+offset)/scale) * 100) ;
 
         if (elevation > 99)
         {
@@ -154,5 +164,30 @@ public class Hex
     }
 
 
+    public void AddUnit(Unit unit)
+    {
 
+        if(units == null)
+        {
+            units = new HashSet<Unit>();
+        }
+
+        units.Add(unit);
+
+    }
+
+
+
+    public void RemoveUnit(Unit unit)
+    {
+        if(units != null)
+        {
+            units.Remove(unit);
+        }
+    }
+
+    public Unit[] Units()
+    {
+        return units.ToArray();
+    }
 }

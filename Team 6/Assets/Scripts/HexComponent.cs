@@ -27,13 +27,13 @@ public class HexComponent : MonoBehaviour
 	public Vector3 PositionFromCamera(Vector3 cameraPosition)
     {
 
-        float mapHeight = HexMap.numRows * HexDimensions.HexVerticalSpacing();
-        float mapWidth = HexMap.numColumns * HexHorizontalSpacing();
+        float mapHeight = HexMap.NumRows * HexDimensions.HexVerticalSpacing();
+        float mapWidth = HexMap.NumColumns * HexDimensions.HexHorizontalSpacing();
 
         Vector3 position = Hex.Position();
 
 
-        if (allowWrapEastWest)
+        if (HexMap.allowWrapEastWest)
 
         {
 
@@ -59,7 +59,7 @@ public class HexComponent : MonoBehaviour
         }
 
 
-        if (allowWrapNorthSouth)
+        if (HexMap.allowWrapNorthSouth)
         {
 
             float howManyHeightsFromCamera = (position.z - cameraPosition.z) / mapHeight;

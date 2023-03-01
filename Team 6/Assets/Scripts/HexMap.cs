@@ -16,10 +16,10 @@ public class HexMap : MonoBehaviour
     public static readonly int NumRows = 30;
     public static readonly int NumColumns = 30;
 	
-	/* TODO: 
+	// TODO: 
 	public static readonly bool allowWrapEastWest = true;
     public static readonly bool allowWrapNorthSouth = false;
-	*/
+	
     public GameObject unit;
 
 	//TODO: remove moved to HexMapStats

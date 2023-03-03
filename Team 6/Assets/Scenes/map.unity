@@ -341,6 +341,10 @@ PrefabInstance:
       propertyPath: unit
       value: 
       objectReference: {fileID: 2216712049197101269, guid: 1d496a8c17ed7734e82db6a2ed619a0a, type: 3}
+    - target: {fileID: 2116635846420614243, guid: a2197418055c04a458cbcecd57b8ee18, type: 3}
+      propertyPath: HexPrefab
+      value: 
+      objectReference: {fileID: 3424295240513478234, guid: ae5c71907f0443f4587078eb5909c4ad, type: 3}
     - target: {fileID: 2116635846420614244, guid: a2197418055c04a458cbcecd57b8ee18, type: 3}
       propertyPath: m_Name
       value: HexMap

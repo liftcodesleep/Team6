@@ -24,7 +24,7 @@ public class Hex
 	
 	//TODO: remove now in Hexmap
     bool allowWrapEastWest = true;
-    bool allowWrapNorthSouth = false;
+    bool allowWrapNorthSouth = true;
 
 	//TODO: remove now in HexDem
     private static int offset = Random.Range(0, 200);

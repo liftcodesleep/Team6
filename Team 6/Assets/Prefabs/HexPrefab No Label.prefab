@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5389424666929844106}
   - component: {fileID: 2061625343811587}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,19 +107,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.757
+      value: -5.0134
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.644
+      value: 0.077076554
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -131,11 +131,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -151,7 +151,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_Name
-      value: Hex
+      value: HexPrefab No Label
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
+      propertyPath: m_Name
+      value: HexModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

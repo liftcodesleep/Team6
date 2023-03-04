@@ -89,18 +89,19 @@ public class HexComponent : MonoBehaviour
 
     }
 	
+    /*
 	public Vector3 PositionFromCamera()
     {
-        return HexMap.GetHexPosition(Hex);
+        return HexMap.GetHexPosition(hex);
     }
-	
+	*/
 	public Vector3 PositionFromCamera(Vector3 cameraPosition)
     {
 
         float mapHeight = HexMap.NumRows * HexDimensions.HexVerticalSpacing();
         float mapWidth = HexMap.NumColumns * HexDimensions.HexHorizontalSpacing();
 
-        Vector3 position = Hex.Position();
+        Vector3 position = this.Position();
 
 
         if (HexMap.allowWrapEastWest)

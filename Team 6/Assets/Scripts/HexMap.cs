@@ -6,54 +6,52 @@ using UnityEngine;
 
 
 
-public class HexMap : MonoBehaviour 
+public class HexMap : MonoBehaviour
 {
 
     public GameObject HexPrefab;
     public Material[] HexMaterials;
-	
-	//TODO: remove moved to HexMapStats
-    public static readonly int NumRows = 30;
-    public static readonly int NumColumns = 30;
-	
-	// TODO: 
-	public static readonly bool allowWrapEastWest = true;
-    public static readonly bool allowWrapNorthSouth = false;
-	
+    public static readonly int NumRows = 10;
+    public static readonly int NumColumns = 15;
+
     public GameObject unit;
+    public GameObject enemy;
 
 	//TODO: remove moved to HexMapStats
     private static Hex[,] hexes;
     private HashSet<Unit> units;
 
-    private Dictionary<Hex, GameObject> hexToGameObject;
-    private Dictionary<Unit, GameObject> unitToGameObject;
+    public static Dictionary<Hex, GameObject> hexToGameObject;
+    public static Dictionary<Unit, GameObject> unitToGameObject;
 
-    //int numRows = 20;
-    //int numColumns = 40;
+    public static bool allowWrapEastWest = true;
+    public static bool allowWrapNorthSouth = false;
+
+    private readonly bool debug = true;
+
+
     void Start()
     {
 
         GenerateMap();
-        Unit u = new Unit();
 
-        SpawnUnitAt(u, unit, 5, 5);
+
+        SpawnUnitAt(new Unit(), unit, 5, 5);
+        SpawnUnitAt(new Unit(), unit, 5, 7);
+        SpawnUnitAt(new Unit(), unit, 8, 6);
+        SpawnUnitAt(new Unit(), unit, 9, 5);
+
+        SpawnUnitAt(new Unit(), enemy, 6, 2);
+        SpawnUnitAt(new Unit(), enemy, 8, 2);
+        SpawnUnitAt(new Unit(), enemy, 10, 2);
+        SpawnUnitAt(new Unit(), enemy, 10, 3);
 
     }
 
     private void Update()
     {
-        if(units != null)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                foreach (Unit unit in units)
-                {
-                    unit.DoTurn();
-                }
-            }
-        }
-        
+
+
     }
     public void GenerateMap()
     {
@@ -66,38 +64,40 @@ public class HexMap : MonoBehaviour
             {
 
                 Hex h = new Hex(column, row);
-                
-                
-                Vector3 pos = h.PositionFromCamera(
-                 Camera.main.transform.position,
-                 NumRows,
-                 NumColumns
-                );
-                
+
                 GameObject hexGo = (GameObject)Instantiate(
                  HexPrefab,
-                 pos,
+                 new Vector3(0,0,0),
                  Quaternion.identity,
                  this.transform
                  );
 
                 HexComponent component = hexGo.GetComponent<HexComponent>();
 
-                component.Hex = h;
-                component.HexMap = this;
+                component.hex = h;
+                component.hexMap = this;
 
-                hexGo.GetComponentInChildren<TextMesh>().text = string.Format("{0},{1}",column,row);
+                hexGo.transform.position = component.PositionFromCamera();
+
+                if (debug)
+                {
+                    hexGo.GetComponentInChildren<TextMesh>().text = string.Format("{0},{1}", column, row);
+                }
+                else
+                {
+                    hexGo.GetComponentInChildren<TextMesh>().text = "";
+                }
+
 
                 hexGo.name = string.Format("{0},{1}", column, row);
 
                 MeshRenderer mr = hexGo.GetComponentInChildren<MeshRenderer>();
-                
-                //mr.material = HexMaterials[Random.Range(0, HexMaterials.Length)];
+
                 mr.material = HexMaterials[h.GetElevation()];
-                
+
                 hexes[row, column] = h;
                 hexToGameObject[h] = hexGo;
-              
+
             }
 
         }
@@ -109,22 +109,38 @@ public class HexMap : MonoBehaviour
         return hexes[row, col % NumColumns];
     }
 
-    public static float distanceFrom2Hexs(Hex a, Hex b)
+    public static Hex gameObjectToHex(GameObject hex)
     {
 
-        int dQ = Mathf.Abs(a.Q - b.Q);
-        
-        if (dQ > NumColumns / 2)
+        foreach(var item in hexToGameObject)
         {
-            dQ = NumColumns - dQ;
+            if(item.Value == hex)
+            {
+                return item.Key;
+            }
         }
 
-        return Mathf.Max(
-            dQ,
-            Mathf.Abs(a.R - b.R),
-            Mathf.Abs(a.S - b.S)
-            );
+        return null;
+
     }
+
+    public static Unit gameObjectToUnit(GameObject unit)
+    {
+
+        foreach (var item in unitToGameObject)
+        {
+            if (item.Value == unit)
+            {
+                return item.Key;
+            }
+        }
+
+        return null;
+
+    }
+
+
+
 
     public static Vector3 GetHexPosition(int q, int r)
     {
@@ -137,7 +153,7 @@ public class HexMap : MonoBehaviour
     public static Vector3 GetHexPosition(Hex h)
     {
 
-        return h.PositionFromCamera(Camera.main.transform.position, NumRows, NumColumns);
+        return hexToGameObject[h].GetComponent<HexComponent>().PositionFromCamera();
     }
 
     public void SpawnUnitAt(Unit unit, GameObject prefab, int col, int  row)
@@ -154,11 +170,12 @@ public class HexMap : MonoBehaviour
         unit.SetHex(spawnedHex);
         GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, Quaternion.identity, spawpoint.transform);
 
-        unit.OnUnitMoved += unitGO.GetComponent<UnitView>().OnUnitMove;
-        unit.OnUnitMoved(spawnedHex, spawnedHex);
 
         units.Add(unit);
         unitToGameObject[unit] = unitGO;
     }
+
+
+
 
 }

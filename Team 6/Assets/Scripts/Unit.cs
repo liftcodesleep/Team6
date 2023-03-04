@@ -6,47 +6,61 @@ public class Unit
 {
 
     public string Name = "Unnamed";
-    public int HitPoints = 100;
-    public int Strenth = 8;
+    public int MaxHitPoints = 4;
+    public int HitPoints;
+    public int Strenth = 2;
     public int Movement = 2;
     public int MovementRemaining = 2;
 
-    public Hex Hex { get; protected set; }
+    Queue<Hex> hexPath;
+
+    public Hex hex { get; protected set; }
 
 
-    public delegate void UnitMovedDelegate(Hex oldHex, Hex newHex);
+    public Unit()
+    {
+        HitPoints = MaxHitPoints;
+    }
 
-    public UnitMovedDelegate OnUnitMoved;
+
+    public bool Move(Hex movedToHex)
+    {
+
+        if (this.hex.DistanceFrom(movedToHex) <= Movement)
+        {
+            SetHex(movedToHex);
+            return true;
+        }
+
+        return false;
+    }
 
     public void SetHex(Hex hex)
     {
 
-        if (OnUnitMoved != null)
-        {
-            OnUnitMoved(Hex, hex);
-        }
-
-        if (Hex != null)
+        if (this.hex != null)
         {
             hex.RemoveUnit(this);
         }
 
-
-        Hex = hex;
+        this.hex = hex;
         hex.AddUnit(this);
-
         
     }
 
-    public void DoTurn()
+
+    public void SetHexPath(Hex[] hexPath)
     {
-        
-        Hex oldHex = Hex;
-
-        Hex newHex = HexMap.GetHex(oldHex.Q + 1, oldHex.R);
-        
-        SetHex(newHex);
+        this.hexPath = new Queue<Hex>(hexPath);
     }
 
-   
+   public int MovementCostToEnterHex(Hex hex)
+    {
+        return hex.BaseMovementCost();
+    }
+
+    public void attack(Unit enemy)
+    {
+        enemy.HitPoints -= this.Strenth;
+    }
 }

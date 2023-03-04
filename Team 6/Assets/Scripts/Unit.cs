@@ -9,17 +9,12 @@ public class Unit
     public int MaxHitPoints = 4;
     public int HitPoints;
     public int Strenth = 2;
-    public int Movement = 1;
+    public int Movement = 2;
     public int MovementRemaining = 2;
 
     Queue<Hex> hexPath;
 
-    public Hex Hex { get; protected set; }
-
-
-    public delegate void UnitMovedDelegate(Hex oldHex, Hex newHex);
-
-    public UnitMovedDelegate OnUnitMoved;
+    public Hex hex { get; protected set; }
 
 
     public Unit()
@@ -27,38 +22,32 @@ public class Unit
         HitPoints = MaxHitPoints;
     }
 
+
+    public bool Move(Hex movedToHex)
+    {
+
+        if (this.hex.DistanceFrom(movedToHex) <= Movement)
+        {
+            SetHex(movedToHex);
+            return true;
+        }
+
+        return false;
+    }
+
     public void SetHex(Hex hex)
     {
 
-        if (OnUnitMoved != null)
-        {
-            OnUnitMoved(Hex, hex);
-        }
-
-        if (Hex != null)
+        if (this.hex != null)
         {
             hex.RemoveUnit(this);
         }
 
-
-        Hex = hex;
+        this.hex = hex;
         hex.AddUnit(this);
         
     }
 
-    public void DoTurn()
-    {
-        if(hexPath == null || hexPath.Count == 0)
-        {
-            return;
-        }
-        //Hex oldHex = Hex;
-        //Hex newHex = HexMap.GetHex(oldHex.Q + 1, oldHex.R);
-
-        Hex newHex = hexPath.Dequeue();
-        
-        SetHex(newHex);
-    }
 
     public void SetHexPath(Hex[] hexPath)
     {

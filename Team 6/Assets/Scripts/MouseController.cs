@@ -20,18 +20,16 @@ public class MouseController : MonoBehaviour
     void Update()
     {
 
-        
-
         if (Input.GetMouseButtonDown(0))
         {
             leftMouseClicked();
+
         }else if (Input.GetMouseButtonDown(1))
         {
             rightMouseClick();
         }
         
     }
-
 
     private void leftMouseClicked()
     {
@@ -41,14 +39,8 @@ public class MouseController : MonoBehaviour
 
         if (Physics.Raycast(mouseRay, out hitRay, 100f))
         {
-
             currentSelectedItem = hitRay.transform.gameObject.transform.parent.gameObject;
-
-            //Debug.Log(currentSelectedItem.name);
         }
-
-        
-
 
     }
      
@@ -60,51 +52,58 @@ public class MouseController : MonoBehaviour
             return;
         }
 
-        Unit clickedUnit = HexMap.gameObjectToUnit(currentSelectedItem);
-
         mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        GameObject hexGO;
-        Hex clickedHex;
-        GameObject gOClicked = null;
+
+        GameObject hexGO = null;
+        Hex clickedHex = null;
+        GameObject gameObjectClicked = null;
 
         if (Physics.Raycast(mouseRay, out hitRay, 100f))
         {
             hexGO = hitRay.transform.gameObject.transform.parent.gameObject;
             clickedHex = HexMap.gameObjectToHex(hexGO);
-            gOClicked = hitRay.transform.gameObject.transform.parent.gameObject;
+            gameObjectClicked = hitRay.transform.gameObject.transform.parent.gameObject;
 
         }
-        else
-        {
-            hexGO = null;
-            clickedHex = null;
-        }
-
+        
         Unit firstUnit = HexMap.gameObjectToUnit(currentSelectedItem);
-        Unit secondUnit = HexMap.gameObjectToUnit(gOClicked);
-        if (clickedHex != null && clickedUnit!= null)
-        {
-            if ((currentSelectedItem.transform.position- hexGO.transform.position).magnitude < firstUnit.Movement*2)
-            {
-                Debug.Log(string.Format("Moving to {0}", hexGO.name));
-                clickedUnit.SetHex(clickedHex);
-                currentSelectedItem.GetComponent<UnitView>().OnUnitMove(clickedUnit.Hex, clickedHex);
-            }
-            
+        Unit secondUnit = HexMap.gameObjectToUnit(gameObjectClicked);
 
+        if( IsAUnit(currentSelectedItem) )
+        {
+            if ( IsAHex(gameObjectClicked) )
+            {
+
+                currentSelectedItem.GetComponent<UnitComponent>().OnUnitMove(clickedHex);
+                //if ((currentSelectedItem.transform.position - hexGO.transform.position).magnitude < firstUnit.Movement * 2)
+                /*
+                if (firstUnit.hex.DistanceFrom(clickedHex) <= firstUnit.Movement)
+                {
+
+                    firstUnit.SetHex(clickedHex);
+                    
+                }*/
+            }
+
+            if ( IsAUnit(gameObjectClicked) )
+            {
+                firstUnit.attack(secondUnit);
+
+                HexMap.unitToGameObject[secondUnit].GetComponent<UnitComponent>().updateHealthBar();
+            }
         }
 
         
+    }
 
-        if (firstUnit != null && secondUnit != null)
-        {
-            firstUnit.attack(secondUnit);
+    private bool IsAUnit(GameObject obj)
+    {
+        return HexMap.gameObjectToUnit(obj) != null;
+    }
 
-            HexMap.unitToGameObject[secondUnit].GetComponent<UnitView>().updateHealthBar();
-        }
-
-
-
+    private bool IsAHex(GameObject obj)
+    {
+        return HexMap.gameObjectToHex(obj) != null;
     }
     
 }

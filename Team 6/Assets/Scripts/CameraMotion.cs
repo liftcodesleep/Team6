@@ -26,7 +26,6 @@ public class CameraMotion : MonoBehaviour
 
         this.transform.position += change * Time.deltaTime * speed;
 
-
     }
 
 

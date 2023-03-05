@@ -63,4 +63,16 @@ public class Unit
     {
         enemy.HitPoints -= this.Strenth;
     }
+
+    public void heal(int amount)
+    {
+        if (amount + HitPoints > MaxHitPoints)
+        {
+            HitPoints = MaxHitPoints;
+        }
+        else
+        {
+            HitPoints += amount;
+        }
+    }
 }

@@ -20,9 +20,9 @@ public class CameraMotion : MonoBehaviour
         CheckIfCameraMoved();
 
         float xChange = Input.GetAxis("Horizontal");
-        float yChange = Input.GetAxis("Vertical");
-
-        Vector3 change = new Vector3(xChange, 0, yChange);
+        //float yChange = Input.GetAxis("Vertical");
+        //Vector3 change = new Vector3(xChange, 0, yChange);
+        Vector3 change = new Vector3(xChange, 0, 0);
 
         this.transform.position += change * Time.deltaTime * speed;
 

@@ -94,7 +94,7 @@ public class Hex
         {
             dS =  Mathf.Abs(dS - HexMap.NumColumns) ;
         }
-        Debug.Log(dS);
+        
         return Mathf.Max(
             dQ,
             Mathf.Abs(this.Row - b.Row),

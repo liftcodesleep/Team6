@@ -7,7 +7,20 @@ public class HexComponent : MonoBehaviour
 
     public Hex hex;
     public HexMap hexMap;
-    
+
+
+    private void Start()
+    {
+        this.transform.localScale = new Vector3(.01f, .01f, .01f);
+    }
+
+    private void Update()
+    {
+        if (this.transform.localScale.x < 1)
+        {
+            this.transform.localScale += new Vector3(.02f, .02f, .02f);
+        }
+    }
 
     public Vector3 Position()
     {

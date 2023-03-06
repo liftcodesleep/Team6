@@ -10,7 +10,6 @@ public class UnitComponent : MonoBehaviour
 
     private Vector3 currentVelocity;
     private GameObject healthBar;
-    private Vector3 healthBarSize;
 
     float smoothTime = .1f;
 
@@ -23,11 +22,12 @@ public class UnitComponent : MonoBehaviour
     {
         
         oldPostion = newPosition = this.transform.position;
+        Debug.Log(this.gameObject.name);
 
-        healthBar = this.transform.Find("Health").gameObject;
-        healthBarSize = healthBar.transform.localScale;
+        healthBar = this.gameObject.transform.Find("HealthBar").gameObject;
+        
         unit = HexMap.gameObjectToUnit(this.gameObject);
-
+        this.transform.localScale = new Vector3(.01f, .01f, .01f);
     }
 
     private void Update()
@@ -37,9 +37,13 @@ public class UnitComponent : MonoBehaviour
         {
             HandleDeath();
             return;
+        }else if (this.transform.localScale.x < 1 )
+        {
+            this.transform.localScale += new Vector3(.01f, .01f, .01f);
         }
 
         UpdatePosition();
+        updateHealthBar();
     }
 
 
@@ -62,7 +66,8 @@ public class UnitComponent : MonoBehaviour
 
     public void updateHealthBar()
     {
-        healthBar.transform.localScale *= (float)unit.HitPoints/(float)unit.MaxHitPoints;
+        
+        healthBar.transform.localScale = new Vector3((float)unit.HitPoints / (float)unit.MaxHitPoints,1,1);
     }
 
 

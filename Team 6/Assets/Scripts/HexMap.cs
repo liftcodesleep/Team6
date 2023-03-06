@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 
-public class HexMap : MonoBehaviour
+public class HexMap : MonoBehaviour 
 {
 
     public GameObject HexPrefab;
@@ -14,10 +14,10 @@ public class HexMap : MonoBehaviour
     public static readonly int NumRows = 10;
     public static readonly int NumColumns = 15;
 
-    public GameObject unit;
-    public GameObject enemy;
+    public GameObject player;
+    public GameObject grizzlyBears;
+    public GameObject whiteKnight;
 
-	//TODO: remove moved to HexMapStats
     private static Hex[,] hexes;
     private HashSet<Unit> units;
 
@@ -27,31 +27,31 @@ public class HexMap : MonoBehaviour
     public static bool allowWrapEastWest = true;
     public static bool allowWrapNorthSouth = false;
 
-    private readonly bool debug = true;
+    private readonly bool debug = false;
 
 
     void Start()
     {
 
         GenerateMap();
+       
 
-
-        SpawnUnitAt(new Unit(), unit, 5, 5);
-        SpawnUnitAt(new Unit(), unit, 5, 7);
-        SpawnUnitAt(new Unit(), unit, 8, 6);
-        SpawnUnitAt(new Unit(), unit, 9, 5);
-
-        SpawnUnitAt(new Unit(), enemy, 6, 2);
-        SpawnUnitAt(new Unit(), enemy, 8, 2);
-        SpawnUnitAt(new Unit(), enemy, 10, 2);
-        SpawnUnitAt(new Unit(), enemy, 10, 3);
+        SpawnUnitAt(new Player(), player, 5, 5);
+        SpawnUnitAt(new Player(), player, 10, 3 );
+        //SpawnUnitAt(new Unit(), pillMan, 8, 6);
+        //SpawnUnitAt(new Unit(), pillMan, 9, 5);
+        //
+        //SpawnUnitAt(new Unit(), squareMan, 6, 2);
+        //SpawnUnitAt(new Unit(), squareMan, 8, 2);
+        //SpawnUnitAt(new Unit(), squareMan, 10, 2);
+        //SpawnUnitAt(new Unit(), squareMan, 10, 3);
 
     }
 
     private void Update()
     {
-
-
+       
+        
     }
     public void GenerateMap()
     {
@@ -64,7 +64,7 @@ public class HexMap : MonoBehaviour
             {
 
                 Hex h = new Hex(column, row);
-
+                
                 GameObject hexGo = (GameObject)Instantiate(
                  HexPrefab,
                  new Vector3(0,0,0),
@@ -87,17 +87,18 @@ public class HexMap : MonoBehaviour
                 {
                     hexGo.GetComponentInChildren<TextMesh>().text = "";
                 }
-
+                
 
                 hexGo.name = string.Format("{0},{1}", column, row);
 
-                MeshRenderer mr = hexGo.GetComponentInChildren<MeshRenderer>();
-
+                
+                MeshRenderer mr = hexGo.transform.Find("Model").GetComponentInChildren<MeshRenderer>();
+                
                 mr.material = HexMaterials[h.GetElevation()];
-
+                
                 hexes[row, column] = h;
                 hexToGameObject[h] = hexGo;
-
+              
             }
 
         }
@@ -111,7 +112,7 @@ public class HexMap : MonoBehaviour
 
     public static Hex gameObjectToHex(GameObject hex)
     {
-
+        
         foreach(var item in hexToGameObject)
         {
             if(item.Value == hex)
@@ -168,14 +169,14 @@ public class HexMap : MonoBehaviour
         Hex spawnedHex = GetHex(col, row);
         GameObject spawpoint = hexToGameObject[spawnedHex];
         unit.SetHex(spawnedHex);
-        GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, Quaternion.identity, spawpoint.transform);
-
+        //GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, Quaternion.identity, spawpoint.transform);
+        GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, prefab.transform.rotation, spawpoint.transform);
 
         units.Add(unit);
         unitToGameObject[unit] = unitGO;
     }
 
 
-
+    
 
 }

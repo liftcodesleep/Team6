@@ -843,7 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e4fee55f6792627a8d43f3f99d07db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HexPrefab: {fileID: 3424295240513478234, guid: ae5c71907f0443f4587078eb5909c4ad, type: 3}
+  HexPrefab: {fileID: 3424295240513478234, guid: 5d261b394030eb24192fc9a14c0b7030, type: 3}
   HexMaterials:
   - {fileID: 2100000, guid: 192ff6ef201952c468c2dc031f767044, type: 2}
   - {fileID: 2100000, guid: 17f69544ba5aacd2588739c762c96e84, type: 2}

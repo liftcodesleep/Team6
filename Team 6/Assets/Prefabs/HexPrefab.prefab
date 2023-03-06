@@ -107,7 +107,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -149,13 +149,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_Name
-      value: HexPrefab No Label
+      value: HexPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
       propertyPath: m_Name
       value: HexModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 0bb9664dbb81aa842b1d888f81c13d4a, type: 3}
+      propertyPath: m_TagString
+      value: Selectable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -190,4 +202,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285a78aed7f007c4c9e43aafd94ba398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HexMap: {fileID: 0}
+  hexMap: {fileID: 0}

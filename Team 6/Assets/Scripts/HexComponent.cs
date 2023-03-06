@@ -7,9 +7,7 @@ public class HexComponent : MonoBehaviour
 
     public Hex hex;
     public HexMap hexMap;
-
-
-
+    
 
     public Vector3 Position()
     {

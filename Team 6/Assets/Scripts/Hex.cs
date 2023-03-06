@@ -6,18 +6,19 @@ using System.Linq;
 
 /// <summary>
 /// The Hex class defines the grid position, world space position, size,
-/// neighbours,etc.. of a Hex Tile. However, it doesn NOT interact with 
+/// neighbours,etc.. of a Hex Tile. However, it doesn NOT interact with
 /// Unity directly in any way.
 /// </summary>
 
 
-public class Hex 
+public class Hex
 {
 
-    public readonly int Column;  
-    public readonly int Row;  
-    public readonly int Sum;  
+    public readonly int Column;
+    public readonly int Row;
+    public readonly int Sum;
 
+	//TODO: remove now in HexDem
     private static int offset = Random.Range(0, 200);
 
     private HashSet<Unit> units;
@@ -40,8 +41,8 @@ public class Hex
         if (elevation > 99)
         {
             return 4;
-        } 
-        
+        }
+
         return elevation / 20;
     }
 
@@ -76,8 +77,8 @@ public class Hex
         return 1;
     }
 
-    
-    
+
+
     public float DistanceFrom(Hex b)
     {
 
@@ -100,6 +101,6 @@ public class Hex
             dS
             );
     }
-    
-    
+
+
 }

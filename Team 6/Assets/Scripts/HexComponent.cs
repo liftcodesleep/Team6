@@ -99,4 +99,70 @@ public class HexComponent : MonoBehaviour
         return position;
 
     }
+	
+    /*
+	public Vector3 PositionFromCamera()
+    {
+        return HexMap.GetHexPosition(hex);
+    }
+	*/
+	public Vector3 PositionFromCamera(Vector3 cameraPosition)
+    {
+
+        float mapHeight = HexMap.NumRows * HexDimensions.HexVerticalSpacing();
+        float mapWidth = HexMap.NumColumns * HexDimensions.HexHorizontalSpacing();
+
+        Vector3 position = this.Position();
+
+
+        if (HexMap.allowWrapEastWest)
+
+        {
+
+            float howManyWidthsFromCamera = (position.x - cameraPosition.x) / mapWidth;
+
+
+            //We want howmanyWidthsFromCamera to be between -0.5 to 0.5
+
+            if (howManyWidthsFromCamera > 0)
+            {
+                howManyWidthsFromCamera += 0.5f;
+            }
+            else
+            {
+                howManyWidthsFromCamera -= 0.5f;
+            }
+
+            int howManyWidthToFix = (int)howManyWidthsFromCamera;
+
+
+            position.x -= howManyWidthToFix * mapWidth;
+
+        }
+
+
+        if (HexMap.allowWrapNorthSouth)
+        {
+
+            float howManyHeightsFromCamera = (position.z - cameraPosition.z) / mapHeight;
+
+            //We want howmanyWidthsFromCamera to be between -0.5 to 0.5
+
+            if (howManyHeightsFromCamera > 0)
+            {
+                howManyHeightsFromCamera += 0.5f;
+            }else
+            {
+                howManyHeightsFromCamera -= 0.5f;
+            }
+
+            int howManyHeightsToFix = (int)howManyHeightsFromCamera;
+
+            position.z -= howManyHeightsToFix * mapHeight;
+
+        }
+
+        return position;
+
+    }
 }

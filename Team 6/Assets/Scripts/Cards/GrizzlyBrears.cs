@@ -13,7 +13,7 @@ public class GrizzlyBears : Card
     public override void DoAction(Hex hex)
     {
 
-        hexMap.SpawnUnitAt(new Unit(), hexMap.grizzlyBears, hex.Column, hex.Row);
+        hexMap.SpawnUnitAt(new BearUnit(), hexMap.grizzlyBears, hex.Column, hex.Row);
         
     }
 }

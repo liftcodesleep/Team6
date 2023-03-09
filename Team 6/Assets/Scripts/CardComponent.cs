@@ -30,7 +30,8 @@ public class CardComponent : MonoBehaviour
         new GrizzlyBears(), 
         new HolyStrength(), 
         new Shock(), 
-        new WhiteKnight() };
+        new WhiteKnight(),
+    new Skeleton()};
 
 
 

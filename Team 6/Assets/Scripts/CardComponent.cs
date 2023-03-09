@@ -29,8 +29,10 @@ public class CardComponent : MonoBehaviour
     static Card[] allCards = { 
         new GrizzlyBears(), 
         new HolyStrength(), 
-        new Shock(), 
-        new WhiteKnight() };
+        new Bolt(), 
+        new WhiteKnight(),
+        new Skeleton(),
+        new Teleport()};
 
 
 
@@ -111,10 +113,19 @@ public class CardComponent : MonoBehaviour
         textMesh.text = card.name;
     }
 
+    public void setSelectedPosition(Vector3 v)
+    {
+        this.selectedPosition = v;
+    }
+
+    public Vector3 getStartPosition()
+    {
+        return this.startPosition;
+    }
+
     private Card setRandomCard()
     {
-        
-
+      
         return allCards[Random.Range(0,allCards.Length)];
         //return allCards[0];
     }

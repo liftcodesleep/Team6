@@ -9,14 +9,17 @@ using UnityEngine;
 public class HexMap : MonoBehaviour 
 {
 
-    public GameObject HexPrefab;
+    public GameObject[] Prefabs;
+
     public Material[] HexMaterials;
+
     public static readonly int NumRows = 10;
     public static readonly int NumColumns = 15;
 
     public GameObject player;
     public GameObject grizzlyBears;
     public GameObject whiteKnight;
+    public GameObject skeleton;
 
     private static Hex[,] hexes;
     private HashSet<Unit> units;
@@ -66,7 +69,7 @@ public class HexMap : MonoBehaviour
                 Hex h = new Hex(column, row);
                 
                 GameObject hexGo = (GameObject)Instantiate(
-                 HexPrefab,
+                 Prefabs[h.GetElevation()],
                  new Vector3(0,0,0),
                  Quaternion.identity,
                  this.transform
@@ -90,6 +93,7 @@ public class HexMap : MonoBehaviour
                 
 
                 hexGo.name = string.Format("{0},{1}", column, row);
+
 
                 
                 MeshRenderer mr = hexGo.transform.Find("Model").GetComponentInChildren<MeshRenderer>();

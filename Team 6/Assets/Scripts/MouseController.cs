@@ -32,11 +32,7 @@ public class MouseController : MonoBehaviour
         {
             rightMouseClick();
         }
-
-        
-
-       
-        
+           
     }
 
     private void leftMouseClicked()
@@ -117,15 +113,18 @@ public class MouseController : MonoBehaviour
                 
                 firstUnit.attack(secondUnit);
 
-                HexMap.unitToGameObject[secondUnit].GetComponent<UnitComponent>().updateHealthBar();
+                HexMap.unitToGameObject[secondUnit].GetComponent<UnitComponent>().UpdateHealthBar();
             }
         }
 
         if (selectedCard != null)
         {
             selectedCard.DoAbility(clickedHex);
-            selectedCard.clicked = false;
-            selectedCard = null;
+            if(selectedCard.card.numTargets == selectedCard.card.hexes.Count)
+            {
+                selectedCard.clicked = false;
+                selectedCard = null;
+            }
         }
     }
 

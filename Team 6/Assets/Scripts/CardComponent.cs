@@ -31,7 +31,7 @@ public class CardComponent : MonoBehaviour
         new HolyStrength(), 
         new Shock(), 
         new WhiteKnight(),
-    new Skeleton()};
+        new Skeleton()};
 
 
 

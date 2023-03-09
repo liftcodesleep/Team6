@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Skeleton: Card
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public Skeleton()
     {
-        
+        name = "Skeleton";
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void DoAction(Hex hex)
     {
-        
+
+        hexMap.SpawnUnitAt(new skeletonUnit(), hexMap.skeleton, hex.Column, hex.Row);
+
     }
 }

@@ -13,9 +13,14 @@ public class Shock :Card
     public override void DoAction(Hex hex)
     {
         
-        Unit target = hex.Units()[0];
+        Unit[] target = hex.Units();
 
-        target.HitPoints -= 3;
+        if(target.Length < 1)
+        {
+            return;
+        }
+
+        target[0].HitPoints -= 3;
 
     }
 }

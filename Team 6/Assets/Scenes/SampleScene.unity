@@ -580,7 +580,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1025,7 +1025,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e4fee55f6792627a8d43f3f99d07db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HexPrefab: {fileID: 3424295240513478234, guid: 5d261b394030eb24192fc9a14c0b7030, type: 3}
+  Prefabs:
+  - {fileID: 5440719700956186922, guid: 214a1b0bd6eacd741b4567cac903bfee, type: 3}
+  - {fileID: 5523556053919516571, guid: 8e2b7e5c665e8b444a4b0da5927600c9, type: 3}
+  - {fileID: 4585379361195416286, guid: af2732452fa6e3e43a2ab5b505f6d58d, type: 3}
+  - {fileID: 8916914583185817832, guid: 2b922956ea2cef943aadba8e645ddf86, type: 3}
+  - {fileID: 3424295240513478234, guid: 1a84862c06e1b9340bc7e3c85084f9e1, type: 3}
+  - {fileID: 8663701718569473321, guid: 4fa7b5b122bdce6449b41ae673faa3ff, type: 3}
+  - {fileID: 5438233649445812306, guid: 37dafb9d3957374458e148da857b9ab3, type: 3}
   HexMaterials:
   - {fileID: 2100000, guid: 192ff6ef201952c468c2dc031f767044, type: 2}
   - {fileID: 2100000, guid: 17f69544ba5aacd2588739c762c96e84, type: 2}

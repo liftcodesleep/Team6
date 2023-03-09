@@ -61,7 +61,6 @@ public class UnitComponent : MonoBehaviour
             this.transform.parent = newComponent.transform;
         }
         
-
     }
 
     public void updateHealthBar()

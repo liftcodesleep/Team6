@@ -15,11 +15,13 @@ public class Teleport : Card
     {
 
         hexes.Add(hex);
-        Debug.Log("Added " + hex);
+        Debug.Log("Added " + hex.Column);
+        Debug.Log("Added " + hex.Row);
 
         if (hexes.Count == numTargets)
         {
-            Debug.Log("Is teleporting");
+            Debug.Log("Is teleporting from " + hexes[0].Column + ", " + hexes[1].Row
+            + " to " + hexes[1].Column + ", "  + hexes[1].Row);
 
             hexes[0].Units()[0].SetHex(hexes[1]);
             hexes.Clear();

@@ -43,10 +43,33 @@ public class UnitComponent : MonoBehaviour
         }
 
         UpdatePosition();
-        updateHealthBar();
+        UpdateHealthBar();
+        UpdateHexPosition();
     }
 
+    private void UpdateHexPosition()
+    {
+        HexComponent parentComponent = this.transform.parent.GetComponent<HexComponent>();
 
+        if (parentComponent == null)
+        {
+            Debug.Log("Ooops");
+            return;
+        }
+
+        Hex parentHex = parentComponent.hex;
+
+        if (this.unit.hex != parentHex)
+        {
+            HexComponent newComponent = HexMap.hexToGameObject[this.unit.hex].GetComponent<HexComponent>();
+
+            newPosition = newComponent.PositionFromCamera();
+
+            currentVelocity = Vector3.zero;
+
+            this.transform.parent = newComponent.transform;
+        }
+    }
     public void OnUnitMove(Hex newHex)
     {
 
@@ -63,7 +86,7 @@ public class UnitComponent : MonoBehaviour
         
     }
 
-    public void updateHealthBar()
+    public void UpdateHealthBar()
     {
         
         healthBar.transform.localScale = new Vector3((float)unit.HitPoints / (float)unit.MaxHitPoints,1,1);

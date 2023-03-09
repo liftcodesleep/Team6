@@ -113,7 +113,7 @@ public class MouseController : MonoBehaviour
                 
                 firstUnit.attack(secondUnit);
 
-                HexMap.unitToGameObject[secondUnit].GetComponent<UnitComponent>().updateHealthBar();
+                HexMap.unitToGameObject[secondUnit].GetComponent<UnitComponent>().UpdateHealthBar();
             }
         }
 

@@ -17,6 +17,7 @@ public class HexMap : MonoBehaviour
     public GameObject player;
     public GameObject grizzlyBears;
     public GameObject whiteKnight;
+    public GameObject skeleton;
 
     private static Hex[,] hexes;
     private HashSet<Unit> units;

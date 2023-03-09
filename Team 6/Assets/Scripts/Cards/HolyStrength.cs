@@ -14,13 +14,15 @@ public class HolyStrength : Card
     {
 
         Unit target = hex.Units()[0];
-        if (target.name == "skeleton")
+        if (target.Name == "Skeleton")
         {
             target.HitPoints -= 2;
-            target.Strength -= 1;
+            target.Strenth -= 1;
+            Debug.Log(target.Name);
         }
         else
         {
+            Debug.Log(target.Name);
             target.heal(2);
             target.Strenth += 1;
         }

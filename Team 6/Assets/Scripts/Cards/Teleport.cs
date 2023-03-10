@@ -7,7 +7,8 @@ public class Teleport : Card
 
     public Teleport()
     {
-        name = "Teleport";
+        Name = "Teleport";
+        Color = "Blue";
         numTargets = 2;
     }
 

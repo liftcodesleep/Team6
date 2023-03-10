@@ -37,17 +37,8 @@ public class HexMap : MonoBehaviour
     {
 
         GenerateMap();
-       
-
         SpawnUnitAt(new Player(), player, 5, 5);
-        SpawnUnitAt(new Player(), player, 10, 3 );
-        //SpawnUnitAt(new Unit(), pillMan, 8, 6);
-        //SpawnUnitAt(new Unit(), pillMan, 9, 5);
-        //
-        //SpawnUnitAt(new Unit(), squareMan, 6, 2);
-        //SpawnUnitAt(new Unit(), squareMan, 8, 2);
-        //SpawnUnitAt(new Unit(), squareMan, 10, 2);
-        //SpawnUnitAt(new Unit(), squareMan, 10, 3);
+        SpawnUnitAt(new Player(), player, 15, 7 );
 
     }
 

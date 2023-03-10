@@ -33,7 +33,8 @@ public class CardComponent : MonoBehaviour
         new WhiteKnight(),
         new Skeleton(),
         new Teleport(),
-        new Minotaur()};
+        new Minotaur(),
+        new UnholyStrength()};
 
 
 
@@ -58,24 +59,9 @@ public class CardComponent : MonoBehaviour
         {
             this.GetComponent<MeshRenderer>().enabled = false;
             textMesh.GetComponent<MeshRenderer>().enabled = false;
-            /*
-            if (this.gameObject.transform.localScale.magnitude < .1f)
-            {
-                //Destroy(this.gameObject.transform.parent.gameObject);
-                this.GetComponent<MeshRenderer>().enabled = false;
-                textMesh.GetComponent<MeshRenderer>().enabled = false;
-            }
-            else
-            {
-                this.gameObject.transform.parent.transform.localScale *= shrinkSpeed;
-            }
-            */
         }
         if (drawed)
         {
-
-            //this.gameObject.transform.parent.transform.localScale = new Vector3(1,1,1);
-
             this.GetComponent<MeshRenderer>().enabled = true;
             textMesh.GetComponent<MeshRenderer>().enabled = true;
             drawed = false;
@@ -111,7 +97,7 @@ public class CardComponent : MonoBehaviour
         card = setRandomCard();
         //card.setMap(hexMap);
 
-        textMesh.text = card.name;
+        textMesh.text = card.Name;
     }
 
     public void setSelectedPosition(Vector3 v)

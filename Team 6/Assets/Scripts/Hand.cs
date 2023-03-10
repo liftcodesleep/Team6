@@ -32,16 +32,8 @@ public class Hand : MonoBehaviour
 
     public void DrawNewHand()
     {
-        /*
-        foreach(Vector3 cardPosition in positions)
-        {
-            Instantiate(card, card.transform.position, card.transform.rotation,this.gameObject.transform);
-        }
-        */
         foreach (GameObject card in cards)
         {
-           // card.GetComponentInChildren<CardComponent>().setSelectedPosition(card.GetComponentInChildren<CardComponent>().getStartPosition());
-           // card.GetComponentInChildren<CardComponent>().clicked = false;
             card.GetComponentInChildren<CardComponent>().setCard();
             card.GetComponentInChildren<CardComponent>().drawed = true;
         }

@@ -7,6 +7,7 @@ public class MinotaurUnit : Unit
     public MinotaurUnit()
     {
         this.Name = "Minotaur";
+        this.Color = "Red";
         this.MaxHitPoints = this.HitPoints = 5;
         this.Strength = 5;
         this.Movement = 5;

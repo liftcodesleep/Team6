@@ -7,7 +7,8 @@ public class Skeleton: Card
 
     public Skeleton()
     {
-        name = "Skeleton";
+        Name = "Skeleton";
+        Color = "Black";
     }
 
     public override void DoAction(Hex hex)

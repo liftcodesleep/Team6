@@ -7,7 +7,8 @@ public class WhiteKnight : Card
 
     public WhiteKnight()
     {
-        name = "Knight";
+        Name = "Knight";
+        Color = "White";
     }
 
     public override void DoAction(Hex hex)

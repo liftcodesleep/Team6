@@ -6,7 +6,8 @@ public class Minotaur : Card
 {
     public Minotaur()
     {
-        name = "Minotaur";
+        Name = "Minotaur";
+        Color = "Red";
     }
     public override void DoAction(Hex hex)
     {

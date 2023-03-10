@@ -183,6 +183,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 55553677}
     m_Modifications:
+    - target: {fileID: 2417602787614920368, guid: e458a91992155b545a273bc3b6359154, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.26
+      objectReference: {fileID: 0}
     - target: {fileID: 2417602787614920372, guid: e458a91992155b545a273bc3b6359154, type: 3}
       propertyPath: hexMap
       value: 
@@ -257,6 +261,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 55553677}
     m_Modifications:
+    - target: {fileID: 2417602787614920368, guid: e458a91992155b545a273bc3b6359154, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.272
+      objectReference: {fileID: 0}
     - target: {fileID: 2417602787614920372, guid: e458a91992155b545a273bc3b6359154, type: 3}
       propertyPath: hexMap
       value: 
@@ -340,6 +348,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 55553677}
     m_Modifications:
+    - target: {fileID: 2417602787614920368, guid: e458a91992155b545a273bc3b6359154, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.221
+      objectReference: {fileID: 0}
     - target: {fileID: 2417602787614920372, guid: e458a91992155b545a273bc3b6359154, type: 3}
       propertyPath: hexMap
       value: 
@@ -787,6 +799,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 55553677}
     m_Modifications:
+    - target: {fileID: 79677020814659092, guid: e458a91992155b545a273bc3b6359154, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.559
+      objectReference: {fileID: 0}
     - target: {fileID: 2417602787614920372, guid: e458a91992155b545a273bc3b6359154, type: 3}
       propertyPath: hexMap
       value: 
@@ -845,7 +861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5511305476742480991, guid: e458a91992155b545a273bc3b6359154, type: 3}
       propertyPath: m_Name
-      value: Card (8)
+      value: Card (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -866,6 +882,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 55553677}
     m_Modifications:
+    - target: {fileID: 2417602787614920368, guid: e458a91992155b545a273bc3b6359154, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 2417602787614920372, guid: e458a91992155b545a273bc3b6359154, type: 3}
       propertyPath: hexMap
       value: 
@@ -924,7 +944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5511305476742480991, guid: e458a91992155b545a273bc3b6359154, type: 3}
       propertyPath: m_Name
-      value: Card (5)
+      value: Card (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -1065,6 +1085,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 55553677}
     m_Modifications:
+    - target: {fileID: 2417602787614920368, guid: e458a91992155b545a273bc3b6359154, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.239
+      objectReference: {fileID: 0}
     - target: {fileID: 2417602787614920372, guid: e458a91992155b545a273bc3b6359154, type: 3}
       propertyPath: hexMap
       value: 
@@ -1405,6 +1429,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 55553677}
     m_Modifications:
+    - target: {fileID: 2417602787614920368, guid: e458a91992155b545a273bc3b6359154, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.47
+      objectReference: {fileID: 0}
     - target: {fileID: 2417602787614920372, guid: e458a91992155b545a273bc3b6359154, type: 3}
       propertyPath: hexMap
       value: 
@@ -1463,7 +1491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5511305476742480991, guid: e458a91992155b545a273bc3b6359154, type: 3}
       propertyPath: m_Name
-      value: Card (7)
+      value: Card (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

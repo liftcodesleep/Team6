@@ -26,15 +26,17 @@ public class CardComponent : MonoBehaviour
     private TextMesh textMesh;
 
 
-    static Card[] allCards = { 
-        new GrizzlyBears(), 
-        new HolyStrength(), 
-        new Bolt(), 
+    static Card[] allCards = {
+        new GrizzlyBears(),
+        new HolyStrength(),
+        new Bolt(),
         new WhiteKnight(),
         new Skeleton(),
         new Teleport(),
         new Minotaur(),
-        new UnholyStrength()};
+        new UnholyStrength(),
+        new Specter(),
+        new Spider()};
 
 
 

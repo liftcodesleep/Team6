@@ -20,6 +20,8 @@ public class HexMap : MonoBehaviour
     public GameObject whiteKnight;
     public GameObject skeleton;
     public GameObject minotaur;
+    public GameObject specter;
+    public GameObject[] spiders;
 
     private static Hex[,] hexes;
     private HashSet<Unit> units;

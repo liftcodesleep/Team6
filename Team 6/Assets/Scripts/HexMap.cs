@@ -11,7 +11,6 @@ public class HexMap : MonoBehaviour
 
     public GameObject[] Prefabs;
 
-    public Material[] HexMaterials;
 
     public static readonly int NumRows = 10;
     public static readonly int NumColumns = 15;
@@ -96,9 +95,9 @@ public class HexMap : MonoBehaviour
 
 
                 
-                MeshRenderer mr = hexGo.transform.Find("Model").GetComponentInChildren<MeshRenderer>();
+                //MeshRenderer mr = hexGo.transform.Find("Model").GetComponentInChildren<MeshRenderer>();
                 
-                mr.material = HexMaterials[h.GetElevation()];
+                //mr.material = HexMaterials[h.GetElevation()];
                 
                 hexes[row, column] = h;
                 hexToGameObject[h] = hexGo;

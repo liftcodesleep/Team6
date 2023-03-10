@@ -10,6 +10,7 @@ public class KnightUnit : Unit
         this.MaxHitPoints = this.HitPoints = 4;
         this.Strength = 1;
         this.Movement = 1;
+        this.MovementRemaining = 1;
     }
 
 }

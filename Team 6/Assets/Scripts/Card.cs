@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Card 
 {
     public string name;
+    public string description; //TODO Flavor text?
 
     public List<Hex> hexes = new List<Hex>();
 

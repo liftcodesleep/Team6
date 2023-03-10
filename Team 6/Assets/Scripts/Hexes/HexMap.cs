@@ -58,11 +58,11 @@ public class HexMap : MonoBehaviour
     void Start()
     {
         Card.setMap(this);
-        Debug.Log("Hex map set");
+        
         GenerateMap();
 
         MakePlayers();
-        
+
 
         //SpawnUnitAt(new Unit(), pillMan, 8, 6);
         //SpawnUnitAt(new Unit(), pillMan, 9, 5);
@@ -71,6 +71,7 @@ public class HexMap : MonoBehaviour
         //SpawnUnitAt(new Unit(), squareMan, 8, 2);
         //SpawnUnitAt(new Unit(), squareMan, 10, 2);
         //SpawnUnitAt(new Unit(), squareMan, 10, 3);
+        
 
     }
 

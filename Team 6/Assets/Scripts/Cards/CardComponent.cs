@@ -72,7 +72,7 @@ public class CardComponent : MonoBehaviour
         textMesh = this.gameObject.GetComponentInChildren<TextMesh>();
 
         card = setRandomCard();
-        Card.setMap(hexMap);
+        
 
         setCard();
     }

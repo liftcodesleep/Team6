@@ -1161,19 +1161,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefabs:
+  - {fileID: 6982573576710600432, guid: 70d849c942dbc624582bca13f3706774, type: 3}
+  - {fileID: 8663701718569473321, guid: 4fa7b5b122bdce6449b41ae673faa3ff, type: 3}
+  - {fileID: 5438233649445812306, guid: 37dafb9d3957374458e148da857b9ab3, type: 3}
   - {fileID: 5440719700956186922, guid: 214a1b0bd6eacd741b4567cac903bfee, type: 3}
   - {fileID: 5523556053919516571, guid: 8e2b7e5c665e8b444a4b0da5927600c9, type: 3}
   - {fileID: 4585379361195416286, guid: af2732452fa6e3e43a2ab5b505f6d58d, type: 3}
-  - {fileID: 8916914583185817832, guid: 2b922956ea2cef943aadba8e645ddf86, type: 3}
   - {fileID: 3424295240513478234, guid: 1a84862c06e1b9340bc7e3c85084f9e1, type: 3}
-  - {fileID: 8663701718569473321, guid: 4fa7b5b122bdce6449b41ae673faa3ff, type: 3}
-  - {fileID: 5438233649445812306, guid: 37dafb9d3957374458e148da857b9ab3, type: 3}
-  HexMaterials:
-  - {fileID: 2100000, guid: 192ff6ef201952c468c2dc031f767044, type: 2}
-  - {fileID: 2100000, guid: 17f69544ba5aacd2588739c762c96e84, type: 2}
-  - {fileID: 2100000, guid: 1977359cf7ad01b6abf5d8e2c2940fae, type: 2}
-  - {fileID: 2100000, guid: 16186c7ebe4a4c14697a2a2d8ea9a64a, type: 2}
-  - {fileID: 2100000, guid: 4bf5e8c1b2200b1d8a1a209897ef3210, type: 2}
   player: {fileID: 9115022645573173194, guid: be4f1936f8630814d96e9fedc6c22599, type: 3}
   grizzlyBears: {fileID: 2216712049197101269, guid: 1d496a8c17ed7734e82db6a2ed619a0a, type: 3}
   whiteKnight: {fileID: 2216712049197101269, guid: e687bf082a938bc459a04aa3787a2c9e, type: 3}

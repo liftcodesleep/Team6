@@ -9,16 +9,17 @@ public class MouseController : MonoBehaviour
     private Vector3 pressedUpPosition;
 
 
-    private Ray mouseRay;
-    private RaycastHit hitRay;
-    private GameObject currentSelectedItem;
+    private Ray MouseRay;
+    private RaycastHit HitRay;
+    private GameObject CurrentSelectedItem;
+    public GameObject ToolTip;
 
     private CardComponent selectedCard;
 
 
     private void Start()
     {
-        
+
     }
 
     void Update()
@@ -32,11 +33,7 @@ public class MouseController : MonoBehaviour
         {
             rightMouseClick();
         }
-
-        
-
-       
-        
+           
     }
 
     private void leftMouseClicked()
@@ -49,30 +46,53 @@ public class MouseController : MonoBehaviour
         }
 
 
-        mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        GameObject firstSelectedItem = currentSelectedItem;
+        GameObject firstSelectedItem = CurrentSelectedItem;
 
-        if (Physics.Raycast(mouseRay, out hitRay, 100f))
+        if (Physics.Raycast(MouseRay, out HitRay, 100f))
         {
-            currentSelectedItem = hitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
-            Debug.Log(currentSelectedItem.gameObject.name);
+            CurrentSelectedItem = HitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
+            Debug.Log(CurrentSelectedItem.gameObject.name);
         }
         
 
-        if (currentSelectedItem !=null && IsACard(currentSelectedItem))
+        if (CurrentSelectedItem !=null && IsACard(CurrentSelectedItem))
         {
-            selectedCard = currentSelectedItem.GetComponentInChildren<CardComponent>();
+            selectedCard = CurrentSelectedItem.GetComponentInChildren<CardComponent>();
             selectedCard.clicked = true;
             
-        }else if (selectedCard != null)
+        }
+        else if (CurrentSelectedItem != null && IsAUnit(CurrentSelectedItem))
+        {
+            ToolTip.SetActive(true);
+            Unit selectedUnit = HexMap.gameObjectToUnit(CurrentSelectedItem.gameObject);
+            //BRING UP TOOLTIP
+            ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
+                "\nStrength: " + selectedUnit.Strenth + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
+        }
+        else if (CurrentSelectedItem != null && IsAHex(CurrentSelectedItem))
+        {
+            ToolTip.SetActive(true);
+
+            Hex selectedHex = HexMap.gameObjectToHex(CurrentSelectedItem.gameObject);
+            //BRING UP TOOLTIP
+            ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedHex.Name + "\nX: " + selectedHex.Column +
+                "\nY: " + selectedHex.Row;
+        }
+        else if (selectedCard != null)
         {
             selectedCard.clicked = false;
             selectedCard = null;
         }
+        else
+        {
+            ToolTip.SetActive(false);
+
+        }
 
 
-        
+
     }
 
     
@@ -80,52 +100,55 @@ public class MouseController : MonoBehaviour
     private void rightMouseClick()
     {
         
-        if( currentSelectedItem == null )
+        if( CurrentSelectedItem == null )
         {
             return;
         }
 
-        mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         GameObject hexGO = null;
         Hex clickedHex = null;
         GameObject gameObjectClicked = null;
 
-        if (Physics.Raycast(mouseRay, out hitRay, 100f))
+        if (Physics.Raycast(MouseRay, out HitRay, 100f))
         {
-            hexGO = hitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
+            hexGO = HitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
             clickedHex = HexMap.gameObjectToHex(hexGO);
-            gameObjectClicked = hitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
+            gameObjectClicked = HitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
 
         }
 
         Debug.Log(hexGO.name);
 
-        Unit firstUnit = HexMap.gameObjectToUnit(currentSelectedItem);
+        Unit firstUnit = HexMap.gameObjectToUnit(CurrentSelectedItem);
         Unit secondUnit = HexMap.gameObjectToUnit(gameObjectClicked);
 
         
-        if ( IsAUnit(currentSelectedItem) )
+        if ( IsAUnit(CurrentSelectedItem) )
         {
             
             if ( IsAHex(gameObjectClicked) )
             {
-                currentSelectedItem.GetComponent<UnitComponent>().OnUnitMove(clickedHex);
+                CurrentSelectedItem.GetComponent<UnitComponent>().OnUnitMove(clickedHex);
                 
             }else if ( IsAUnit(gameObjectClicked) )
             {
                 
                 firstUnit.attack(secondUnit);
 
-                HexMap.unitToGameObject[secondUnit].GetComponent<UnitComponent>().updateHealthBar();
+                HexMap.unitToGameObject[secondUnit].GetComponent<UnitComponent>().UpdateHealthBar();
             }
         }
 
         if (selectedCard != null)
         {
             selectedCard.DoAbility(clickedHex);
-            selectedCard.clicked = false;
-            selectedCard = null;
+            if(selectedCard.card.numTargets == selectedCard.card.hexes.Count)
+            {
+                selectedCard.clicked = false;
+                selectedCard = null;
+            }
         }
     }
 

@@ -7,6 +7,7 @@ public class Player : Unit
     
     public Player()
     {
+        this.Name = "Player";
         this.MaxHitPoints = this.HitPoints = 20;
         this.Strenth = 1;
         this.Movement = 1;

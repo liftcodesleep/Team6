@@ -17,8 +17,9 @@ public class Hex
     public readonly int Column;
     public readonly int Row;
     public readonly int Sum;
-
-	//TODO: remove now in HexDem
+    public readonly string Name = "Hex.Name";
+    
+    //TODO: remove now in HexDem
     private static int offset = Random.Range(0, 200);
 
     private HashSet<Unit> units;

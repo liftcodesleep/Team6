@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Deck
+public class DeckComponent : MonoBehaviour
 {
-    GameObject[] Cards;
-    public Deck(int size)
+    public Deck deck;
+    // Start is called before the first frame update
+    void Start()
     {
-        this.Cards = new GameObject[size];
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
     public void DrawNewHand(Deck hand)
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hand : MonoBehaviour
+public class DisplayHand : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -29,7 +29,7 @@ public class Hand : MonoBehaviour
     {
         
     }
-
+/*
     public void DrawNewHand()
     {
         foreach (GameObject card in cards)
@@ -39,6 +39,6 @@ public class Hand : MonoBehaviour
         }
 
     }
-
+*/
 
 }

@@ -12,7 +12,7 @@ public class Minotaur : Card
     public override void DoAction(Hex hex)
     {
 
-        hexMap.SpawnUnitAt(new MinotaurUnit(), hexMap.minotaur, hex.Column, hex.Row);
+        hexMap.SpawnUnitAt(new MinotaurUnit(), hexMap.Minotaur, hex.Column, hex.Row);
 
     }
 }

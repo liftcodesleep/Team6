@@ -14,7 +14,7 @@ public class Spider : Card
 
     public override void DoAction(Hex hex)
     {
-        hexMap.SpawnUnitAt(new SpiderUnit(), hexMap.spiders[random.Next() % 2], hex.Column, hex.Row);
+        hexMap.SpawnUnitAt(new SpiderUnit(), hexMap.Spiders[random.Next() % 2], hex.Column, hex.Row);
 
     }
 }

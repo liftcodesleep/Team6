@@ -21,7 +21,7 @@ public class Skeleton: Card
             Debug.Log("null map");
         }
 
-        hexMap.SpawnUnitAt(new SkeletonUnit(), hexMap.skeleton, hex.Column, hex.Row);
+        hexMap.SpawnUnitAt(new SkeletonUnit(), hexMap.Skeleton, hex.Column, hex.Row);
 
     }
 }

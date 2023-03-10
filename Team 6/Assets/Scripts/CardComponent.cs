@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CardComponent : MonoBehaviour
 {
+
     public GameObject unitSummon;
     private Vector3 startPosition;
    
@@ -15,7 +16,7 @@ public class CardComponent : MonoBehaviour
 
     private float smoothTime = .5f;
 
-    private bool played = false;
+    public bool played = false;
     public bool drawed = false;
 
     private float shrinkSpeed = .9f;
@@ -25,16 +26,31 @@ public class CardComponent : MonoBehaviour
     [SerializeField] HexMap hexMap;
     private TextMesh textMesh;
 
-
-    static Card[] allCards = { 
-        new GrizzlyBears(), 
-        new HolyStrength(), 
-        new Bolt(), 
-        new WhiteKnight(),
-        new Skeleton(),
-        new Teleport()};
+    public int HandPostion;
 
 
+
+
+    public void Hide()
+    {
+        this.gameObject.GetComponent<MeshCollider>().enabled = false;
+        MeshRenderer[] meshs = this.gameObject.GetComponentsInChildren<MeshRenderer>();
+        foreach(MeshRenderer mesh in meshs)
+        {
+            mesh.enabled = false;
+        }
+    }
+    public void Show()
+    {
+        this.gameObject.GetComponent<MeshCollider>().enabled = true;
+
+        MeshRenderer[] meshs = this.gameObject.GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer mesh in meshs)
+        {
+            mesh.enabled = false;
+        }
+        drawed = true;
+}
 
     // Start is called before the first frame update
     void Start()
@@ -43,10 +59,12 @@ public class CardComponent : MonoBehaviour
         this.selectedPosition = startPosition + new Vector3(0, 0, .5f);
         textMesh = this.gameObject.GetComponentInChildren<TextMesh>();
 
-        card = setRandomCard();
-        Card.setMap(hexMap);
+        //card = setRandomCard();
+        
 
-        setCard();
+        //setCard();
+        played = true;
+
     }
 
     // Update is called once per frame
@@ -101,14 +119,19 @@ public class CardComponent : MonoBehaviour
     {
         card.DoAction(hex);
         played = true;
+
+        HexMap.GetCurrentPlayer().currentMana -= card.ManaCost;
         
     }
 
-    public void setCard()
+    
+
+    public void setCard(Card card)
     {
+        this.card = card;
+
         
-        card = setRandomCard();
-        //card.setMap(hexMap);
+        
 
         textMesh.text = card.name;
     }
@@ -123,10 +146,14 @@ public class CardComponent : MonoBehaviour
         return this.startPosition;
     }
 
-    private Card setRandomCard()
+   
+
+    public void RemoveFromHand()
     {
-      
-        return allCards[Random.Range(0,allCards.Length)];
-        //return allCards[0];
+        Hand hand = HexMap.AllPlayers[HexMap.currentPlayer].hand;
+        Debug.Log("Removing ");
+        Debug.Log(hand.cards.Count);
+        hand.cards.Remove(card);
+        Debug.Log(hand.cards.Count);
     }
 }

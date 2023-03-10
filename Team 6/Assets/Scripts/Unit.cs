@@ -13,6 +13,8 @@ public class Unit
     public int MovementRemaining = 1;
     public int Range = 1;
 
+    public Player Owner;
+
     Queue<Hex> hexPath;
 
     public Hex hex { get; protected set; }

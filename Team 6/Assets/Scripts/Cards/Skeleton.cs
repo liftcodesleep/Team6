@@ -12,6 +12,13 @@ public class Skeleton: Card
 
     public override void DoAction(Hex hex)
     {
+        if(hex == null)
+        {
+            Debug.Log("null hex");
+        }else if (hexMap == null)
+        {
+            Debug.Log("null map");
+        }
 
         hexMap.SpawnUnitAt(new SkeletonUnit(), hexMap.skeleton, hex.Column, hex.Row);
 

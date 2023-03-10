@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class Card 
 {
-    public string name;
+    public string name = "-- Default Name --";
+
+    public int ManaCost = 1;
 
     public List<Hex> hexes = new List<Hex>();
 
@@ -15,6 +17,7 @@ public abstract class Card
     public static void setMap(HexMap hexMap)
     {
         Card.hexMap = hexMap;
+        
     }
 
     public abstract void DoAction(Hex hex);

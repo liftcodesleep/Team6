@@ -18,6 +18,8 @@ public class Hex
     public readonly int Row;
     public readonly int Sum;
     public readonly string Name = "Hex.Name";
+
+
     
     //TODO: remove now in HexDem
     private static int offset = Random.Range(0, 200);
@@ -29,7 +31,11 @@ public class Hex
         this.Row = r;
         this.Sum = -(q + r);
 
-        Random.InitState(42); // Random.seed = 42;
+        if (!HexMap.MakeRandomMap)
+        {
+            Random.InitState(42);
+        }
+        
     }
 
 
@@ -44,7 +50,7 @@ public class Hex
             return 4;
         }
 
-        return elevation / 20;
+        return elevation / 16;
     }
 
 

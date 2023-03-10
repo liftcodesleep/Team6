@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2417602787614920371}
   m_LocalRotation: {x: 0.3104939, y: -0, z: -0, w: 0.95057535}
-  m_LocalPosition: {x: -1.7689867, y: -2.9166625, z: 8.438526}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.645097, y: 0.9239139, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -122,8 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitSummon: {fileID: 0}
   clicked: 0
+  played: 0
   drawed: 0
   hexMap: {fileID: 0}
+  HandPostion: 0
 --- !u!1 &4726207202577398586
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5511305476742480991}
   m_LocalRotation: {x: -0.3090171, y: 0, z: 0, w: 0.95105654}
-  m_LocalPosition: {x: 0.5, y: -3, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

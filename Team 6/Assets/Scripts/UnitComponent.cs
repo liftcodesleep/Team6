@@ -22,7 +22,7 @@ public class UnitComponent : MonoBehaviour
     {
         
         oldPostion = newPosition = this.transform.position;
-        Debug.Log(this.gameObject.name);
+        
 
         healthBar = this.gameObject.transform.Find("HealthBar").gameObject;
         

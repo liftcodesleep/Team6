@@ -13,7 +13,7 @@ public class UnitComponent : MonoBehaviour
 
     float smoothTime = .1f;
 
-    public  Unit unit;
+    public Unit unit;
 
     private float shrinkSpeed = .9f;
     

@@ -18,6 +18,7 @@ public class Hex
     public readonly int Row;
     public readonly int Sum;
     public readonly string Name = "Hex.Name";
+    public readonly string Mana = "Hex.Mana";
     
     //TODO: remove now in HexDem
     private static int offset = Random.Range(0, 200);
@@ -37,14 +38,14 @@ public class Hex
     {
 
         float scale = 10;
-        int elevation =  (int)(Mathf.PerlinNoise((Column+ offset+(int)(Row/2)) / scale, (Row+offset)/scale) * 100) ;
+        int elevation =  (int)(Mathf.PerlinNoise((Column + offset + (int)(Row/2)) / scale, (Row+offset)/scale) * 100) ;
 
         if (elevation > 99)
         {
-            return 4;
+            return 7;
         }
 
-        return elevation / 20;
+        return elevation % 7;
     }
 
 

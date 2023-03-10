@@ -6,11 +6,11 @@ public class Unit
 {
 
     public string Name = "Unnamed";
-    public int MaxHitPoints = 4;
+    public int MaxHitPoints = 1;
     public int HitPoints;
-    public int Strenth = 2;
-    public int Movement = 2;
-    public int MovementRemaining = 2;
+    public int Strenth = 1;
+    public int Movement = 1;
+    public int MovementRemaining = 1;
 
     Queue<Hex> hexPath;
 

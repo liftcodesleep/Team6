@@ -96,9 +96,9 @@ public class HexMap : MonoBehaviour
 
 
                 
-                MeshRenderer mr = hexGo.transform.Find("Model").GetComponentInChildren<MeshRenderer>();
+                //MeshRenderer mr = hexGo.transform.Find("Model").GetComponentInChildren<MeshRenderer>();
                 
-                mr.material = HexMaterials[h.GetElevation()];
+                //mr.material = HexMaterials[h.GetElevation()];
                 
                 hexes[row, column] = h;
                 hexToGameObject[h] = hexGo;

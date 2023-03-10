@@ -69,7 +69,7 @@ public class MouseController : MonoBehaviour
             Unit selectedUnit = HexMap.gameObjectToUnit(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
             ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
-                "\nStrength: " + selectedUnit.Strenth + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
+                "\nStrength: " + selectedUnit.Strength + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
         }
         else if (CurrentSelectedItem != null && IsAHex(CurrentSelectedItem))
         {

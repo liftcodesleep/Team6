@@ -8,7 +8,7 @@ public class KnightUnit : Unit
     {
         this.Name = "Knight";
         this.MaxHitPoints = this.HitPoints = 4;
-        this.Strenth = 1;
+        this.Strength = 1;
         this.Movement = 1;
     }
 

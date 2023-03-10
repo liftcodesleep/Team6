@@ -13,6 +13,7 @@ public class Unit
     public int Movement = 1;
     public int MovementRemaining = 1;
     public int Range = 1;
+    public bool CanRangedAttack = false;
 
     Queue<Hex> hexPath;
 
@@ -68,8 +69,16 @@ public class Unit
 
     public void attack(Unit enemy)
     {
-        enemy.HitPoints -= this.Strength;
-        this.HitPoints -= enemy.Strength; //For next playtest, attacks are symmetric, consider reducing damage dealt by defender? would like to avoid fractional damage however
+        //STOP HITTING YOURSELF
+        if (enemy == this)
+        {
+            return;
+        }
+        if (this.hex.DistanceFrom(enemy.hex) <= Range)
+        {
+            enemy.HitPoints -= this.Strength;
+            this.HitPoints -= enemy.Strength; //For next playtest, attacks are symmetric, consider reducing damage dealt by defender? would like to avoid fractional damage
+        }
     }
 
     public void heal(int amount)

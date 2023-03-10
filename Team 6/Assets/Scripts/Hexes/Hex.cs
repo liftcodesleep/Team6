@@ -42,10 +42,10 @@ public class Hex
 
         if (elevation > 99)
         {
-            return 7;
+            return 8;
         }
 
-        return elevation % 7;
+        return elevation % 8;
     }
 
 

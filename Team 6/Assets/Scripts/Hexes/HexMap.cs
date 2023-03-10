@@ -19,9 +19,6 @@ public class HexMap : MonoBehaviour
     public GameObject grizzlyBears;
     public GameObject whiteKnight;
     public GameObject skeleton;
-    public GameObject minotaur;
-    public GameObject specter;
-    public GameObject[] spiders;
 
     private static Hex[,] hexes;
     private HashSet<Unit> units;
@@ -34,13 +31,39 @@ public class HexMap : MonoBehaviour
 
     private readonly bool debug = false;
 
+    public static bool MakeRandomMap = true;
+
+    public static Player[] AllPlayers;
+    public static int currentPlayer;
+
+    [SerializeField] private GameObject HandPreFab;
+
+
+
+    public static Card[] allCards = {
+        new GrizzlyBears(),
+        new HolyStrength(),
+        new Bolt(),
+        new WhiteKnight(),
+        new Skeleton(),
+        new Teleport()};
 
     void Start()
     {
-
+        Card.setMap(this);
+        Debug.Log("Hex map set");
         GenerateMap();
-        SpawnUnitAt(new Player(), player, 5, 5);
-        SpawnUnitAt(new Player(), player, 15, 7 );
+
+        MakePlayers();
+        
+
+        //SpawnUnitAt(new Unit(), pillMan, 8, 6);
+        //SpawnUnitAt(new Unit(), pillMan, 9, 5);
+        //
+        //SpawnUnitAt(new Unit(), squareMan, 6, 2);
+        //SpawnUnitAt(new Unit(), squareMan, 8, 2);
+        //SpawnUnitAt(new Unit(), squareMan, 10, 2);
+        //SpawnUnitAt(new Unit(), squareMan, 10, 3);
 
     }
 
@@ -174,6 +197,38 @@ public class HexMap : MonoBehaviour
     }
 
 
-    
+    public void NextTurn()
+    {
+        currentPlayer = (currentPlayer + 1) % AllPlayers.Length;
+        //GetCurrentPlayer().hand.Draw();
+        GetCurrentPlayer().NewTurn();
+    }
 
+    public void MakePlayers()
+    {
+        
+        
+        AllPlayers = new Player[] { new Player(), new Player() };
+
+        AllPlayers[0].Name = "Player 1";
+        AllPlayers[1].Name = "Player 2";
+
+        GameObject handGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
+        HandComponent hand = handGO.GetComponent<HandComponent>();
+        hand.SetHand(AllPlayers[0].hand);
+
+        handGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
+        hand = handGO.GetComponent<HandComponent>();
+        hand.SetHand(AllPlayers[1].hand);
+
+
+        currentPlayer = 0;
+        SpawnUnitAt(AllPlayers[0], player, 5, 5);
+        SpawnUnitAt(AllPlayers[1], player, 10, 3);
+    }
+
+    public static Player GetCurrentPlayer()
+    {
+        return AllPlayers[currentPlayer];
+    }
 }

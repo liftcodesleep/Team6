@@ -53,7 +53,7 @@ public class MouseController : MonoBehaviour
         if (Physics.Raycast(MouseRay, out HitRay, 100f))
         {
             CurrentSelectedItem = HitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
-            Debug.Log(CurrentSelectedItem.gameObject.name);
+            
         }
         
 
@@ -69,7 +69,7 @@ public class MouseController : MonoBehaviour
             Unit selectedUnit = HexMap.gameObjectToUnit(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
             ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
-                "\nStrength: " + selectedUnit.Strength + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
+                "\nStrength: " + selectedUnit.Strenth + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
         }
         else if (CurrentSelectedItem != null && IsAHex(CurrentSelectedItem))
         {
@@ -119,7 +119,7 @@ public class MouseController : MonoBehaviour
 
         }
 
-        Debug.Log(hexGO.name);
+        
 
         Unit firstUnit = HexMap.gameObjectToUnit(CurrentSelectedItem);
         Unit secondUnit = HexMap.gameObjectToUnit(gameObjectClicked);
@@ -143,9 +143,27 @@ public class MouseController : MonoBehaviour
 
         if (selectedCard != null)
         {
+            
             selectedCard.DoAbility(clickedHex);
-            selectedCard.clicked = false;
-            selectedCard = null;
+            if(selectedCard.card.numTargets == selectedCard.card.hexes.Count)
+            {
+                
+                selectedCard.clicked = false;
+                selectedCard.RemoveFromHand();
+                selectedCard = null;
+                
+
+            }
+            else if (selectedCard.card.numTargets < selectedCard.card.hexes.Count)
+            {
+                
+                selectedCard.played = false;
+            }
+            else
+            {
+                
+                selectedCard.RemoveFromHand();
+            }
         }
     }
 

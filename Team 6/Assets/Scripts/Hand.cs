@@ -2,43 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hand : MonoBehaviour
+public class Hand 
 {
-    // Start is called before the first frame update
 
-    Vector3[] positions;
-    [SerializeField] GameObject card;
-    GameObject[] cards;
-    void Start()
+    public List<Card> cards;
+
+    private int StartingHandSize = 4;
+    private int MaxHandSize = 8;
+
+
+
+    public Player Owner;
+
+    public Hand(Player player)
     {
-
-        int amountOfCards = this.transform.childCount;
-        positions = new Vector3[amountOfCards];
-
-        cards = new GameObject[amountOfCards];
-        for (int cardIndex = 0; cardIndex < amountOfCards; cardIndex++)
+        Owner = player;
+        cards = new List<Card>();
+        while (cards.Count < StartingHandSize)
         {
-            positions[cardIndex] = this.transform.GetChild(cardIndex).gameObject.transform.position;
-            cards[cardIndex] = this.transform.GetChild(cardIndex).gameObject;
+            Draw();
+        }
+    }
+
+
+    public void Draw()
+    {
+        cards.Add(HexMap.allCards[Random.Range(0, HexMap.allCards.Length)]);
+
+    }
+
+
+    public void PutInHand(Card card)
+    {
+        if(cards.Count < MaxHandSize)
+        {
+            cards.Add(card);
         }
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void DrawNewHand()
-    {
-        foreach (GameObject card in cards)
-        {
-            card.GetComponentInChildren<CardComponent>().setCard();
-            card.GetComponentInChildren<CardComponent>().drawed = true;
-        }
-
-    }
 
 
 }

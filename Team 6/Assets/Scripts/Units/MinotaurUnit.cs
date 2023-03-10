@@ -8,7 +8,8 @@ public class MinotaurUnit : Unit
     {
         this.Name = "Minotaur";
         this.MaxHitPoints = this.HitPoints = 5;
-        this.Strenth = 5;
+        this.Strength = 5;
         this.Movement = 5;
+        this.MovementRemaining = 5;
     }
 }

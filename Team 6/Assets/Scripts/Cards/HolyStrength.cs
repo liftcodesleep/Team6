@@ -17,14 +17,14 @@ public class HolyStrength : Card
         if (target.Name == "Skeleton")
         {
             target.HitPoints -= 2;
-            target.Strenth -= 1;
+            target.Strength -= 1;
             Debug.Log(target.Name);
         }
         else
         {
             Debug.Log(target.Name);
             target.heal(2);
-            target.Strenth += 1;
+            target.Strength += 1;
         }
 
 

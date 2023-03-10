@@ -8,7 +8,7 @@ public class Unit
     public string Name = "Unit.Name";
     public int MaxHitPoints = 1;
     public int HitPoints;
-    public int Strenth = 1;
+    public int Strength = 1;
     public int Movement = 1;
     public int MovementRemaining = 1;
     public int Range = 1;
@@ -62,8 +62,8 @@ public class Unit
 
     public void attack(Unit enemy)
     {
-        enemy.HitPoints -= this.Strenth;
-        this.HitPoints -= enemy.Strenth; //For next playtest, attacks are symmetric, consider reducing damage dealt by defender? would like to avoid fractional damage however
+        enemy.HitPoints -= this.Strength;
+        this.HitPoints -= enemy.Strength; //For next playtest, attacks are symmetric, consider reducing damage dealt by defender? would like to avoid fractional damage however
     }
 
     public void heal(int amount)

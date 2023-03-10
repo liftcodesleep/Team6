@@ -9,7 +9,8 @@ public class BearUnit : Unit
     {
         this.Name = "Bears";
         this.MaxHitPoints = this.HitPoints = 2;
-        this.Strenth = 2;
+        this.Strength = 2;
         this.Movement = 2;
+        this.MovementRemaining = 2;
     }
 }

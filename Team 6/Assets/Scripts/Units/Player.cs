@@ -9,7 +9,7 @@ public class Player : Unit
     {
         this.Name = "Player";
         this.MaxHitPoints = this.HitPoints = 20;
-        this.Strenth = 1;
+        this.Strength = 1;
         this.Movement = 1;
     }
 }

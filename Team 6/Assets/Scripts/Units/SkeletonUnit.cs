@@ -8,7 +8,7 @@ public class SkeletonUnit : Unit
     {
         this.Name = "Skeleton";
         this.MaxHitPoints = this.HitPoints = 3;
-        this.Strenth = 2;
+        this.Strength = 2;
         this.Movement = 1;
     }
 

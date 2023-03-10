@@ -51,7 +51,10 @@ public class HexMap : MonoBehaviour
         new Bolt(),
         new WhiteKnight(),
         new Skeleton(),
-        new Teleport()};
+        new Teleport(),
+        new Minotaur(),
+        new Specter(),
+        new Spider()};
 
     void Start()
     {

@@ -149,7 +149,7 @@ public class MouseController : MonoBehaviour
             {
                 
                 selectedCard.clicked = false;
-                selectedCard.RemoveFromHand();
+                //selectedCard.RemoveFromHand();
                 selectedCard = null;
                 
 
@@ -162,7 +162,7 @@ public class MouseController : MonoBehaviour
             else
             {
                 
-                selectedCard.RemoveFromHand();
+                //selectedCard.RemoveFromHand();
             }
         }
     }

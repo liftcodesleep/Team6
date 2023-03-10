@@ -24,7 +24,6 @@ public class HexMap : MonoBehaviour
 
     public GameObject[] Spiders;
 
-
     private static Hex[,] hexes;
     private HashSet<Unit> units;
 

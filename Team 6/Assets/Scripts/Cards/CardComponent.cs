@@ -15,7 +15,7 @@ public class CardComponent : MonoBehaviour
 
     private float smoothTime = .5f;
 
-    private bool played = false;
+    public bool played = false;
     public bool drawed = false;
 
     private float shrinkSpeed = .9f;
@@ -39,6 +39,30 @@ public class CardComponent : MonoBehaviour
         new Spider()};
 
 
+
+    public void Hide()
+    {
+        MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
+
+        this.GetComponent<MeshCollider>().enabled = false;
+
+        foreach (MeshRenderer mesh in meshes)
+        {
+            mesh.enabled = false;
+        }
+    }
+
+    public void Show()
+    {
+        MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
+
+        this.GetComponent<MeshCollider>().enabled = true;
+
+        foreach (MeshRenderer mesh in meshes)
+        {
+            mesh.enabled = true;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -101,7 +125,14 @@ public class CardComponent : MonoBehaviour
 
         textMesh.text = card.Name;
     }
+    public void setCard(Card card)
+    {
 
+        this.card = card;
+        //card.setMap(hexMap);
+
+        textMesh.text = card.Name;
+    }
     public void setSelectedPosition(Vector3 v)
     {
         this.selectedPosition = v;

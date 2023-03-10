@@ -4,18 +4,6 @@ using UnityEngine;
 
 public abstract class Deck
 {
-    GameObject[] Cards;
-    public Deck(int size)
-    {
-        this.Cards = new GameObject[size];
-    }
-    public void DrawNewHand(Deck hand)
-    {
-        foreach (GameObject card in Cards)
-        {
-            card.GetComponentInChildren<CardComponent>().setCard();
-            card.GetComponentInChildren<CardComponent>().drawed = true;
-        }
-
-    }
+    //public List<Card> Cards = new List<Card>();
+    public abstract void DrawNCards(int n);
 }

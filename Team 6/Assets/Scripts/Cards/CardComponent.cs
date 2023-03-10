@@ -35,7 +35,8 @@ public class CardComponent : MonoBehaviour
         new Teleport(),
         new Minotaur(),
         new UnholyStrength(),
-        new Specter() };
+        new Specter(),
+        new Spider()};
 
 
 

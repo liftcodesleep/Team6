@@ -433,6 +433,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: main_wizard
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f46b51b3afcb8b24f9ceea11c1af5790, type: 3}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -4760064954170610529, guid: f46b51b3afcb8b24f9ceea11c1af5790, type: 3}

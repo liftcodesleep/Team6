@@ -32,7 +32,8 @@ public class CardComponent : MonoBehaviour
         new Bolt(), 
         new WhiteKnight(),
         new Skeleton(),
-        new Teleport()};
+        new Teleport(),
+        new Minotaur()};
 
 
 

@@ -26,7 +26,7 @@ public class Unit
 
     public bool Move(Hex movedToHex)
     {
-
+        //TODO Move should decrement from Units MovementAvailable
         if (this.hex.DistanceFrom(movedToHex) <= Movement)
         {
             SetHex(movedToHex);

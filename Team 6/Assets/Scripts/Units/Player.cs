@@ -12,7 +12,7 @@ public class Player : Unit
     
     public Player()
     {
-        totalMana = currentMana = 0;
+        totalMana = currentMana = 1;
 
         this.Name = "Player";
         this.MaxHitPoints = this.HitPoints = 20;
@@ -26,7 +26,7 @@ public class Player : Unit
     public void NewTurn()
     {
         hand.Draw();
-        currentMana = ++totalMana;
+        currentMana = totalMana++;
     }
 
 

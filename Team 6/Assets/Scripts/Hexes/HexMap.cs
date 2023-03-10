@@ -24,7 +24,6 @@ public class HexMap : MonoBehaviour
 
     public GameObject[] Spiders;
 
-
     private static Hex[,] hexes;
     private HashSet<Unit> units;
 
@@ -51,7 +50,10 @@ public class HexMap : MonoBehaviour
         new Bolt(),
         new WhiteKnight(),
         new Skeleton(),
-        new Teleport()};
+        new Teleport(),
+        new Minotaur(),
+        new Specter(),
+        new Spider()};
 
     void Start()
     {

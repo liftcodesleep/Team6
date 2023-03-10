@@ -16,9 +16,14 @@ public class HexMap : MonoBehaviour
     public static readonly int NumColumns = 15;
 
     public GameObject player;
-    public GameObject grizzlyBears;
-    public GameObject whiteKnight;
-    public GameObject skeleton;
+    public GameObject GrizzlyBears;
+    public GameObject WhiteKnight;
+    public GameObject Skeleton;
+    public GameObject Minotaur;
+    public GameObject Specter;
+
+    public GameObject[] Spiders;
+
 
     private static Hex[,] hexes;
     private HashSet<Unit> units;

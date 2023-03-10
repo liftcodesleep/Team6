@@ -11,7 +11,10 @@ public class Minotaur : Card
     }
     public override void DoAction(Hex hex)
     {
-
+        if (hexMap == null)
+        {
+            Debug.Log("no map");
+        }
         hexMap.SpawnUnitAt(new MinotaurUnit(), hexMap.Minotaur, hex.Column, hex.Row);
 
     }

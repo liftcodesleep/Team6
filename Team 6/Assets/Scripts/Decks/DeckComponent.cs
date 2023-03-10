@@ -16,6 +16,7 @@ public class DeckComponent : MonoBehaviour
     {
         
     }
+    /*
     public void DrawNewHand(Deck hand)
     {
         foreach (GameObject card in Cards)
@@ -25,4 +26,5 @@ public class DeckComponent : MonoBehaviour
         }
 
     }
+    */
 }

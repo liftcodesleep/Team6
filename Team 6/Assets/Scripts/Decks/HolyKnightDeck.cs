@@ -6,8 +6,8 @@ public class HolyKnightDeck : Deck
 {
     public HolyKnightDeck()
     {
-        Cards.Add(WhiteKnight);
-        Cards.Add(HolyStrength);
+      //  this.Cards.Add(WhiteKnight);
+     //   this.Cards.Add(HolyStrength);
     }
     public override void DrawNCards(int n)
     {

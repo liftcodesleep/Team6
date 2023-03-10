@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class Deck
 {
-    public List<Card> Cards = new List<Card>();
+    //public List<Card> Cards = new List<Card>();
     public abstract void DrawNCards(int n);
 }

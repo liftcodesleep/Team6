@@ -6,6 +6,7 @@ public class Unit
 {
 
     public string Name = "Unit.Name";
+    public string Color = "Unit.Color";
     public int MaxHitPoints = 1;
     public int HitPoints;
     public int Strength = 1;

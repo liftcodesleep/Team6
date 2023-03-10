@@ -7,7 +7,8 @@ public class GrizzlyBears : Card
     
     public GrizzlyBears()
     {
-        name = "Grizzly Bears";
+        Name = "Grizzly Bears";
+        Color = "Green";
     }
 
     public override void DoAction(Hex hex)

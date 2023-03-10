@@ -7,6 +7,7 @@ public class SkeletonUnit : Unit
     public SkeletonUnit()
     {
         this.Name = "Skeleton";
+        this.Color = "Black";
         this.MaxHitPoints = this.HitPoints = 3;
         this.Strength = 2;
         this.Movement = 1;

@@ -7,8 +7,8 @@ public class Bolt :Card
 
     public Bolt()
     {
-        name = "Bolt";
-        numTargets = 2;
+        Name = "Bolt";
+        numTargets = 1;
     }
 
     public override void DoAction(Hex hex)

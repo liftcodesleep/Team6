@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HolyStrength : Card
+public class UnholyStrength : Card
 {
 
-    public HolyStrength()
+    public UnholyStrength()
     {
-        Name = "Holy Strength";
+        Name = "Unholy Strength";
+        this.Color = "Black";
     }
 
     public override void DoAction(Hex hex)
     {
 
         Unit target = hex.Units()[0];
-        if (target.Color == "Black")
+        if (target.Color == "White")
         {
             target.HitPoints -= 2;
             target.Strength -= 1;

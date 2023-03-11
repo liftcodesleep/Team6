@@ -20,6 +20,7 @@ public class CardComponent : MonoBehaviour
 
     //private float shrinkSpeed = .9f;
 
+    public static GameData Game;
     public Card card;
 
     [SerializeField] HexMap hexMap;
@@ -71,10 +72,10 @@ public class CardComponent : MonoBehaviour
         this.selectedPosition = startPosition + new Vector3(0, 0, .5f);
         textMesh = this.gameObject.GetComponentInChildren<TextMesh>();
 
-        card = setRandomCard();
+        card = SetRandomCard();
         
 
-        setCard();
+        SetCard();
     }
 
     // Update is called once per frame
@@ -109,7 +110,10 @@ public class CardComponent : MonoBehaviour
         
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, updatePosition.z);
     }
-
+    public static void SetGameData(GameData GameData)
+    {
+        CardComponent.Game = GameData;
+    }
     public void DoAbility(Hex hex)
     {
         card.DoAction(hex);
@@ -117,33 +121,33 @@ public class CardComponent : MonoBehaviour
         
     }
 
-    public void setCard()
+    public void SetCard()
     {
         
-        card = setRandomCard();
-        //card.setMap(hexMap);
+        card = SetRandomCard();
+        //card.SetMap(hexMap);
 
         textMesh.text = card.Name;
     }
-    public void setCard(Card card)
+    public void SetCard(Card card)
     {
 
         this.card = card;
-        //card.setMap(hexMap);
+        //card.SetMap(hexMap);
 
         textMesh.text = card.Name;
     }
-    public void setSelectedPosition(Vector3 v)
+    public void SetSelectedPosition(Vector3 v)
     {
         this.selectedPosition = v;
     }
 
-    public Vector3 getStartPosition()
+    public Vector3 GetStartPosition()
     {
         return this.startPosition;
     }
 
-    private Card setRandomCard()
+    private Card SetRandomCard()
     {
       
         return allCards[Random.Range(0,allCards.Length)];
@@ -152,7 +156,7 @@ public class CardComponent : MonoBehaviour
 
     public void RemoveFromHand()
     {
-        Hand hand = HexMap.AllPlayers[HexMap.currentPlayer].hand;
+        Hand hand = HexMap.AllPlayers[Game.CurrentPlayer].hand;
         Debug.Log("Removing ");
         Debug.Log(hand.cards.Count);
         hand.cards.Remove(card);

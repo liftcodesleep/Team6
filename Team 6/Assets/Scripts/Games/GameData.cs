@@ -7,11 +7,10 @@ public class GameData
     public int TurnCount = 1;
     public int PlayerCount;
     public PlayerData[] Players;
-    public int ActivePlayerIndex = 0;
+    public int CurrentPlayer;
 
     public Player[] AllPlayers;
 
-    public  int currentPlayer;
 
     public HashSet<Unit> units;
 
@@ -28,13 +27,13 @@ public class GameData
 
     public GameData()
     {
-        Card.setGameData(this);
+        Card.SetGameData(this);
         HandComponent.SetGameData(this);
-
+        CardComponent.SetGameData(this);
     }
 
     public Player GetCurrentPlayer()
     {
-        return AllPlayers[currentPlayer];
+        return AllPlayers[CurrentPlayer];
     }
 }

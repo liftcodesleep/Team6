@@ -13,10 +13,11 @@ public class UnitComponent : MonoBehaviour
 
     float smoothTime = .1f;
 
+    public static GameData Game;
     public Unit unit;
 
     private float shrinkSpeed = .9f;
-    
+
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class UnitComponent : MonoBehaviour
 
         healthBar = this.gameObject.transform.Find("HealthBar").gameObject;
         
-        unit = HexMap.gameObjectToUnit(this.gameObject);
+        unit = Game.GameObjectToUnit(this.gameObject);
         this.transform.localScale = new Vector3(.01f, .01f, .01f);
     }
 
@@ -47,6 +48,11 @@ public class UnitComponent : MonoBehaviour
         UpdateHexPosition();
     }
 
+    public static void SetGameData(GameData GameData)
+    {
+        UnitComponent.Game = GameData;
+    }
+
     private void UpdateHexPosition()
     {
         HexComponent parentComponent = this.transform.parent.GetComponent<HexComponent>();
@@ -61,7 +67,7 @@ public class UnitComponent : MonoBehaviour
 
         if (this.unit.hex != parentHex)
         {
-            HexComponent newComponent = HexMap.hexToGameObject[this.unit.hex].GetComponent<HexComponent>();
+            HexComponent newComponent = HexMap.HexToGameObject[this.unit.hex].GetComponent<HexComponent>();
 
             newPosition = newComponent.PositionFromCamera();
 
@@ -75,7 +81,7 @@ public class UnitComponent : MonoBehaviour
 
         if (unit.Move(newHex))
         {
-            HexComponent newComponent = HexMap.hexToGameObject[newHex].GetComponent<HexComponent>();
+            HexComponent newComponent = HexMap.HexToGameObject[newHex].GetComponent<HexComponent>();
 
             newPosition = newComponent.PositionFromCamera();
 

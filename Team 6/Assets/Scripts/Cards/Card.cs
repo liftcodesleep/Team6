@@ -13,19 +13,19 @@ public abstract class Card
     public int numTargets = 1;
 
     public static HexMap hexMap;
-    public static GameData GameData;
+    public static GameData Game;
     public static GameComponent GameComponent;
 
-    public static void setMap(HexMap hexMap)
+    public static void SetMap(HexMap hexMap)
     {
         Card.hexMap = hexMap;
     }
-    public static void setGameData(GameData GameData)
+    public static void SetGameData(GameData GameData)
     {
-        Card.GameData = GameData;
+        Card.Game = GameData;
     }
 
-    public static void setGameComponent(GameComponent GameComponent)
+    public static void SetGameComponent(GameComponent GameComponent)
     {
         Card.GameComponent = GameComponent;
     }

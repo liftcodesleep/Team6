@@ -23,12 +23,12 @@ public class GameComponent : MonoBehaviour
     [SerializeField] private GameObject HandPreFab;
 
     
-    public static Dictionary<Unit, GameObject> unitToGameObject;
+    public static Dictionary<Unit, GameObject> UnitToGameObject;
 
     void Start()
     {
         game = new GameData();
-        Card.setGameComponent(this);
+        Card.SetGameComponent(this);
 
         MakePlayers();
     }
@@ -50,11 +50,7 @@ public class GameComponent : MonoBehaviour
     }
     public void AdvanceTurn()
     {
-        game.ActivePlayerIndex += 1;
-        if (game.ActivePlayerIndex > game.PlayerCount)
-        {
-            game.ActivePlayerIndex = 0;
-        }
+
     }
 
     public void MakePlayers()
@@ -75,7 +71,7 @@ public class GameComponent : MonoBehaviour
         hand.SetHand(AllPlayers[1].hand);
 
 
-        game.currentPlayer = 0;
+        game.CurrentPlayer = 0;
         SpawnUnitAt(AllPlayers[0], player, 5, 5);
         SpawnUnitAt(AllPlayers[1], player, 10, 3);
     }
@@ -87,23 +83,23 @@ public class GameComponent : MonoBehaviour
         if (game.units == null)
         {
             game.units = new HashSet<Unit>();
-            unitToGameObject = new Dictionary<Unit, GameObject>();
+            UnitToGameObject = new Dictionary<Unit, GameObject>();
         }
 
         Hex spawnedHex = HexMap.GetHex(col, row);
-        GameObject spawpoint = HexMap.hexToGameObject[spawnedHex];
+        GameObject spawpoint = HexMap.HexToGameObject[spawnedHex];
         unit.SetHex(spawnedHex);
         //GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, Quaternion.identity, spawpoint.transform);
         GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, prefab.transform.rotation, spawpoint.transform);
 
         game.units.Add(unit);
-        unitToGameObject[unit] = unitGO;
+        UnitToGameObject[unit] = unitGO;
     }
 
-    public static Unit gameObjectToUnit(GameObject unit)
+    public static Unit GameObjectToUnit(GameObject unit)
     {
 
-        foreach (var item in unitToGameObject)
+        foreach (var item in UnitToGameObject)
         {
             if (item.Value == unit)
             {
@@ -117,7 +113,7 @@ public class GameComponent : MonoBehaviour
 
     public void NextTurn()
     {
-        game.currentPlayer = (game.currentPlayer + 1) % AllPlayers.Length;
+        game.CurrentPlayer = (game.CurrentPlayer + 1) % AllPlayers.Length;
         //GetCurrentPlayer().hand.Draw();
         game.GetCurrentPlayer().NewTurn();
     }

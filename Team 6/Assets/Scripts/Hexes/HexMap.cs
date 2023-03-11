@@ -16,20 +16,17 @@ public class HexMap : MonoBehaviour
 
     private static Hex[,] hexes;
     
-    public static Dictionary<Hex, GameObject> hexToGameObject;
+    public static Dictionary<Hex, GameObject> HexToGameObject;
 
-    public static bool allowWrapEastWest = true;
+    public static bool AllowWrapEastWest = true;
 
     private readonly bool debug = false;
 
     public static bool MakeRandomMap = true;
 
-
-
-
     void Start()
     {
-        Card.setMap(this);
+        Card.SetMap(this);
         
         GenerateMap();
 
@@ -43,8 +40,8 @@ public class HexMap : MonoBehaviour
     }
     public void GenerateMap()
     {
-        hexes = new Hex[NumRows,NumColumns];
-        hexToGameObject = new Dictionary<Hex, GameObject>();
+        hexes = new Hex[NumRows, NumColumns];
+        HexToGameObject = new Dictionary<Hex, GameObject>();
 
         for (int column = 0; column < NumColumns; column++)
         {
@@ -52,10 +49,10 @@ public class HexMap : MonoBehaviour
             {
 
                 Hex h = new Hex(column, row);
-                
+
                 GameObject hexGo = (GameObject)Instantiate(
-                 Prefabs[h.GetElevation()],
-                 new Vector3(0,0,0),
+                 Prefabs[h.GetSeed()],
+                 new Vector3(0, 0, 0),
                  Quaternion.identity,
                  this.transform
                  );
@@ -75,19 +72,19 @@ public class HexMap : MonoBehaviour
                 {
                     hexGo.GetComponentInChildren<TextMesh>().text = "";
                 }
-                
 
+                //TODO name should be capitalized and relfect hex type/prefab/identity
                 hexGo.name = string.Format("{0},{1}", column, row);
 
 
-                
+
                 //MeshRenderer mr = hexGo.transform.Find("Model").GetComponentInChildren<MeshRenderer>();
-                
+
                 //mr.material = HexMaterials[h.GetElevation()];
-                
+
                 hexes[row, column] = h;
-                hexToGameObject[h] = hexGo;
-              
+                HexToGameObject[h] = hexGo;
+
             }
 
         }
@@ -99,10 +96,10 @@ public class HexMap : MonoBehaviour
         return hexes[row, col % NumColumns];
     }
 
-    public static Hex gameObjectToHex(GameObject hex)
+    public static Hex GameObjectToHex(GameObject hex)
     {
         
-        foreach(var item in hexToGameObject)
+        foreach(var item in HexToGameObject)
         {
             if(item.Value == hex)
             {
@@ -125,6 +122,6 @@ public class HexMap : MonoBehaviour
     public static Vector3 GetHexPosition(Hex h)
     {
 
-        return hexToGameObject[h].GetComponent<HexComponent>().PositionFromCamera();
+        return HexToGameObject[h].GetComponent<HexComponent>().PositionFromCamera();
     }
 }

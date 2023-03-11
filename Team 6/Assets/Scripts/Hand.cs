@@ -27,7 +27,7 @@ public class Hand
 
     public void Draw()
     {
-        cards.Add(HexMap.allCards[Random.Range(0, HexMap.allCards.Length)]);
+        cards.Add(GameData.allCards[Random.Range(0, GameData.allCards.Length)]);
 
     }
 

@@ -16,10 +16,9 @@ public class HandComponent : MonoBehaviour
     CardComponent[] cardComponents;
 
     private Player Owner;
-
     private bool isCurrentlyShowing;
 
-    
+    public static GameData GameData;
 
 
     private void Start()
@@ -41,13 +40,13 @@ public class HandComponent : MonoBehaviour
     {
         if (Owner != null && hand != null)
         {
-            if (!isCurrentlyShowing && HexMap.GetCurrentPlayer() == Owner)
+            if (!isCurrentlyShowing && GameData.GetCurrentPlayer() == Owner)
             {
 
                 this.Show();
                 isCurrentlyShowing = true;
             }
-            else if(isCurrentlyShowing && HexMap.GetCurrentPlayer() != Owner)
+            else if(isCurrentlyShowing && GameData.GetCurrentPlayer() != Owner)
             {
                 this.Hide();
                 isCurrentlyShowing = false;
@@ -59,7 +58,10 @@ public class HandComponent : MonoBehaviour
 
     }
 
-
+    public static void SetGameData(GameData GameData)
+    {
+        HandComponent.GameData = GameData;
+    }
 
     public void SetHand(Hand hand)
     {

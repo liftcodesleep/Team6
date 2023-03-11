@@ -149,4 +149,13 @@ public class CardComponent : MonoBehaviour
         return allCards[Random.Range(0,allCards.Length)];
         //return allCards[0];
     }
+
+    public void RemoveFromHand()
+    {
+        Hand hand = HexMap.AllPlayers[HexMap.currentPlayer].hand;
+        Debug.Log("Removing ");
+        Debug.Log(hand.cards.Count);
+        hand.cards.Remove(card);
+        Debug.Log(hand.cards.Count);
+    }
 }

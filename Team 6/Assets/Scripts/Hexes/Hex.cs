@@ -45,7 +45,7 @@ public class Hex
             return 8;
         }
 
-        return elevation % 8;
+        return elevation / 12;
     }
 
 

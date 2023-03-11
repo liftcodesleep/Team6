@@ -6,7 +6,7 @@ public class GameData
 {
     public int TurnCount = 1;
     public int PlayerCount;
-    public PlayerObject[] Players;
+    public PlayerData[] Players;
     public int ActivePlayerIndex = 0;
 
 

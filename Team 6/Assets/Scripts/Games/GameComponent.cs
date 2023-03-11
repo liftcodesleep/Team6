@@ -1,16 +1,16 @@
-+using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameComponent : MonoBehaviour
 {
-    public static Game game;
+    public static GameData game;
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerObject Player1 = new PlayerObject();
-        PlayerObject Player2 = new PlayerObject();
+        PlayerData Player1 = new PlayerData();
+        PlayerData Player2 = new PlayerData();
         game.Players[game.ActivePlayerIndex] = Player1;
         game.Players[game.ActivePlayerIndex + 1] = Player2;
     }
@@ -22,11 +22,11 @@ public class GameComponent : MonoBehaviour
     }
     public void DealHands()
     {
-        foreach (PlayerObject player in game.Players)
+        foreach (PlayerData player in game.Players)
         {
             if (player != null)
             {
-                player.hand.DrawNewHand(player.hand);
+                //player.hand.DrawNewHand(player.hand);
             }
         }
     }

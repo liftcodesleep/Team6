@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerObject : MonoBehaviour
+public class PlayerData
 {
-    public Deck deck;
+    public DeckData deck;
+    public DeckData hand;
     public int ManaAvailable;
     public int ManaMax;
 }

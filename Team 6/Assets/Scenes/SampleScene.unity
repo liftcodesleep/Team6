@@ -886,6 +886,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542275648}
   m_CullTransparentMesh: 1
+--- !u!1 &1596312719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1596312720}
+  - component: {fileID: 1596312721}
+  m_Layer: 0
+  m_Name: GameLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1596312720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596312719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23.146822, y: 10.113497, z: -10.042144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1596312721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596312719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8543b1cc30f05774999f8addab901a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 9115022645573173194, guid: be4f1936f8630814d96e9fedc6c22599, type: 3}
+  GrizzlyBears: {fileID: 2216712049197101269, guid: 1d496a8c17ed7734e82db6a2ed619a0a, type: 3}
+  WhiteKnight: {fileID: 2216712049197101269, guid: e687bf082a938bc459a04aa3787a2c9e, type: 3}
+  Skeleton: {fileID: 3134597414549498906, guid: 8e1403f9efb2b9548bfb6852840af7bc, type: 3}
+  Minotaur: {fileID: 4084858476629100667, guid: 6b866bc1007531742b1482d4d3c28c6d, type: 3}
+  Specter: {fileID: 5016224150922973950, guid: 67465b7e01a38384bbbeff494ed2b6d1, type: 3}
+  Spiders:
+  - {fileID: 7610484950628987255, guid: 1147fb586b5757d478f4bd490f5d7061, type: 3}
+  - {fileID: 4332773588042852850, guid: 41272528b960b2140a07d21f05f03699, type: 3}
 --- !u!224 &1682532373 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8280062200627006565, guid: 24403c5f39d2c7745bd7039c17868f0e, type: 3}

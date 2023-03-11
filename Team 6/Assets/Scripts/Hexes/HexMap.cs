@@ -12,7 +12,7 @@ public class HexMap : MonoBehaviour
     public GameObject[] Prefabs;
 
 
-    public static readonly int NumRows = 10;
+    public static readonly int NumRows = 20;
     public static readonly int NumColumns = 15;
 
     public GameObject player;
@@ -80,7 +80,7 @@ public class HexMap : MonoBehaviour
     }
     public void GenerateMap()
     {
-        hexes = new Hex[NumRows,NumColumns];
+        hexes = new Hex[NumRows, NumColumns];
         hexToGameObject = new Dictionary<Hex, GameObject>();
 
         for (int column = 0; column < NumColumns; column++)

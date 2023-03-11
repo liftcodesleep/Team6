@@ -6,8 +6,7 @@ public class WhiteMana : ManaData
 {
     public WhiteMana() 
     {
-        Type = "White";
-        TypeIndex = 0;
+        this.SetType('W');
     }
 
 }

@@ -6,7 +6,6 @@ public class GreenMana : ManaData
 {
     public GreenMana() 
     {
-        Type = "Green";
-        TypeIndex = 4;
+        this.SetType('G');
     }
 }

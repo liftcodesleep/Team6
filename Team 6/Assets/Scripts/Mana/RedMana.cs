@@ -6,7 +6,6 @@ public class RedMana : ManaData
 {
     public RedMana()
     {
-        Type = "Red";
-        TypeIndex = 3;
+        this.SetType('R');
     }
 }

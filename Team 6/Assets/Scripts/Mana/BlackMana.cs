@@ -5,8 +5,7 @@ using UnityEngine;
 public class BlackMana : ManaData
 {
     public BlackMana() 
-    { 
-        Type = "Black";
-        TypeIndex = 2;
+    {
+        this.SetType('B');
     }
 }

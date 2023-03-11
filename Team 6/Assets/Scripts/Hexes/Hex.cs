@@ -18,9 +18,10 @@ public class Hex
     public readonly int Row;
     public readonly int Sum;
     private int Seed;
-    public readonly string Name = "Hex.Name";
-    private readonly int[] Mana = new int[5] {0, 0, 0, 0, 0};
-    
+    private readonly string Name = "Hex.Name";
+
+    public ManaData[] HexMana = new ManaData[5] {new WhiteMana(), new BlueMana(), new BlackMana(), new RedMana(), new GreenMana()};
+
     private HashSet<Unit> units;
 
     public Hex(int q, int r)
@@ -29,14 +30,22 @@ public class Hex
         this.Row = r;
         this.Sum = -(q + r);
         this.Seed = GenerateSeed();
-        Mana[Seed % 5] = 1;
-        //TODO Find out what this is for
-        //Random.InitState(42); // Random.seed = 42;
+        Mana[Seed % 5].SetCount(1);
+        this.Name = Seed.ToString();
+
     }
 
     public int GetSeed()
     {
         return this.Seed;
+    }
+    public string GetMana()
+    {
+        return HexMana[0].GetMana() + HexMana[1].GetMana() + HexMana[2].GetMana() + HexMana[3].GetMana() + HexMana[4].GetMana();
+    }
+    public string GetName()
+    {
+        return this.Name;
     }
     public int GenerateSeed()
     {

@@ -18,7 +18,7 @@ public class CardComponent : MonoBehaviour
     public bool played = false;
     public bool drawed = false;
 
-    private float shrinkSpeed = .9f;
+    //private float shrinkSpeed = .9f;
 
     public Card card;
 

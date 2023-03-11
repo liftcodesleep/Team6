@@ -77,8 +77,8 @@ public class MouseController : MonoBehaviour
 
             Hex selectedHex = HexMap.gameObjectToHex(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
-            ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedHex.Name + "\nX: " + selectedHex.Column +
-                "\nY: " + selectedHex.Row;
+            ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedHex.GetName() + "\nX: " + selectedHex.Column +
+                "\nY: " + selectedHex.Row + "\nMana: " + selectedHex.GetMana();
         }
         else if (selectedCard != null)
         {

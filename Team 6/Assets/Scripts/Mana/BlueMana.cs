@@ -6,7 +6,6 @@ public class BlueMana : ManaData
 {
     public BlueMana() 
     {
-        Type = "Blue";
-        TypeIndex = 1;
+        this.SetType('U');
     }
 }

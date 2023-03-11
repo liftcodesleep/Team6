@@ -30,7 +30,7 @@ public class Hex
         this.Row = r;
         this.Sum = -(q + r);
         this.Seed = GenerateSeed();
-        Mana[Seed % 5].SetCount(1);
+        HexMana[Seed % 5].SetCount(1);
         this.Name = Seed.ToString();
 
     }

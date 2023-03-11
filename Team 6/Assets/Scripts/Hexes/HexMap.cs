@@ -13,7 +13,7 @@ public class HexMap : MonoBehaviour
 
 
     public static readonly int NumRows = 20;
-    public static readonly int NumColumns = 15;
+    public static readonly int NumColumns = 35;
 
     public GameObject player;
     public GameObject GrizzlyBears;

@@ -18,28 +18,27 @@ public class CardComponent : MonoBehaviour
     public bool played = false;
     public bool drawed = false;
 
-    private float shrinkSpeed = .9f;
+    //private float shrinkSpeed = .9f;
 
+    public static GameData Game;
     public Card card;
 
     [SerializeField] HexMap hexMap;
     private TextMesh textMesh;
 
 
-    static Card[] allCards = {
-        new GrizzlyBears(),
-        new HolyStrength(),
-        new Bolt(),
-        new WhiteKnight(),
-        new Skeleton(),
-        new Teleport(),
-        new Minotaur(),
-        new UnholyStrength(),
-        new Specter(),
-        new Spider()};
+    public void SetCardMeshesVisible(bool toggle)
+    {
+        MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
 
+        this.GetComponent<MeshCollider>().enabled = toggle;
 
-
+        foreach (MeshRenderer mesh in meshes)
+        {
+            mesh.enabled = toggle;
+        }
+    }
+    /*
     public void Hide()
     {
         MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
@@ -63,7 +62,7 @@ public class CardComponent : MonoBehaviour
             mesh.enabled = true;
         }
     }
-
+    */
     // Start is called before the first frame update
     void Start()
     {
@@ -71,10 +70,10 @@ public class CardComponent : MonoBehaviour
         this.selectedPosition = startPosition + new Vector3(0, 0, .5f);
         textMesh = this.gameObject.GetComponentInChildren<TextMesh>();
 
-        card = setRandomCard();
+        card = SetRandomCard();
         
 
-        setCard();
+        SetCard();
     }
 
     // Update is called once per frame
@@ -109,7 +108,10 @@ public class CardComponent : MonoBehaviour
         
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, updatePosition.z);
     }
-
+    public static void SetGameData(GameData GameData)
+    {
+        CardComponent.Game = GameData;
+    }
     public void DoAbility(Hex hex)
     {
         card.DoAction(hex);
@@ -117,45 +119,45 @@ public class CardComponent : MonoBehaviour
         
     }
 
-    public void setCard()
+    public void SetCard()
     {
         
-        card = setRandomCard();
-        //card.setMap(hexMap);
+        card = SetRandomCard();
+        //card.SetMap(hexMap);
 
         textMesh.text = card.Name;
     }
-    public void setCard(Card card)
+    public void SetCard(Card card)
     {
 
         this.card = card;
-        //card.setMap(hexMap);
+        //card.SetMap(hexMap);
 
         textMesh.text = card.Name;
     }
-    public void setSelectedPosition(Vector3 v)
+    public void SetSelectedPosition(Vector3 v)
     {
         this.selectedPosition = v;
     }
 
-    public Vector3 getStartPosition()
+    public Vector3 GetStartPosition()
     {
         return this.startPosition;
     }
 
-    private Card setRandomCard()
+    private Card SetRandomCard()
     {
       
-        return allCards[Random.Range(0,allCards.Length)];
+        return GameData.AllCards[Random.Range(0, GameData.AllCards.Length)];
         //return allCards[0];
     }
 
     public void RemoveFromHand()
     {
-        Hand hand = HexMap.AllPlayers[HexMap.currentPlayer].hand;
+        DeckData hand = Game.AllPlayers[Game.GetCurrentPlayer()].playerData.GetHand();
         Debug.Log("Removing ");
-        Debug.Log(hand.cards.Count);
-        hand.cards.Remove(card);
-        Debug.Log(hand.cards.Count);
+        Debug.Log(hand.Cards.Count);
+        hand.Cards.Remove(card);
+        Debug.Log(hand.Cards.Count);
     }
 }

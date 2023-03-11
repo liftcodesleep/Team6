@@ -31,6 +31,9 @@ public static class HexDimensions
     {
         return HexWidth();
     }
-	
+	public static int GetOffset()
+    {
+        return offset;
+    }
 	
 }

@@ -13,23 +13,23 @@ public class HandComponent : MonoBehaviour
    
 
     public Hand hand;
-    CardComponent[] cardComponents;
+    CardComponent[] CardComponents;
 
-    private Player Owner;
-    private bool isCurrentlyShowing;
+    private PlayerComponent Owner;
+    private bool IsCurrentlyShowing;
 
-    public static GameData GameData;
+    public static GameData Game;
 
 
     private void Start()
     {
-        isCurrentlyShowing = false;
+        IsCurrentlyShowing = false;
         int amountOfCards = this.transform.childCount;
-        cardComponents = new CardComponent[amountOfCards];
+        CardComponents = new CardComponent[amountOfCards];
 
         for (int i = 0; i < amountOfCards; i++)
         {
-            cardComponents[i] = this.transform.GetChild(i).GetComponentInChildren<CardComponent>();
+            CardComponents[i] = this.transform.GetChild(i).GetComponentInChildren<CardComponent>();
 
         }
 
@@ -40,16 +40,16 @@ public class HandComponent : MonoBehaviour
     {
         if (Owner != null && hand != null)
         {
-            if (!isCurrentlyShowing && GameData.GetCurrentPlayer() == Owner)
+            if (!IsCurrentlyShowing && Game.AllPlayers[Game.GetCurrentPlayer()] == Owner)
             {
 
                 this.Show();
-                isCurrentlyShowing = true;
+                IsCurrentlyShowing = true;
             }
-            else if(isCurrentlyShowing && GameData.GetCurrentPlayer() != Owner)
+            else if(IsCurrentlyShowing && Game.AllPlayers[Game.GetCurrentPlayer()] != Owner)
             {
                 this.Hide();
-                isCurrentlyShowing = false;
+                IsCurrentlyShowing = false;
 
             }
         }
@@ -60,7 +60,7 @@ public class HandComponent : MonoBehaviour
 
     public static void SetGameData(GameData GameData)
     {
-        HandComponent.GameData = GameData;
+        HandComponent.Game = GameData;
     }
 
     public void SetHand(Hand hand)
@@ -71,9 +71,9 @@ public class HandComponent : MonoBehaviour
 
     public void Hide()
     {
-        foreach(CardComponent cardComponent in cardComponents)
+        foreach(CardComponent cardComponent in CardComponents)
         {
-            cardComponent.Hide();
+            cardComponent.SetCardMeshesVisible(false);
         }
     }
 
@@ -81,18 +81,18 @@ public class HandComponent : MonoBehaviour
     {
 
         int i = 0;
-        foreach (CardComponent cardComponent in cardComponents)
+        foreach (CardComponent cardComponent in CardComponents)
         {
-            if (i < hand.cards.Count)
+            if (i < hand.Cards.Count)
             {
-                //cardComponent.card = hand.cards[i];
-                cardComponent.setCard(hand.cards[i]);
-                cardComponent.Show();
+                //cardComponent.card = hand.Cards[i];
+                cardComponent.SetCard(hand.Cards[i]);
+                cardComponent.SetCardMeshesVisible(true);
                 
             }
             else
             {
-                cardComponent.Hide();
+                cardComponent.SetCardMeshesVisible(false);
             }
 
             i++;

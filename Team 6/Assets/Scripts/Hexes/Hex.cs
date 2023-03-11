@@ -17,35 +17,48 @@ public class Hex
     public readonly int Column;
     public readonly int Row;
     public readonly int Sum;
-    public readonly string Name = "Hex.Name";
-    public readonly string Mana = "Hex.Mana";
-    
-    //TODO: remove now in HexDem
-    private static int offset = Random.Range(0, 200);
+    private int Seed;
+    private readonly string Name = "Hex.Name";
+
+    public ManaData[] HexMana = new ManaData[5] {new WhiteMana(), new BlueMana(), new BlackMana(), new RedMana(), new GreenMana()};
 
     private HashSet<Unit> units;
+
     public Hex(int q, int r)
     {
         this.Column = q;
         this.Row = r;
         this.Sum = -(q + r);
+        this.Seed = GenerateSeed();
+        HexMana[Seed % 5].SetCount(1);
+        this.Name = Seed.ToString();
 
-        Random.InitState(42); // Random.seed = 42;
     }
 
-
-    public int GetElevation()
+    public int GetSeed()
+    {
+        return this.Seed;
+    }
+    public string GetMana()
+    {
+        return HexMana[0].GetMana() + HexMana[1].GetMana() + HexMana[2].GetMana() + HexMana[3].GetMana() + HexMana[4].GetMana();
+    }
+    public string GetName()
+    {
+        return this.Name;
+    }
+    public int GenerateSeed()
     {
 
         float scale = 10;
-        int elevation =  (int)(Mathf.PerlinNoise((Column + offset + (int)(Row/2)) / scale, (Row+offset)/scale) * 100) ;
+        int LocalSeed =  (int)(Mathf.PerlinNoise((Column + HexDimensions.GetOffset() + (int)(Row/2)) / scale, (Row + HexDimensions.GetOffset()) /scale) * 100) ;
 
-        if (elevation > 99)
+        if (LocalSeed > 99)
         {
-            return 8;
+            return 16;
         }
 
-        return elevation / 12;
+        return LocalSeed / 6;
     }
 
 

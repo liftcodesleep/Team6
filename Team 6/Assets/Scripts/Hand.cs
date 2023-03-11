@@ -5,20 +5,20 @@ using UnityEngine;
 public class Hand 
 {
 
-    public List<Card> cards;
+    public List<Card> Cards;
 
     private int StartingHandSize = 4;
     private int MaxHandSize = 8;
 
 
 
-    public Player Owner;
+    public PlayerComponent Owner;
 
-    public Hand(Player player)
+    public Hand(PlayerComponent player)
     {
         Owner = player;
-        cards = new List<Card>();
-        while (cards.Count < StartingHandSize)
+        Cards = new List<Card>();
+        while (Cards.Count < StartingHandSize)
         {
             Draw();
         }
@@ -27,16 +27,15 @@ public class Hand
 
     public void Draw()
     {
-        cards.Add(GameData.allCards[Random.Range(0, GameData.allCards.Length)]);
-
+        Cards.Add(GameData.AllCards[Random.Range(0, GameData.AllCards.Length)]);
     }
 
 
     public void PutInHand(Card card)
     {
-        if(cards.Count < MaxHandSize)
+        if(Cards.Count < MaxHandSize)
         {
-            cards.Add(card);
+            Cards.Add(card);
         }
         
     }

@@ -15,7 +15,7 @@ public class Unit
     public int Range = 1;
     public bool CanRangedAttack = false;
 
-    public Player Owner;
+    //public Player Owner;
 
     Queue<Hex> hexPath;
 

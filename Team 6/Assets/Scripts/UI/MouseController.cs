@@ -12,9 +12,12 @@ public class MouseController : MonoBehaviour
     private Ray MouseRay;
     private RaycastHit HitRay;
     private GameObject CurrentSelectedItem;
+    private CardComponent selectedCard;
+    public static GameData Game;
+    public static GameComponent GameLogic;
+
     public GameObject ToolTip;
 
-    private CardComponent selectedCard;
 
 
     private void Start()
@@ -66,7 +69,7 @@ public class MouseController : MonoBehaviour
         else if (CurrentSelectedItem != null && IsAUnit(CurrentSelectedItem))
         {
             ToolTip.SetActive(true);
-            Unit selectedUnit = HexMap.gameObjectToUnit(CurrentSelectedItem.gameObject);
+            Unit selectedUnit = GameLogic.GameObjectToUnit(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
             ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
                 "\nStrength: " + selectedUnit.Strength + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
@@ -75,10 +78,10 @@ public class MouseController : MonoBehaviour
         {
             ToolTip.SetActive(true);
 
-            Hex selectedHex = HexMap.gameObjectToHex(CurrentSelectedItem.gameObject);
+            Hex selectedHex = HexMap.GameObjectToHex(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
-            ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedHex.Name + "\nX: " + selectedHex.Column +
-                "\nY: " + selectedHex.Row;
+            ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedHex.GetName() + "\nX: " + selectedHex.Column +
+                "\nY: " + selectedHex.Row + "\nMana: " + selectedHex.GetMana();
         }
         else if (selectedCard != null)
         {
@@ -114,15 +117,15 @@ public class MouseController : MonoBehaviour
         if (Physics.Raycast(MouseRay, out HitRay, 100f))
         {
             hexGO = HitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
-            clickedHex = HexMap.gameObjectToHex(hexGO);
+            clickedHex = HexMap.GameObjectToHex(hexGO);
             gameObjectClicked = HitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
 
         }
 
         
 
-        Unit firstUnit = HexMap.gameObjectToUnit(CurrentSelectedItem);
-        Unit secondUnit = HexMap.gameObjectToUnit(gameObjectClicked);
+        Unit firstUnit = GameLogic.GameObjectToUnit(CurrentSelectedItem);
+        Unit secondUnit = GameLogic.GameObjectToUnit(gameObjectClicked);
 
         
         if ( IsAUnit(CurrentSelectedItem) )
@@ -137,7 +140,7 @@ public class MouseController : MonoBehaviour
                 
                 firstUnit.attack(secondUnit);
 
-                HexMap.unitToGameObject[secondUnit].GetComponent<UnitComponent>().UpdateHealthBar();
+                GameComponent.UnitToGameObject[secondUnit].GetComponent<UnitComponent>().UpdateHealthBar();
             }
         }
 
@@ -145,37 +148,27 @@ public class MouseController : MonoBehaviour
         {
             
             selectedCard.DoAbility(clickedHex);
-            if(selectedCard.card.numTargets == selectedCard.card.hexes.Count)
-            {
-                
-                selectedCard.clicked = false;
-                selectedCard.RemoveFromHand();
-                selectedCard = null;
-                
+            selectedCard.clicked = false;
+            selectedCard.RemoveFromHand();
+            selectedCard.played = false;
+            selectedCard = null;
 
-            }
-            else if (selectedCard.card.numTargets < selectedCard.card.hexes.Count)
-            {
-                
-                selectedCard.played = false;
-            }
-            else
-            {
-                
-                selectedCard.RemoveFromHand();
-                selectedCard = null;
-            }
         }
+    }
+
+    public static void SetGameData(GameData GameData)
+    {
+        MouseController.Game = GameData;
     }
 
     private bool IsAUnit(GameObject obj)
     {
-        return HexMap.gameObjectToUnit(obj) != null;
+        return GameLogic.GameObjectToUnit(obj) != null;
     }
 
     private bool IsAHex(GameObject obj)
     {
-        return HexMap.gameObjectToHex(obj) != null;
+        return HexMap.GameObjectToHex(obj) != null;
     }
 
     private bool IsACard(GameObject obj)

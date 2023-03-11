@@ -63,14 +63,6 @@ public class HexMap : MonoBehaviour
 
         MakePlayers();
 
-
-        //SpawnUnitAt(new Unit(), pillMan, 8, 6);
-        //SpawnUnitAt(new Unit(), pillMan, 9, 5);
-        //
-        //SpawnUnitAt(new Unit(), squareMan, 6, 2);
-        //SpawnUnitAt(new Unit(), squareMan, 8, 2);
-        //SpawnUnitAt(new Unit(), squareMan, 10, 2);
-        //SpawnUnitAt(new Unit(), squareMan, 10, 3);
         
 
     }

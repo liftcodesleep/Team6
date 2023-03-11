@@ -21,6 +21,7 @@ public class HexMap : MonoBehaviour
     public GameObject Skeleton;
     public GameObject Minotaur;
     public GameObject Specter;
+    public GameObject Knives;
 
     public GameObject[] Spiders;
 
@@ -52,7 +53,8 @@ public class HexMap : MonoBehaviour
         new Teleport(),
         new Minotaur(),
         new Specter(),
-        new Spider()};
+        new Spider(),
+        new Knives()};
 
     void Start()
     {

@@ -27,20 +27,18 @@ public class CardComponent : MonoBehaviour
     private TextMesh textMesh;
 
 
-    static Card[] allCards = {
-        new GrizzlyBears(),
-        new HolyStrength(),
-        new Bolt(),
-        new WhiteKnight(),
-        new Skeleton(),
-        new Teleport(),
-        new Minotaur(),
-        new UnholyStrength(),
-        new Specter(),
-        new Spider()};
+    public void SetCardMeshesVisible(bool toggle)
+    {
+        MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
 
+        this.GetComponent<MeshCollider>().enabled = toggle;
 
-
+        foreach (MeshRenderer mesh in meshes)
+        {
+            mesh.enabled = toggle;
+        }
+    }
+    /*
     public void Hide()
     {
         MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
@@ -64,7 +62,7 @@ public class CardComponent : MonoBehaviour
             mesh.enabled = true;
         }
     }
-
+    */
     // Start is called before the first frame update
     void Start()
     {
@@ -150,16 +148,16 @@ public class CardComponent : MonoBehaviour
     private Card SetRandomCard()
     {
       
-        return allCards[Random.Range(0,allCards.Length)];
+        return GameData.AllCards[Random.Range(0, GameData.AllCards.Length)];
         //return allCards[0];
     }
 
     public void RemoveFromHand()
     {
-        Hand hand = HexMap.AllPlayers[Game.CurrentPlayer].hand;
+        DeckData hand = Game.AllPlayers[Game.GetCurrentPlayer()].playerData.GetHand();
         Debug.Log("Removing ");
-        Debug.Log(hand.cards.Count);
-        hand.cards.Remove(card);
-        Debug.Log(hand.cards.Count);
+        Debug.Log(hand.Cards.Count);
+        hand.Cards.Remove(card);
+        Debug.Log(hand.Cards.Count);
     }
 }

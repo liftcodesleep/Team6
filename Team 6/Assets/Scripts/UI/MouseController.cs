@@ -14,6 +14,7 @@ public class MouseController : MonoBehaviour
     private GameObject CurrentSelectedItem;
     private CardComponent selectedCard;
     public static GameData Game;
+    public static GameComponent GameLogic;
 
     public GameObject ToolTip;
 
@@ -68,7 +69,7 @@ public class MouseController : MonoBehaviour
         else if (CurrentSelectedItem != null && IsAUnit(CurrentSelectedItem))
         {
             ToolTip.SetActive(true);
-            Unit selectedUnit = Game.GameObjectToUnit(CurrentSelectedItem.gameObject);
+            Unit selectedUnit = GameLogic.GameObjectToUnit(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
             ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
                 "\nStrength: " + selectedUnit.Strength + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
@@ -123,8 +124,8 @@ public class MouseController : MonoBehaviour
 
         
 
-        Unit firstUnit = Game.GameObjectToUnit(CurrentSelectedItem);
-        Unit secondUnit = Game.GameObjectToUnit(gameObjectClicked);
+        Unit firstUnit = GameLogic.GameObjectToUnit(CurrentSelectedItem);
+        Unit secondUnit = GameLogic.GameObjectToUnit(gameObjectClicked);
 
         
         if ( IsAUnit(CurrentSelectedItem) )
@@ -139,7 +140,7 @@ public class MouseController : MonoBehaviour
                 
                 firstUnit.attack(secondUnit);
 
-                Game.UnitToGameObject[secondUnit].GetComponent<UnitComponent>().UpdateHealthBar();
+                GameComponent.UnitToGameObject[secondUnit].GetComponent<UnitComponent>().UpdateHealthBar();
             }
         }
 
@@ -162,7 +163,7 @@ public class MouseController : MonoBehaviour
 
     private bool IsAUnit(GameObject obj)
     {
-        return Game.GameObjectToUnit(obj) != null;
+        return GameLogic.GameObjectToUnit(obj) != null;
     }
 
     private bool IsAHex(GameObject obj)

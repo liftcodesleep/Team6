@@ -7,14 +7,14 @@ public class GameData
     public int TurnCount = 1;
     public int PlayerCount;
     public PlayerData[] Players;
-    public int CurrentPlayer;
+    private int CurrentPlayer;
 
-    public Player[] AllPlayers;
+    public PlayerComponent[] AllPlayers;
 
 
     public HashSet<Unit> units;
 
-    public static Card[] allCards = {
+    public static Card[] AllCards = {
         new GrizzlyBears(),
         new HolyStrength(),
         new Bolt(),
@@ -32,8 +32,18 @@ public class GameData
         CardComponent.SetGameData(this);
     }
 
-    public Player GetCurrentPlayer()
+    public void SetCurrentPlayer(int player)
     {
-        return AllPlayers[CurrentPlayer];
+        this.CurrentPlayer = player;
     }
+    public int GetCurrentPlayer() 
+    { 
+        return this.CurrentPlayer; 
+    }
+
+    public PlayerData GetCurrentPlayerData()
+    {
+        return Players[CurrentPlayer];
+    }
+    
 }

@@ -14,6 +14,7 @@ public class UnitComponent : MonoBehaviour
     float smoothTime = .1f;
 
     public static GameData Game;
+    public static GameComponent GameLogic;
     public Unit unit;
 
     private float shrinkSpeed = .9f;
@@ -27,7 +28,7 @@ public class UnitComponent : MonoBehaviour
 
         healthBar = this.gameObject.transform.Find("HealthBar").gameObject;
         
-        unit = Game.GameObjectToUnit(this.gameObject);
+        unit = GameLogic.GameObjectToUnit(this.gameObject);
         this.transform.localScale = new Vector3(.01f, .01f, .01f);
     }
 

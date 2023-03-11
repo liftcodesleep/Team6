@@ -17,35 +17,39 @@ public class Hex
     public readonly int Column;
     public readonly int Row;
     public readonly int Sum;
+    private int Seed;
     public readonly string Name = "Hex.Name";
-    public readonly string Mana = "Hex.Mana";
+    private readonly int[] Mana = new int[5] {0, 0, 0, 0, 0};
     
-    //TODO: remove now in HexDem
-    private static int offset = Random.Range(0, 200);
-
     private HashSet<Unit> units;
+
     public Hex(int q, int r)
     {
         this.Column = q;
         this.Row = r;
         this.Sum = -(q + r);
-
-        Random.InitState(42); // Random.seed = 42;
+        this.Seed = GenerateSeed();
+        Mana[Seed % 5] = 1;
+        //TODO Find out what this is for
+        //Random.InitState(42); // Random.seed = 42;
     }
 
-
-    public int GetElevation()
+    public int GetSeed()
+    {
+        return this.Seed;
+    }
+    public int GenerateSeed()
     {
 
         float scale = 10;
-        int elevation =  (int)(Mathf.PerlinNoise((Column + offset + (int)(Row/2)) / scale, (Row+offset)/scale) * 100) ;
+        int LocalSeed =  (int)(Mathf.PerlinNoise((Column + HexDimensions.GetOffset() + (int)(Row/2)) / scale, (Row + HexDimensions.GetOffset()) /scale) * 100) ;
 
-        if (elevation > 99)
+        if (LocalSeed > 99)
         {
-            return 8;
+            return 16;
         }
 
-        return elevation / 12;
+        return LocalSeed / 6;
     }
 
 

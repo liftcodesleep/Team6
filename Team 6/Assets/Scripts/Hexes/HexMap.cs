@@ -43,7 +43,6 @@ public class HexMap : MonoBehaviour
     [SerializeField] private GameObject HandPreFab;
 
 
-
     public static Card[] allCards = {
         new GrizzlyBears(),
         new HolyStrength(),
@@ -72,6 +71,11 @@ public class HexMap : MonoBehaviour
        
         
     }
+
+    public int GetPrefabsCount()
+    {
+        return Prefabs.Length;
+    }
     public void GenerateMap()
     {
         hexes = new Hex[NumRows,NumColumns];
@@ -83,14 +87,14 @@ public class HexMap : MonoBehaviour
             {
 
                 Hex h = new Hex(column, row);
-                
+
                 GameObject hexGo = (GameObject)Instantiate(
-                 Prefabs[h.GetElevation()],
+                 Prefabs[h.GetSeed()],
                  new Vector3(0,0,0),
                  Quaternion.identity,
                  this.transform
                  );
-
+                
                 HexComponent component = hexGo.GetComponent<HexComponent>();
 
                 component.hex = h;
@@ -107,7 +111,7 @@ public class HexMap : MonoBehaviour
                     hexGo.GetComponentInChildren<TextMesh>().text = "";
                 }
                 
-
+                //TODO name should be capitalized and relfect hex type/prefab/identity
                 hexGo.name = string.Format("{0},{1}", column, row);
 
 

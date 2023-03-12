@@ -79,7 +79,7 @@ public class CardComponent : MonoBehaviour
         CardComponent.Game = GameData;
     }
 
-    public void ToggleCardMeshesVisible()
+    public void ToggleCardIsVisible()
     {
         MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
 
@@ -149,6 +149,7 @@ public class CardComponent : MonoBehaviour
         }
         Debug.Log("Removing: " + cardComponent);
         Debug.Log("From: " + this.transform.parent);
+        cardComponent.ToggleCardIsVisible();
         this.transform.parent.GetComponent<HandComponent>().RemoveCard(cardComponent);
         //this.gameObject.transform.Find("MainCamera/Hand").gameObject.GetComponent<HandComponent>().RemoveCard(cardComponent);
 

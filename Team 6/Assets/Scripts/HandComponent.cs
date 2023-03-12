@@ -77,7 +77,7 @@ public class HandComponent : MonoBehaviour
     {
         foreach(CardComponent cardComponent in CardComponents)
         {
-            cardComponent.ToggleCardMeshesVisible();
+            cardComponent.ToggleCardIsVisible();
         }
     }
 
@@ -92,12 +92,12 @@ public class HandComponent : MonoBehaviour
             {
                 //cardComponent.card = hand.Cards[i];
                 cardComponent.SetCard(CardList[i]);
-                cardComponent.ToggleCardMeshesVisible();
+                cardComponent.ToggleCardIsVisible();
                 
             }
             else
             {
-                cardComponent.ToggleCardMeshesVisible();
+                cardComponent.ToggleCardIsVisible();
             }
 
             i++;

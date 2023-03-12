@@ -11,6 +11,14 @@ public class HexMap : MonoBehaviour
 
     public GameObject[] Prefabs;
 
+
+    public GameObject[] IslandPrefabs;
+    public GameObject[] SwampPrefabs;
+    public GameObject[] PlanesPrefabs;
+    public GameObject[] ForestPrefabs;
+    public GameObject[] MontainPrefabs;
+
+
     public static readonly int NumRows = 10;
     public static readonly int NumColumns = 15;
 
@@ -46,8 +54,13 @@ public class HexMap : MonoBehaviour
 
                 Hex h = new Hex(column, row);
 
+                GameObject hexLooks = Prefabs[h.GetSeed()];
+
+
+                hexLooks = GetPrefab(h);
+
                 GameObject hexGo = (GameObject)Instantiate(
-                 Prefabs[h.GetSeed()],
+                 hexLooks,
                  new Vector3(0, 0, 0),
                  Quaternion.identity,
                  this.transform
@@ -120,4 +133,109 @@ public class HexMap : MonoBehaviour
 
         return HexToGameObject[h].GetComponent<HexComponent>().PositionFromCamera();
     }
+
+
+
+    private GameObject GetPrefab(Hex h)
+    {
+
+        GameObject hexLooks = Prefabs[h.GetSeed()];
+        int typeOfHex = h.CalcuateStyle();
+
+        if (typeOfHex == 0)
+        {
+            hexLooks = GetIslandPreFab(h);
+        }
+        else if (typeOfHex == 1)
+        {
+            hexLooks = GetSwampPreFab( h);
+        }
+        else if (typeOfHex == 2)
+        {
+            hexLooks = GetPlainsPreFab(h);
+        }
+        else if (typeOfHex == 3)
+        {
+            hexLooks = ForestPrefabs[0];
+        }
+        else
+        {
+            hexLooks = GetMountainPreFab(h);
+        }
+
+        return hexLooks;
+    }
+
+
+    private GameObject GetIslandPreFab(Hex h)
+    {
+        int chance = Random.Range(0, 100);
+
+        if (chance < 90)
+        {
+            return IslandPrefabs[0];
+        }
+        else if (chance < 98)
+        {
+            return IslandPrefabs[1];
+        }
+        else
+        {
+            return IslandPrefabs[2];
+        }
+    }
+
+
+    private GameObject GetSwampPreFab(Hex h)
+    {
+       
+
+        if (h.elevation < 50)
+        {
+            return SwampPrefabs[0];
+        }
+        else 
+        {
+            return SwampPrefabs[1];
+        }
+        
+    }
+
+    private GameObject GetPlainsPreFab(Hex h)
+    {
+
+
+        if (Random.Range(0,50) == 1)
+        {
+            return PlanesPrefabs[1];
+        }
+        else
+        {
+            return PlanesPrefabs[0];
+        }
+
+    }
+
+    private GameObject GetMountainPreFab(Hex h)
+    {
+        if (h.elevation < 30)
+        {
+            return MontainPrefabs[2];
+        }
+        else if (h.elevation < 50)
+        {
+            return MontainPrefabs[3];
+        }
+        else if (h.elevation < 85)
+        {
+            return MontainPrefabs[0];
+        }
+        else
+        {
+            return MontainPrefabs[1];
+        }
+
+    }
+
+
 }

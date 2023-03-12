@@ -33,6 +33,7 @@ public class CardZoneData
             if (ZoneCapacity > ZoneOccupation)
             {
                 Cards.Add(TargetZone.PopCard());
+                ZoneOccupation++;
             }
         }
     }

@@ -7,7 +7,8 @@ public class HexComponent : MonoBehaviour
 
     public Hex hex;
     public HexMap hexMap;
-
+    public static GameData Game;
+    public static GameComponent GameLogic;
 
     private void Start()
     {
@@ -20,6 +21,26 @@ public class HexComponent : MonoBehaviour
         {
             this.transform.localScale += new Vector3(.02f, .02f, .02f);
         }
+    }
+    public static void SetGameData(GameData GameData)
+    {
+        HexComponent.Game = GameData;
+    }
+    public static void SetGameLogic(GameComponent GameLogic)
+    {
+        HexComponent.GameLogic = GameLogic;
+    }
+
+    //TODO Mouse Over ToolTip
+    void OnMouseOver()
+    {
+        GameLogic.ToolTip.SetActive(true);
+        GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + this.hex.GetName() + "\nX: " + this.hex.Column +
+                "\nY: " + this.hex.Row + "\nMana: " + this.hex.GetMana();
+    }
+    void OnMouseExit()
+    {
+
     }
 
     public Vector3 Position()

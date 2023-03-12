@@ -13,9 +13,7 @@ public class WhiteKnight : Card
 
     public override void DoAction(Hex hex)
     {
-
-        //hexMap.SpawnUnitAt(new KnightUnit(), hexMap.WhiteKnight, hex.Column, hex.Row);
+        hexes.Add(hex);
         GameComponent.SpawnUnitAt(new KnightUnit(), GameComponent.WhiteKnight, hex.Column, hex.Row);
-
     }
 }

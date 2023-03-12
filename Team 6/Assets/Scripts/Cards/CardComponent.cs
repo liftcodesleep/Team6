@@ -124,7 +124,6 @@ public class CardComponent : MonoBehaviour
     {
         card.DoAction(hex);
         played = true;
-        
     }
 
     public void SetCard()

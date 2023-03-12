@@ -33,6 +33,7 @@ public class GameData
         HandComponent.SetGameData(this);
         CardComponent.SetGameData(this);
         UnitComponent.SetGameData(this);
+        HexComponent.SetGameData(this);
         ManaUpdater.SetGameData(this);
     }
 

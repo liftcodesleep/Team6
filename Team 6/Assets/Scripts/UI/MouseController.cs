@@ -146,12 +146,14 @@ public class MouseController : MonoBehaviour
 
         if (selectedCard != null)
         {
-            
             selectedCard.DoAbility(clickedHex);
-            selectedCard.clicked = false;
-            selectedCard.RemoveCard(selectedCard);
-            selectedCard.played = false;
-            selectedCard = null;
+            if (selectedCard.card.hexes.Count == selectedCard.card.numTargets)
+            {
+                selectedCard.clicked = false;
+                selectedCard.RemoveCard(selectedCard);
+                selectedCard.played = false;
+                selectedCard = null;
+            }
 
         }
     }

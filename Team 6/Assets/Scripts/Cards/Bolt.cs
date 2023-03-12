@@ -8,7 +8,7 @@ public class Bolt :Card
     public Bolt()
     {
         Name = "Bolt";
-        numTargets = 1;
+        numTargets = 2;
     }
 
     public override void DoAction(Hex hex)
@@ -19,13 +19,10 @@ public class Bolt :Card
         {
             foreach (Hex X in hexes)
             {
-                
-
                 Unit target = X.Units()[0];
                 target.HitPoints -= 3;
             }
             hexes.Clear();
         }
-
     }
 }

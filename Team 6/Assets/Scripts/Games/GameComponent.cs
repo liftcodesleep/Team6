@@ -18,6 +18,9 @@ public class GameComponent : MonoBehaviour
 
     public GameObject[] Spiders;
 
+    public GameObject ToolTip;
+
+
     //public static Player[] AllPlayers;
 
 

@@ -13,10 +13,7 @@ public class Skeleton: Card
 
     public override void DoAction(Hex hex)
     {
-       
-
-        //hexMap.SpawnUnitAt(new SkeletonUnit(), hexMap.Skeleton, hex.Column, hex.Row);
+        hexes.Add(hex);
         GameComponent.SpawnUnitAt(new SkeletonUnit(), GameComponent.Skeleton, hex.Column, hex.Row);
-
     }
 }

@@ -14,7 +14,7 @@ public class Knives : Card
 
     public override void DoAction(Hex hex)
     {
+        hexes.Add(hex);
         GameComponent.SpawnUnitAt(new KnivesUnit(), GameComponent.Knives, hex.Column, hex.Row);
-
     }
 }

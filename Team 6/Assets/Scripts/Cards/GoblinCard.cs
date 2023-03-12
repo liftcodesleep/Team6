@@ -13,9 +13,7 @@ public class Goblin : Card
 
     public override void DoAction(Hex hex)
     {
-
-        //hexMap.SpawnUnitAt(new GoblinUnit(), hexMap.Goblin, hex.Column, hex.Row);
+        hexes.Add(hex);
         GameComponent.SpawnUnitAt(new GoblinUnit(), GameComponent.Goblin, hex.Column, hex.Row);
-
     }
 }

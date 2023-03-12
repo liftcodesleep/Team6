@@ -48,7 +48,6 @@ public class MouseController : MonoBehaviour
             selectedCard = null;
         }
 
-
         MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         GameObject firstSelectedItem = CurrentSelectedItem;
@@ -56,7 +55,6 @@ public class MouseController : MonoBehaviour
         if (Physics.Raycast(MouseRay, out HitRay, 100f))
         {
             CurrentSelectedItem = HitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
-            
         }
         
 
@@ -64,7 +62,6 @@ public class MouseController : MonoBehaviour
         {
             selectedCard = CurrentSelectedItem.GetComponentInChildren<CardComponent>();
             selectedCard.clicked = true;
-            
         }
         else if (CurrentSelectedItem != null && IsAUnit(CurrentSelectedItem))
         {
@@ -92,15 +89,8 @@ public class MouseController : MonoBehaviour
         else
         {
             GameLogic.ToolTip.SetActive(false);
-
         }
-
-
-
     }
-
-    
-     
     private void rightMouseClick()
     {
         
@@ -122,8 +112,6 @@ public class MouseController : MonoBehaviour
             gameObjectClicked = HitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
 
         }
-
-        
 
         Unit firstUnit = GameLogic.GameObjectToUnit(CurrentSelectedItem);
         Unit secondUnit = GameLogic.GameObjectToUnit(gameObjectClicked);

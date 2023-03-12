@@ -29,6 +29,4 @@ public abstract class Card
 
     public abstract void DoAction(Hex hex);
 
-
-
 }

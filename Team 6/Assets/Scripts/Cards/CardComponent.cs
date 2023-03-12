@@ -17,7 +17,6 @@ public class CardComponent : MonoBehaviour
     private TextMesh textMesh;
     private MeshCollider meshCollider;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +30,6 @@ public class CardComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-                
         Vector3 updatePosition;
         if (clicked)
         {
@@ -67,31 +65,21 @@ public class CardComponent : MonoBehaviour
     public void DoAbility(Hex hex)
     {
         card.DoAction(hex);
-        //played = true;
     }
 
     public void SetCardText(Card card)
     {
         this.card = card;
-        //card.SetMap(hexMap);
         textMesh.text = card.Name + "\nOwner: " + Game.GetCurrentPlayer().GetName();
     }
     public void RemoveCard(CardComponent cardComponent)
     {
-        if(cardComponent == null)
-        {
-            return;
-        }
-        Debug.Log("Removing: " + cardComponent);
-        Debug.Log("From: " + this.transform.parent);
         this.transform.parent.GetComponent<HandComponent>().RemoveCard(cardComponent);
-
     }
     public void SetSelectedPosition(Vector3 v)
     {
         this.selectedPosition = v;
     }
-
     public Vector3 GetStartPosition()
     {
         return this.startPosition;

@@ -20,5 +20,8 @@ public class DeckData : CardZoneData
         Cards.Add(new Goblin());
         this.ZoneCapacity = 40;
         this.ZoneOccupation = Cards.Count;
+
+        Shuffle();
+
     }
 }

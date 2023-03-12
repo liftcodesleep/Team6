@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2417602787614920375}
   - component: {fileID: 2417602787614920374}
   - component: {fileID: 2417602787614920369}
-  - component: {fileID: 2417602787614920372}
   m_Layer: 0
   m_Name: CardModel
   m_TagString: Untagged
@@ -108,24 +107,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2417602787614920372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2417602787614920371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e93f7838236b2004aadd584d717e7089, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitSummon: {fileID: 0}
-  clicked: 0
-  played: 0
-  drawed: 0
-  hexMap: {fileID: 0}
-  HandPostion: 0
 --- !u!1 &4726207202577398586
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,6 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2724628182325184018}
+  - component: {fileID: 8683458110327414687}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -190,6 +172,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -36, y: 0, z: 0}
+--- !u!114 &8683458110327414687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511305476742480991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93f7838236b2004aadd584d717e7089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitSummon: {fileID: 0}
+  clicked: 0
+  played: 0
+  drawed: 0
+  hexMap: {fileID: 0}
 --- !u!1 &7952610702074165383
 GameObject:
   m_ObjectHideFlags: 0

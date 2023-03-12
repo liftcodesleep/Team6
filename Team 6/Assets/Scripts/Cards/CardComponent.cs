@@ -25,17 +25,73 @@ public class CardComponent : MonoBehaviour
 
     [SerializeField] HexMap hexMap;
     private TextMesh textMesh;
+    private MeshCollider meshCollider;
 
 
-    public void SetCardMeshesVisible(bool toggle)
+    // Start is called before the first frame update
+    void Start()
+    {
+        this.startPosition = this.transform.position;
+        this.selectedPosition = startPosition + new Vector3(0, 0, .5f);
+        textMesh = this.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMesh>();
+        meshCollider = this.transform.GetChild(0).GetChild(0).GetComponent<MeshCollider>();
+        card = SetRandomCard();
+        
+
+        SetCard();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (played)
+        {
+            this.transform.GetChild(0).GetChild(0).GetComponent<MeshCollider>().enabled = false;
+            textMesh.GetComponent<MeshRenderer>().enabled = false;
+        }
+        if (drawed)
+        {
+            this.GetComponent<MeshRenderer>().enabled = true;
+            textMesh.GetComponent<MeshRenderer>().enabled = true;
+            drawed = false;
+            played = false;
+
+        }
+        
+        Vector3 updatePosition;
+        if (clicked)
+        {
+            updatePosition = Vector3.SmoothDamp(this.transform.position, selectedPosition, ref currentVelocity, smoothTime);
+
+        }
+        else
+        {
+            updatePosition = Vector3.SmoothDamp(this.transform.position, startPosition, ref currentVelocity, smoothTime);
+            
+        }
+        
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, updatePosition.z);
+    }
+
+    public static void SetGameData(GameData GameData)
+    {
+        CardComponent.Game = GameData;
+    }
+
+    public void ToggleCardMeshesVisible()
     {
         MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
 
-        this.GetComponent<MeshCollider>().enabled = toggle;
+        //MeshRenderer[] meshes = this.transform.Find("Card/Model").GetComponentsInChildren<MeshRenderer>();
+
+        meshCollider.enabled = meshCollider.enabled ? false : true;
+
+        //meshCollider.enabled = toggle;
 
         foreach (MeshRenderer mesh in meshes)
         {
-            mesh.enabled = toggle;
+            mesh.enabled = meshCollider.enabled;
         }
     }
     /*
@@ -63,55 +119,7 @@ public class CardComponent : MonoBehaviour
         }
     }
     */
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.startPosition = this.transform.position;
-        this.selectedPosition = startPosition + new Vector3(0, 0, .5f);
-        textMesh = this.gameObject.GetComponentInChildren<TextMesh>();
 
-        card = SetRandomCard();
-        
-
-        SetCard();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (played)
-        {
-            this.GetComponent<MeshRenderer>().enabled = false;
-            textMesh.GetComponent<MeshRenderer>().enabled = false;
-        }
-        if (drawed)
-        {
-            this.GetComponent<MeshRenderer>().enabled = true;
-            textMesh.GetComponent<MeshRenderer>().enabled = true;
-            drawed = false;
-            played = false;
-
-        }
-        
-        Vector3 updatePosition;
-        if (clicked)
-        {
-            updatePosition = Vector3.SmoothDamp(this.transform.position, selectedPosition, ref currentVelocity, smoothTime);
-
-        }
-        else
-        {
-            updatePosition = Vector3.SmoothDamp(this.transform.position, startPosition, ref currentVelocity, smoothTime);
-            
-        }
-        
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, updatePosition.z);
-    }
-    public static void SetGameData(GameData GameData)
-    {
-        CardComponent.Game = GameData;
-    }
     public void DoAbility(Hex hex)
     {
         card.DoAction(hex);
@@ -139,7 +147,10 @@ public class CardComponent : MonoBehaviour
         {
             return;
         }
-        this.transform.Find("MainCamera/Hand").gameObject.GetComponent<HandComponent>().RemoveCard(cardComponent);
+        Debug.Log("Removing: " + cardComponent);
+        Debug.Log("From: " + this.transform.parent);
+        this.transform.parent.GetComponent<HandComponent>().RemoveCard(cardComponent);
+        //this.gameObject.transform.Find("MainCamera/Hand").gameObject.GetComponent<HandComponent>().RemoveCard(cardComponent);
 
     }
     public void SetSelectedPosition(Vector3 v)

@@ -9,5 +9,4 @@ public class Hand : CardZoneData
         this.ZoneCapacity = 7;
         this.ZoneOccupation = 3;
     }
-
 }

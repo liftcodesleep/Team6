@@ -43,12 +43,12 @@ public class HandComponent : MonoBehaviour
             if (!IsCurrentlyShowing && Game.GetCurrentPlayer() == Owner)
             {
 
-                this.Show();
+                this.ShowHand();
                 IsCurrentlyShowing = true;
             }
             else if(IsCurrentlyShowing && Game.GetCurrentPlayer() != Owner)
             {
-                this.Hide();
+                this.HideHand();
                 IsCurrentlyShowing = false;
 
             }
@@ -73,15 +73,15 @@ public class HandComponent : MonoBehaviour
         hand.Cards.Remove(cardComponent.card);
     }
 
-    public void Hide()
+    public void HideHand()
     {
         foreach(CardComponent cardComponent in CardComponents)
         {
-            cardComponent.SetCardMeshesVisible(false);
+            cardComponent.ToggleCardMeshesVisible();
         }
     }
 
-    public void Show()
+    public void ShowHand()
     {
 
         int i = 0;
@@ -92,12 +92,12 @@ public class HandComponent : MonoBehaviour
             {
                 //cardComponent.card = hand.Cards[i];
                 cardComponent.SetCard(CardList[i]);
-                cardComponent.SetCardMeshesVisible(true);
+                cardComponent.ToggleCardMeshesVisible();
                 
             }
             else
             {
-                cardComponent.SetCardMeshesVisible(false);
+                cardComponent.ToggleCardMeshesVisible();
             }
 
             i++;

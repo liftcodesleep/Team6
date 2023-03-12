@@ -44,6 +44,7 @@ public class MouseController : MonoBehaviour
 
         if (selectedCard != null)
         {
+            selectedCard.card.hexes.Clear();
             selectedCard.clicked = false;
             selectedCard = null;
         }
@@ -85,6 +86,7 @@ public class MouseController : MonoBehaviour
         }
         else if (selectedCard != null)
         {
+            selectedCard.card.hexes.Clear();
             selectedCard.clicked = false;
             selectedCard = null;
         }
@@ -147,7 +149,7 @@ public class MouseController : MonoBehaviour
         if (selectedCard != null)
         {
             selectedCard.DoAbility(clickedHex);
-            if (selectedCard.card.hexes.Count == selectedCard.card.numTargets)
+            if (selectedCard.card.hexes.Count == 0)
             {
                 selectedCard.clicked = false;
                 selectedCard.RemoveCard(selectedCard);

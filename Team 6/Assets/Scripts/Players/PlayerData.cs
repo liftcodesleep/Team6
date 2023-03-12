@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerData
 {
     private DeckData deck;
-    private DeckData hand;
+    private Hand hand;
     private List<Unit> Units;
     private string Name;
     private int ManaAvailable;
@@ -19,12 +19,24 @@ public class PlayerData
     {
         this.Name = name;
     }
+    public void SetHand(Hand NewHand)
+    {
+        this.hand = NewHand;
+    }
+    public void SetDeck(DeckData NewDeck)
+    {
+        this.deck = NewDeck;
+    }
     public string GetMana()
     {
         return "Mana available: " + this.ManaAvailable.ToString();
     }
-    public DeckData GetHand()
+    public Hand GetHand()
     {
         return this.hand;
+    }
+    public DeckData GetDeck()
+    {
+        return this.deck;
     }
 }

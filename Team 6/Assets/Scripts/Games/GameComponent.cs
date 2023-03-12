@@ -6,6 +6,7 @@ public class GameComponent : MonoBehaviour
 {
     public GameData Game;
 
+    public GameObject[] UnitGameObjects;
     public GameObject player;
     public GameObject GrizzlyBears;
     public GameObject WhiteKnight;
@@ -13,6 +14,7 @@ public class GameComponent : MonoBehaviour
     public GameObject Minotaur;
     public GameObject Specter;
     public GameObject Knives;
+    public GameObject Goblin;
 
     public GameObject[] Spiders;
 
@@ -30,6 +32,7 @@ public class GameComponent : MonoBehaviour
     {
         Game = new GameData();
         Card.SetGameComponent(this);
+        MouseController.SetGameLogic(this);
 
         MakePlayers();
     }
@@ -53,23 +56,29 @@ public class GameComponent : MonoBehaviour
     public void MakePlayers()
     {
         //Main Menu Prompts Player Count? Names?
-        //AllPlayers = new Player[] { new Player(), new Player() };
+        Game.Players = new PlayerData[] { new PlayerData(), new PlayerData() };
 
 
         GameObject PlayerHandGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
         HandComponent PlayerHandComponent = PlayerHandGO.GetComponent<HandComponent>();
+        //set component hand to player hand
         
-        //PlayerHandComponent.SetHand(AllPlayers[0].hand);
+        Game.Players[0].SetHand(new Hand(Game.Players[0]));
+        Game.Players[0].SetDeck(new DeckData(Game.Players[0]));
+        PlayerHandComponent.SetHand(Game.Players[0].GetHand());
 
         PlayerHandGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
         PlayerHandComponent = PlayerHandGO.GetComponent<HandComponent>();
-        //PlayerHandComponent.SetHand(AllPlayers[1].hand);
+        Game.Players[1].SetHand(new Hand(Game.Players[1]));
+        Game.Players[1].SetDeck(new DeckData(Game.Players[1]));
+        PlayerHandComponent.SetHand(Game.Players[1].GetHand());
 
 
         Game.SetCurrentPlayer(0);
         SpawnUnitAt(new AvatarUnit(), player, 5, 8);
         SpawnUnitAt(new AvatarUnit(), player, 10, 3);
     }
+
     public Unit GameObjectToUnit(GameObject unit)
     {
 
@@ -99,7 +108,9 @@ public class GameComponent : MonoBehaviour
         unit.SetHex(spawnedHex);
         //GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, Quaternion.identity, spawpoint.transform);
         GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, prefab.transform.rotation, spawpoint.transform);
-
+        
+        unitGO.GetComponent<UnitComponent>().unit = unit;
+        
         Game.units.Add(unit);
         UnitToGameObject[unit] = unitGO;
     }
@@ -108,9 +119,7 @@ public class GameComponent : MonoBehaviour
 
     public void NextTurn()
     {
-        Game.SetCurrentPlayer((Game.GetCurrentPlayer() + 1) % 2); //AllPlayers.Length);
-        //GetCurrentPlayer().hand.Draw();
-        Game.AllPlayers[Game.GetCurrentPlayer()].playerData.GetHand().Draw();
+        Game.NextTurn();
     }
 
 

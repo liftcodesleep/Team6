@@ -15,7 +15,7 @@ public class WhiteKnight : Card
     {
 
         //hexMap.SpawnUnitAt(new KnightUnit(), hexMap.WhiteKnight, hex.Column, hex.Row);
-        GameComponent.SpawnUnitAt(new BearUnit(), GameComponent.WhiteKnight, hex.Column, hex.Row);
+        GameComponent.SpawnUnitAt(new KnightUnit(), GameComponent.WhiteKnight, hex.Column, hex.Row);
 
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ManaUpdater : MonoBehaviour
 {
-    public GameData Game;
+    public static GameData Game;
     TMPro.TextMeshProUGUI text;
     void Start()
     {
@@ -17,8 +17,12 @@ public class ManaUpdater : MonoBehaviour
 
         text.text = string.Format(
             "{0}\n" +
-            "Your Mana: {1}",
-            Game.AllPlayers[Game.GetCurrentPlayer()].playerData.GetName(),
-            Game.AllPlayers[Game.GetCurrentPlayer()].playerData.GetMana());
+            "Your Mana: {1}\n",
+            Game.GetCurrentPlayer().GetName(),
+            Game.GetCurrentPlayer().GetMana());
+    }
+    public static void SetGameData(GameData GameData)
+    {
+        ManaUpdater.Game = GameData;
     }
 }

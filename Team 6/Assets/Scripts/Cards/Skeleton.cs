@@ -16,7 +16,7 @@ public class Skeleton: Card
        
 
         //hexMap.SpawnUnitAt(new SkeletonUnit(), hexMap.Skeleton, hex.Column, hex.Row);
-        GameComponent.SpawnUnitAt(new BearUnit(), GameComponent.Skeleton, hex.Column, hex.Row);
+        GameComponent.SpawnUnitAt(new SkeletonUnit(), GameComponent.Skeleton, hex.Column, hex.Row);
 
     }
 }

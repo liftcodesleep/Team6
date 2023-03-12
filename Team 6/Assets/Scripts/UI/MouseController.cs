@@ -149,7 +149,7 @@ public class MouseController : MonoBehaviour
             
             selectedCard.DoAbility(clickedHex);
             selectedCard.clicked = false;
-            selectedCard.RemoveFromHand();
+            selectedCard.RemoveCard(selectedCard);
             selectedCard.played = false;
             selectedCard = null;
 
@@ -160,7 +160,10 @@ public class MouseController : MonoBehaviour
     {
         MouseController.Game = GameData;
     }
-
+    public static void SetGameLogic(GameComponent GameLogic)
+    {
+        MouseController.GameLogic = GameLogic;
+    }
     private bool IsAUnit(GameObject obj)
     {
         return GameLogic.GameObjectToUnit(obj) != null;

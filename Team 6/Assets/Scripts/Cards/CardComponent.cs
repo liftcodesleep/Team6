@@ -129,11 +129,18 @@ public class CardComponent : MonoBehaviour
     }
     public void SetCard(Card card)
     {
-
         this.card = card;
         //card.SetMap(hexMap);
-
         textMesh.text = card.Name;
+    }
+    public void RemoveCard(CardComponent cardComponent)
+    {
+        if(cardComponent == null)
+        {
+            return;
+        }
+        this.transform.Find("MainCamera/Hand").gameObject.GetComponent<HandComponent>().RemoveCard(cardComponent);
+
     }
     public void SetSelectedPosition(Vector3 v)
     {
@@ -150,14 +157,5 @@ public class CardComponent : MonoBehaviour
       
         return GameData.AllCards[Random.Range(0, GameData.AllCards.Length)];
         //return allCards[0];
-    }
-
-    public void RemoveFromHand()
-    {
-        DeckData hand = Game.AllPlayers[Game.GetCurrentPlayer()].playerData.GetHand();
-        Debug.Log("Removing ");
-        Debug.Log(hand.Cards.Count);
-        hand.Cards.Remove(card);
-        Debug.Log(hand.Cards.Count);
     }
 }

@@ -13,7 +13,7 @@ public class Minotaur : Card
     {
         
         //hexMap.SpawnUnitAt(new MinotaurUnit(), hexMap.Minotaur, hex.Column, hex.Row);
-        GameComponent.SpawnUnitAt(new BearUnit(), GameComponent.Minotaur, hex.Column, hex.Row);
+        GameComponent.SpawnUnitAt(new MinotaurUnit(), GameComponent.Minotaur, hex.Column, hex.Row);
 
     }
 }

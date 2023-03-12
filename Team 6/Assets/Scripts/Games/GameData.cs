@@ -23,27 +23,36 @@ public class GameData
         new Teleport(),
         new Minotaur(),
         new Specter(),
-        new Spider()};
+        new Spider(),
+        new Knives(),
+        new Goblin()};
 
     public GameData()
     {
         Card.SetGameData(this);
         HandComponent.SetGameData(this);
         CardComponent.SetGameData(this);
+        UnitComponent.SetGameData(this);
+        ManaUpdater.SetGameData(this);
     }
 
     public void SetCurrentPlayer(int player)
     {
         this.CurrentPlayer = player;
     }
-    public int GetCurrentPlayer() 
+    public PlayerData GetCurrentPlayer() 
     { 
-        return this.CurrentPlayer; 
+        return this.Players[CurrentPlayer];
     }
 
     public PlayerData GetCurrentPlayerData()
     {
-        return Players[CurrentPlayer];
+        return this.Players[CurrentPlayer];
     }
-    
+    public void NextTurn()
+    {
+        SetCurrentPlayer((CurrentPlayer + 1) % 2); //AllPlayers.Length);
+        //GetCurrentPlayer().hand.Draw();
+        GetCurrentPlayer().GetHand().MoveNCardsFromZone(1, GetCurrentPlayer().GetDeck());
+    }
 }

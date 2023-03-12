@@ -14,7 +14,7 @@ public class Specter : Card
     {
 
         //hexMap.SpawnUnitAt(new SpecterUnit(), hexMap.Specter, hex.Column, hex.Row);
-        GameComponent.SpawnUnitAt(new BearUnit(), GameComponent.Specter, hex.Column, hex.Row);
+        GameComponent.SpawnUnitAt(new SpecterUnit(), GameComponent.Specter, hex.Column, hex.Row);
 
     }
 }

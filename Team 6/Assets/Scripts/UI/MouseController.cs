@@ -16,7 +16,6 @@ public class MouseController : MonoBehaviour
     public static GameData Game;
     public static GameComponent GameLogic;
 
-    public GameObject ToolTip;
 
 
 
@@ -69,19 +68,19 @@ public class MouseController : MonoBehaviour
         }
         else if (CurrentSelectedItem != null && IsAUnit(CurrentSelectedItem))
         {
-            ToolTip.SetActive(true);
+            GameLogic.ToolTip.SetActive(true);
             Unit selectedUnit = GameLogic.GameObjectToUnit(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
-            ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
+            GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
                 "\nStrength: " + selectedUnit.Strength + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
         }
         else if (CurrentSelectedItem != null && IsAHex(CurrentSelectedItem))
         {
-            ToolTip.SetActive(true);
+            GameLogic.ToolTip.SetActive(true);
 
             Hex selectedHex = HexMap.GameObjectToHex(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
-            ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedHex.GetName() + "\nX: " + selectedHex.Column +
+            GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedHex.GetName() + "\nX: " + selectedHex.Column +
                 "\nY: " + selectedHex.Row + "\nMana: " + selectedHex.GetMana();
         }
         else if (selectedCard != null)
@@ -92,7 +91,7 @@ public class MouseController : MonoBehaviour
         }
         else
         {
-            ToolTip.SetActive(false);
+            GameLogic.ToolTip.SetActive(false);
 
         }
 

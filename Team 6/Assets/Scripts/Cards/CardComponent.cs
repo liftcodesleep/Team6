@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class CardComponent : MonoBehaviour
 {
+    public static GameData Game;
     private Vector3 startPosition;
-   
-    public bool clicked;
-    private Vector3 currentVelocity;
-
     private Vector3 selectedPosition;
-
+    private Vector3 currentVelocity;
     private float smoothTime = .5f;
 
-    public static GameData Game;
+    public bool clicked;
+
     public Card card;
 
     private TextMesh textMesh;
@@ -27,6 +25,7 @@ public class CardComponent : MonoBehaviour
         this.selectedPosition = startPosition + new Vector3(0, 0, .5f);
         textMesh = this.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMesh>();
         meshCollider = this.transform.GetChild(0).GetChild(0).GetComponent<MeshCollider>();
+        meshCollider.enabled = false;
     }
 
     // Update is called once per frame
@@ -57,8 +56,6 @@ public class CardComponent : MonoBehaviour
     {
         MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
 
-        //meshCollider.enabled = meshCollider.enabled ? false : true;
-
         meshCollider.enabled = toggle;
 
         foreach (MeshRenderer mesh in meshes)
@@ -66,31 +63,6 @@ public class CardComponent : MonoBehaviour
             mesh.enabled = meshCollider.enabled;
         }
     }
-    /*
-    public void Hide()
-    {
-        MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
-
-        this.GetComponent<MeshCollider>().enabled = false;
-
-        foreach (MeshRenderer mesh in meshes)
-        {
-            mesh.enabled = false;
-        }
-    }
-
-    public void Show()
-    {
-        MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
-
-        this.GetComponent<MeshCollider>().enabled = true;
-
-        foreach (MeshRenderer mesh in meshes)
-        {
-            mesh.enabled = true;
-        }
-    }
-    */
 
     public void DoAbility(Hex hex)
     {
@@ -98,12 +70,6 @@ public class CardComponent : MonoBehaviour
         //played = true;
     }
 
-    public void SetCardText()
-    {
-        card = SetRandomCard();
-        //card.SetMap(hexMap);
-        textMesh.text = card.Name;
-    }
     public void SetCardText(Card card)
     {
         this.card = card;
@@ -129,12 +95,5 @@ public class CardComponent : MonoBehaviour
     public Vector3 GetStartPosition()
     {
         return this.startPosition;
-    }
-
-    private Card SetRandomCard()
-    {
-      
-        return GameData.AllCards[Random.Range(0, GameData.AllCards.Length)];
-        //return allCards[0];
     }
 }

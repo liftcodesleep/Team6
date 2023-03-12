@@ -46,14 +46,9 @@ public class GameData
         return this.Players[CurrentPlayer];
     }
 
-    public PlayerData GetCurrentPlayerData()
-    {
-        return this.Players[CurrentPlayer];
-    }
     public void NextTurn()
     {
         SetCurrentPlayer((CurrentPlayer + 1) % 2); //AllPlayers.Length);
-        //GetCurrentPlayer().hand.Draw();
-        GetCurrentPlayer().GetHand().MoveNCardsFromZone(1, GetCurrentPlayer().GetDeck());
+        GetCurrentPlayer().GetHand().DrawNCards(1);
     }
 }

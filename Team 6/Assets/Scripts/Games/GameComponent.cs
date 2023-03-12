@@ -64,18 +64,21 @@ public class GameComponent : MonoBehaviour
 
         GameObject PlayerHandGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
         HandComponent PlayerHandComponent = PlayerHandGO.GetComponent<HandComponent>();
-        //set component hand to player hand
-        
+
+        Game.Players[0].SetName("Player 1");
         Game.Players[0].SetHand(new Hand(Game.Players[0]));
         Game.Players[0].SetDeck(new DeckData(Game.Players[0]));
+        Game.Players[0].SetHandComponent(PlayerHandComponent);
         PlayerHandComponent.SetHand(Game.Players[0].GetHand());
 
         PlayerHandGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
         PlayerHandComponent = PlayerHandGO.GetComponent<HandComponent>();
+
+        Game.Players[1].SetName("Player 2");
         Game.Players[1].SetHand(new Hand(Game.Players[1]));
         Game.Players[1].SetDeck(new DeckData(Game.Players[1]));
+        Game.Players[1].SetHandComponent(PlayerHandComponent);
         PlayerHandComponent.SetHand(Game.Players[1].GetHand());
-
 
         Game.SetCurrentPlayer(0);
         SpawnUnitAt(new AvatarUnit(), player, 5, 8);

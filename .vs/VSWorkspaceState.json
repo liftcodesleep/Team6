@@ -4,10 +4,10 @@
     "\\Team 6",
     "\\Team 6\\Assets",
     "\\Team 6\\Assets\\Scripts",
-    "\\Team 6\\Assets\\Scripts\\Cards",
-    "\\Team 6\\Assets\\Scripts\\Players",
-    "\\Team 6\\Assets\\Scripts\\Units"
+    "\\Team 6\\Assets\\Scripts\\Cards\\SpellCards",
+    "\\Team 6\\Assets\\Scripts\\Cards\\UnitCards",
+    "\\Team 6\\Assets\\Scripts\\Players"
   ],
-  "SelectedNode": "\\Team 6\\Assets\\Scripts\\Cards\\GrizzlyBears.cs",
+  "SelectedNode": "\\Team 6\\Assets\\Scripts\\UI",
   "PreviewInSolutionExplorer": false
 }

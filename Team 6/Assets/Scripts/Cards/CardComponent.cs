@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CardComponent : MonoBehaviour
 {
-    public GameObject unitSummon;
     private Vector3 startPosition;
    
 
@@ -15,15 +14,9 @@ public class CardComponent : MonoBehaviour
 
     private float smoothTime = .5f;
 
-    public bool played = false;
-    public bool drawed = false;
-
-    //private float shrinkSpeed = .9f;
-
     public static GameData Game;
     public Card card;
 
-    [SerializeField] HexMap hexMap;
     private TextMesh textMesh;
     private MeshCollider meshCollider;
 
@@ -35,30 +28,12 @@ public class CardComponent : MonoBehaviour
         this.selectedPosition = startPosition + new Vector3(0, 0, .5f);
         textMesh = this.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMesh>();
         meshCollider = this.transform.GetChild(0).GetChild(0).GetComponent<MeshCollider>();
-        card = SetRandomCard();
-        
-
-        SetCard();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (played)
-        {
-            this.transform.GetChild(0).GetChild(0).GetComponent<MeshCollider>().enabled = false;
-            textMesh.GetComponent<MeshRenderer>().enabled = false;
-        }
-        if (drawed)
-        {
-            this.GetComponent<MeshRenderer>().enabled = true;
-            textMesh.GetComponent<MeshRenderer>().enabled = true;
-            drawed = false;
-            played = false;
-
-        }
-        
+                
         Vector3 updatePosition;
         if (clicked)
         {
@@ -79,15 +54,13 @@ public class CardComponent : MonoBehaviour
         CardComponent.Game = GameData;
     }
 
-    public void ToggleCardIsVisible()
+    public void SetCardIsVisible(bool toggle)
     {
         MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
 
-        //MeshRenderer[] meshes = this.transform.Find("Card/Model").GetComponentsInChildren<MeshRenderer>();
+        //meshCollider.enabled = meshCollider.enabled ? false : true;
 
-        meshCollider.enabled = meshCollider.enabled ? false : true;
-
-        //meshCollider.enabled = toggle;
+        meshCollider.enabled = toggle;
 
         foreach (MeshRenderer mesh in meshes)
         {
@@ -126,15 +99,13 @@ public class CardComponent : MonoBehaviour
         //played = true;
     }
 
-    public void SetCard()
+    public void SetCardText()
     {
-        
         card = SetRandomCard();
         //card.SetMap(hexMap);
-
         textMesh.text = card.Name;
     }
-    public void SetCard(Card card)
+    public void SetCardText(Card card)
     {
         this.card = card;
         //card.SetMap(hexMap);
@@ -148,9 +119,7 @@ public class CardComponent : MonoBehaviour
         }
         Debug.Log("Removing: " + cardComponent);
         Debug.Log("From: " + this.transform.parent);
-        cardComponent.ToggleCardIsVisible();
         this.transform.parent.GetComponent<HandComponent>().RemoveCard(cardComponent);
-        //this.gameObject.transform.Find("MainCamera/Hand").gameObject.GetComponent<HandComponent>().RemoveCard(cardComponent);
 
     }
     public void SetSelectedPosition(Vector3 v)

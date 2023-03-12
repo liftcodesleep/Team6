@@ -26,11 +26,7 @@ public class HexMap : MonoBehaviour
 
     void Start()
     {
-        Card.SetMap(this);
-        
         GenerateMap();
-
-
     }
 
     private void Update()

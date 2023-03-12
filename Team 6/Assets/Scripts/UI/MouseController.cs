@@ -153,7 +153,6 @@ public class MouseController : MonoBehaviour
             {
                 selectedCard.clicked = false;
                 selectedCard.RemoveCard(selectedCard);
-                selectedCard.played = true;
                 selectedCard = null;
             }
 

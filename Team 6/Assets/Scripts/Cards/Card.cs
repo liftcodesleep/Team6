@@ -12,14 +12,9 @@ public abstract class Card
 
     public int numTargets = 1;
 
-    public static HexMap hexMap;
     public static GameData Game;
     public static GameComponent GameComponent;
 
-    public static void SetMap(HexMap hexMap)
-    {
-        Card.hexMap = hexMap;
-    }
     public static void SetGameData(GameData GameData)
     {
         Card.Game = GameData;

@@ -26,25 +26,11 @@ public class CardZoneData
         return TopCard;
     }
 
-    public void MoveNCardsFromZone(int n, CardZoneData TargetZone)
+    public void GetNCardsFromZone(int n, CardZoneData TargetZone)
     {
         for (int i = 0; i < n; i++)
         {
             Cards.Add(TargetZone.PopCard());
         }
     }
-
-
-    public void PutInHand(Card card)
-    {
-        if (Cards.Count < ZoneCapacity)
-        {
-            Cards.Add(card);
-        }
-
-    }
-
-
-
-
 }

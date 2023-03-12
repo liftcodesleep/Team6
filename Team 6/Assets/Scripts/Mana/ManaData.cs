@@ -12,7 +12,6 @@ public abstract class ManaData
         string ManaProduction = new string (Type, Count);
         return ManaProduction;
     }
-
     public void SetCount(int NewCount)
     {
         this.Count = NewCount;

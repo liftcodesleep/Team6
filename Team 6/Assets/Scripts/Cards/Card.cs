@@ -7,6 +7,7 @@ public abstract class Card
     public string Name;
     public string Description; //TODO Flavor text?
     public string Color;
+    public ManaData[] ManaCost = new ManaData[5] { new WhiteMana(), new BlueMana(), new BlackMana(), new RedMana(), new GreenMana() };
 
 
     public List<Hex> hexes = new List<Hex>();

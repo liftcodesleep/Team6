@@ -918,7 +918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8543b1cc30f05774999f8addab901a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitGameObjects: []
   player: {fileID: 9115022645573173194, guid: be4f1936f8630814d96e9fedc6c22599, type: 3}
   GrizzlyBears: {fileID: 2216712049197101269, guid: 1d496a8c17ed7734e82db6a2ed619a0a, type: 3}
   WhiteKnight: {fileID: 2216712049197101269, guid: e687bf082a938bc459a04aa3787a2c9e, type: 3}
@@ -931,7 +930,7 @@ MonoBehaviour:
   - {fileID: 7610484950628987255, guid: 1147fb586b5757d478f4bd490f5d7061, type: 3}
   - {fileID: 4332773588042852850, guid: 41272528b960b2140a07d21f05f03699, type: 3}
   ToolTip: {fileID: 1542275648}
-  HandPreFab: {fileID: 3442629967033326648, guid: d1a370e8f6e16ee4b9297e3a102a8cb2, type: 3}
+  HandPreFab: {fileID: 4055321152339282853, guid: 81ad617737d4e344db7d9c07b7ae6b31, type: 3}
 --- !u!224 &1682532373 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8280062200627006565, guid: 24403c5f39d2c7745bd7039c17868f0e, type: 3}

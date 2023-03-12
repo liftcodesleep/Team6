@@ -6,7 +6,6 @@ public class GameComponent : MonoBehaviour
 {
     public GameData Game;
 
-    public GameObject[] UnitGameObjects;
     public GameObject player;
     public GameObject GrizzlyBears;
     public GameObject WhiteKnight;

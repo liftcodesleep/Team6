@@ -34,9 +34,10 @@ public class HexComponent : MonoBehaviour
     //TODO Mouse Over ToolTip
     void OnMouseOver()
     {
+        //p sure this dont work yet
         GameLogic.ToolTip.SetActive(true);
         GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + this.hex.GetName() + "\nX: " + this.hex.Column +
-                "\nY: " + this.hex.Row + "\nMana: " + this.hex.GetMana();
+                "\nY: " + this.hex.Row + "\nMana: " + this.hex.GetHexMana();
     }
     void OnMouseExit()
     {

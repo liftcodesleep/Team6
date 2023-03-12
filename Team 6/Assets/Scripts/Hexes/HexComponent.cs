@@ -7,7 +7,8 @@ public class HexComponent : MonoBehaviour
 
     public Hex hex;
     public HexMap hexMap;
-
+    public static GameData Game;
+    public static GameComponent GameLogic;
 
     private void Start()
     {
@@ -20,6 +21,27 @@ public class HexComponent : MonoBehaviour
         {
             this.transform.localScale += new Vector3(.02f, .02f, .02f);
         }
+    }
+    public static void SetGameData(GameData GameData)
+    {
+        HexComponent.Game = GameData;
+    }
+    public static void SetGameLogic(GameComponent GameLogic)
+    {
+        HexComponent.GameLogic = GameLogic;
+    }
+
+    //TODO Mouse Over ToolTip
+    void OnMouseOver()
+    {
+        //p sure this dont work yet
+        GameLogic.ToolTip.SetActive(true);
+        GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + this.hex.GetName() + "\nX: " + this.hex.Column +
+                "\nY: " + this.hex.Row + "\nMana: " + this.hex.GetHexMana();
+    }
+    void OnMouseExit()
+    {
+
     }
 
     public Vector3 Position()
@@ -48,7 +70,7 @@ public class HexComponent : MonoBehaviour
 
         Vector3 position = Position();
 
-        if (HexMap.allowWrapEastWest)
+        if (HexMap.AllowWrapEastWest)
 
         {
 
@@ -73,96 +95,97 @@ public class HexComponent : MonoBehaviour
 
         }
 
+        //Deprecated but useful to have written
+        /*        if (HexMap.allowWrapNorthSouth)
+                {
 
-        if (HexMap.allowWrapNorthSouth)
+                    float howManyHeightsFromCamera = (position.z - cameraPosition.z) / mapHeight;
+
+                    //We want howmanyWidthsFromCamera to be between -0.5 to 0.5
+
+                    if (howManyHeightsFromCamera > 0)
+                    {
+                        howManyHeightsFromCamera += 0.5f;
+                    }
+                    else
+                    {
+                        howManyHeightsFromCamera -= 0.5f;
+                    }
+
+                    int howManyHeightsToFix = (int)howManyHeightsFromCamera;
+
+                    position.z -= howManyHeightsToFix * mapHeight;
+
+                }
+        */
+                return position;
+
+            }
+            
+        /*
+        public Vector3 PositionFromCamera()
+        {
+            return HexMap.GetHexPosition(hex);
+        }
+        */
+        public Vector3 PositionFromCamera(Vector3 cameraPosition)
         {
 
-            float howManyHeightsFromCamera = (position.z - cameraPosition.z) / mapHeight;
+            float mapHeight = HexMap.NumRows * HexDimensions.HexVerticalSpacing();
+            float mapWidth = HexMap.NumColumns * HexDimensions.HexHorizontalSpacing();
 
-            //We want howmanyWidthsFromCamera to be between -0.5 to 0.5
+            Vector3 position = this.Position();
 
-            if (howManyHeightsFromCamera > 0)
+
+            if (HexMap.AllowWrapEastWest)
+
             {
-                howManyHeightsFromCamera += 0.5f;
+
+                float howManyWidthsFromCamera = (position.x - cameraPosition.x) / mapWidth;
+
+
+                //We want howmanyWidthsFromCamera to be between -0.5 to 0.5
+
+                if (howManyWidthsFromCamera > 0)
+                {
+                    howManyWidthsFromCamera += 0.5f;
+                }
+                else
+                {
+                    howManyWidthsFromCamera -= 0.5f;
+                }
+
+                int howManyWidthToFix = (int)howManyWidthsFromCamera;
+
+
+                position.x -= howManyWidthToFix * mapWidth;
+
             }
-            else
+
+
+            /*if (HexMap.allowWrapNorthSouth)
             {
-                howManyHeightsFromCamera -= 0.5f;
+
+                float howManyHeightsFromCamera = (position.z - cameraPosition.z) / mapHeight;
+
+                //We want howmanyWidthsFromCamera to be between -0.5 to 0.5
+
+                if (howManyHeightsFromCamera > 0)
+                {
+                    howManyHeightsFromCamera += 0.5f;
+                } else
+                {
+                    howManyHeightsFromCamera -= 0.5f;
+                }
+
+                int howManyHeightsToFix = (int)howManyHeightsFromCamera;
+
+                position.z -= howManyHeightsToFix * mapHeight;
+
             }
-
-            int howManyHeightsToFix = (int)howManyHeightsFromCamera;
-
-            position.z -= howManyHeightsToFix * mapHeight;
+            */
+            return position;
 
         }
-
-        return position;
-
     }
-	
-    /*
-	public Vector3 PositionFromCamera()
-    {
-        return HexMap.GetHexPosition(hex);
-    }
-	*/
-	public Vector3 PositionFromCamera(Vector3 cameraPosition)
-    {
 
-        float mapHeight = HexMap.NumRows * HexDimensions.HexVerticalSpacing();
-        float mapWidth = HexMap.NumColumns * HexDimensions.HexHorizontalSpacing();
-
-        Vector3 position = this.Position();
-
-
-        if (HexMap.allowWrapEastWest)
-
-        {
-
-            float howManyWidthsFromCamera = (position.x - cameraPosition.x) / mapWidth;
-
-
-            //We want howmanyWidthsFromCamera to be between -0.5 to 0.5
-
-            if (howManyWidthsFromCamera > 0)
-            {
-                howManyWidthsFromCamera += 0.5f;
-            }
-            else
-            {
-                howManyWidthsFromCamera -= 0.5f;
-            }
-
-            int howManyWidthToFix = (int)howManyWidthsFromCamera;
-
-
-            position.x -= howManyWidthToFix * mapWidth;
-
-        }
-
-
-        if (HexMap.allowWrapNorthSouth)
-        {
-
-            float howManyHeightsFromCamera = (position.z - cameraPosition.z) / mapHeight;
-
-            //We want howmanyWidthsFromCamera to be between -0.5 to 0.5
-
-            if (howManyHeightsFromCamera > 0)
-            {
-                howManyHeightsFromCamera += 0.5f;
-            }else
-            {
-                howManyHeightsFromCamera -= 0.5f;
-            }
-
-            int howManyHeightsToFix = (int)howManyHeightsFromCamera;
-
-            position.z -= howManyHeightsToFix * mapHeight;
-
-        }
-
-        return position;
-
-    }
-}

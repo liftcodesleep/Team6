@@ -6,7 +6,6 @@ public class CardComponent : MonoBehaviour
 {
     private Vector3 startPosition;
    
-
     public bool clicked;
     private Vector3 currentVelocity;
 
@@ -109,7 +108,7 @@ public class CardComponent : MonoBehaviour
     {
         this.card = card;
         //card.SetMap(hexMap);
-        textMesh.text = card.Name;
+        textMesh.text = card.Name + "\nOwner: " + Game.GetCurrentPlayer().GetName();
     }
     public void RemoveCard(CardComponent cardComponent)
     {

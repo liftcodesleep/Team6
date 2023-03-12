@@ -13,7 +13,7 @@ public class HandComponent : MonoBehaviour
 
 
     public Hand hand;
-    CardComponent[] CardComponentsInHand;
+    CardComponent[] CardComponents;
 
     private PlayerData Owner;
 
@@ -22,13 +22,12 @@ public class HandComponent : MonoBehaviour
 
     private void Start()
     {
-        int NumCardsInHand = this.transform.childCount;
-        CardComponentsInHand = new CardComponent[NumCardsInHand];
+        int NumCardComponents = this.transform.childCount;
+        CardComponents = new CardComponent[NumCardComponents];
 
-        for (int i = 0; i < NumCardsInHand; i++)
+        for (int i = 0; i < NumCardComponents; i++)
         {
-            CardComponentsInHand[i] = this.transform.GetChild(i).GetComponentInChildren<CardComponent>();
-
+            CardComponents[i] = this.transform.GetChild(i).GetComponentInChildren<CardComponent>();
         }
 
 
@@ -46,10 +45,15 @@ public class HandComponent : MonoBehaviour
     public void RenderHand(PlayerData ActivePlayer)
     {
         bool OwnerIsActive = (ActivePlayer == this.Owner);
-        for (int i = 0; i < ActivePlayer.GetHand().Cards.Count; i++)
+        int NumCardsInHand = ActivePlayer.GetHand().Cards.Count;
+        for (int i = 0; i < NumCardsInHand; i++)
         {
-            CardComponentsInHand[i].SetCardText(ActivePlayer.GetHand().Cards[i]);
-            CardComponentsInHand[i].SetCardIsVisible(OwnerIsActive); // && Card is real
+            CardComponents[i].SetCardText(ActivePlayer.GetHand().Cards[i]);
+            CardComponents[i].SetCardIsVisible(OwnerIsActive);
+        }
+        for (int i = CardComponents.Length - 1; i >= NumCardsInHand; i--)
+        {
+            CardComponents[i].SetCardIsVisible(false);
         }
     }
     public void SetHand(Hand hand)

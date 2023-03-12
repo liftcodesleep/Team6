@@ -30,7 +30,10 @@ public class CardZoneData
     {
         for (int i = 0; i < n; i++)
         {
-            Cards.Add(TargetZone.PopCard());
+            if (ZoneCapacity > ZoneOccupation)
+            {
+                Cards.Add(TargetZone.PopCard());
+            }
         }
     }
 }

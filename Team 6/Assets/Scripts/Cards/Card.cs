@@ -8,6 +8,7 @@ public abstract class Card
     public string Description; //TODO Flavor text?
     public string Color;
 
+
     public List<Hex> hexes = new List<Hex>();
 
     public int numTargets = 1;

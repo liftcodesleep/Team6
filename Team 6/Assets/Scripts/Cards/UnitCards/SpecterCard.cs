@@ -12,7 +12,6 @@ public class Specter : Card
 
     public override void DoAction(Hex hex)
     {
-        hexes.Add(hex);
         GameComponent.SpawnUnitAt(new SpecterUnit(), GameComponent.Specter, hex.Column, hex.Row);
     }
 }

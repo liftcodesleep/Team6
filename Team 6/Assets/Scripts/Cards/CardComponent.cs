@@ -123,7 +123,7 @@ public class CardComponent : MonoBehaviour
     public void DoAbility(Hex hex)
     {
         card.DoAction(hex);
-        played = true;
+        //played = true;
     }
 
     public void SetCard()

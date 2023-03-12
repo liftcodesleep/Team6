@@ -11,7 +11,6 @@ public class Minotaur : Card
     }
     public override void DoAction(Hex hex)
     {
-        hexes.Add(hex);
         GameComponent.SpawnUnitAt(new MinotaurUnit(), GameComponent.Minotaur, hex.Column, hex.Row);
     }
 }

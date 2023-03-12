@@ -13,7 +13,6 @@ public class UnholyStrength : Card
 
     public override void DoAction(Hex hex)
     {
-        hexes.Add(hex);
         Unit target = hex.Units()[0];
         if (target.Color == "White")
         {
@@ -27,7 +26,6 @@ public class UnholyStrength : Card
             target.heal(2);
             target.Strength += 1;
         }
-
 
     }
 }

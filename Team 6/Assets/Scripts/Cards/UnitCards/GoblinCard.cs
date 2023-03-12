@@ -13,7 +13,6 @@ public class Goblin : Card
 
     public override void DoAction(Hex hex)
     {
-        hexes.Add(hex);
         GameComponent.SpawnUnitAt(new GoblinUnit(), GameComponent.Goblin, hex.Column, hex.Row);
     }
 }

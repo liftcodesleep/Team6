@@ -7,19 +7,16 @@ public abstract class Card
     public string Name;
     public string Description; //TODO Flavor text?
     public string Color;
+    public ManaData[] ManaCost = new ManaData[5] { new WhiteMana(), new BlueMana(), new BlackMana(), new RedMana(), new GreenMana() };
+
 
     public List<Hex> hexes = new List<Hex>();
 
     public int numTargets = 1;
 
-    public static HexMap hexMap;
     public static GameData Game;
     public static GameComponent GameComponent;
 
-    public static void SetMap(HexMap hexMap)
-    {
-        Card.hexMap = hexMap;
-    }
     public static void SetGameData(GameData GameData)
     {
         Card.Game = GameData;
@@ -31,7 +28,5 @@ public abstract class Card
     }
 
     public abstract void DoAction(Hex hex);
-
-
 
 }

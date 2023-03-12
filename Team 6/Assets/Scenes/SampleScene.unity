@@ -604,7 +604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ad39090e145be469e53c5781de5368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ToolTip: {fileID: 1542275648}
 --- !u!1 &1157281580
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,9 +925,11 @@ MonoBehaviour:
   Minotaur: {fileID: 4084858476629100667, guid: 6b866bc1007531742b1482d4d3c28c6d, type: 3}
   Specter: {fileID: 5016224150922973950, guid: 67465b7e01a38384bbbeff494ed2b6d1, type: 3}
   Knives: {fileID: 7936326709637695672, guid: a96c7fa4c4326964ea1e6bc5fac3dfb2, type: 3}
+  Goblin: {fileID: 7714850003368544350, guid: 9ae131b2cedeaa14ba9b2b7e2101758d, type: 3}
   Spiders:
   - {fileID: 7610484950628987255, guid: 1147fb586b5757d478f4bd490f5d7061, type: 3}
   - {fileID: 4332773588042852850, guid: 41272528b960b2140a07d21f05f03699, type: 3}
+  ToolTip: {fileID: 1542275648}
   HandPreFab: {fileID: 4055321152339282853, guid: 81ad617737d4e344db7d9c07b7ae6b31, type: 3}
 --- !u!224 &1682532373 stripped
 RectTransform:

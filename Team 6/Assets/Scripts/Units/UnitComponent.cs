@@ -22,13 +22,9 @@ public class UnitComponent : MonoBehaviour
 
     private void Start()
     {
-        
         oldPostion = newPosition = this.transform.position;
-        
-
         healthBar = this.gameObject.transform.Find("HealthBar").gameObject;
         
-        unit = GameLogic.GameObjectToUnit(this.gameObject);
         this.transform.localScale = new Vector3(.01f, .01f, .01f);
     }
 
@@ -52,6 +48,10 @@ public class UnitComponent : MonoBehaviour
     public static void SetGameData(GameData GameData)
     {
         UnitComponent.Game = GameData;
+    }
+    public static void SetGameLogic(GameComponent GameLogic)
+    {
+        UnitComponent.GameLogic = GameLogic;
     }
 
     private void UpdateHexPosition()

@@ -39,7 +39,7 @@ public class Hex
     {
         return this.Seed;
     }
-    public string GetMana()
+    public string GetHexMana()
     {
         return HexMana[0].GetMana() + HexMana[1].GetMana() + HexMana[2].GetMana() + HexMana[3].GetMana() + HexMana[4].GetMana();
     }

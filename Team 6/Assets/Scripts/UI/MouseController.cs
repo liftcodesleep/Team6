@@ -16,7 +16,6 @@ public class MouseController : MonoBehaviour
     public static GameData Game;
     public static GameComponent GameLogic;
 
-    public GameObject ToolTip;
 
 
 
@@ -44,10 +43,10 @@ public class MouseController : MonoBehaviour
 
         if (selectedCard != null)
         {
+            selectedCard.card.hexes.Clear();
             selectedCard.clicked = false;
             selectedCard = null;
         }
-
 
         MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -56,7 +55,6 @@ public class MouseController : MonoBehaviour
         if (Physics.Raycast(MouseRay, out HitRay, 100f))
         {
             CurrentSelectedItem = HitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
-            
         }
         
 
@@ -64,42 +62,35 @@ public class MouseController : MonoBehaviour
         {
             selectedCard = CurrentSelectedItem.GetComponentInChildren<CardComponent>();
             selectedCard.clicked = true;
-            
         }
         else if (CurrentSelectedItem != null && IsAUnit(CurrentSelectedItem))
         {
-            ToolTip.SetActive(true);
+            GameLogic.ToolTip.SetActive(true);
             Unit selectedUnit = GameLogic.GameObjectToUnit(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
-            ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
+            GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
                 "\nStrength: " + selectedUnit.Strength + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
         }
         else if (CurrentSelectedItem != null && IsAHex(CurrentSelectedItem))
         {
-            ToolTip.SetActive(true);
+            GameLogic.ToolTip.SetActive(true);
 
             Hex selectedHex = HexMap.GameObjectToHex(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
-            ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedHex.GetName() + "\nX: " + selectedHex.Column +
-                "\nY: " + selectedHex.Row + "\nMana: " + selectedHex.GetMana();
+            GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedHex.GetName() + "\nX: " + selectedHex.Column +
+                "\nY: " + selectedHex.Row + "\nMana: " + selectedHex.GetHexMana();
         }
         else if (selectedCard != null)
         {
+            selectedCard.card.hexes.Clear();
             selectedCard.clicked = false;
             selectedCard = null;
         }
         else
         {
-            ToolTip.SetActive(false);
-
+            GameLogic.ToolTip.SetActive(false);
         }
-
-
-
     }
-
-    
-     
     private void rightMouseClick()
     {
         
@@ -121,8 +112,6 @@ public class MouseController : MonoBehaviour
             gameObjectClicked = HitRay.transform.gameObject.transform.parent.transform.parent.gameObject;
 
         }
-
-        
 
         Unit firstUnit = GameLogic.GameObjectToUnit(CurrentSelectedItem);
         Unit secondUnit = GameLogic.GameObjectToUnit(gameObjectClicked);
@@ -146,12 +135,13 @@ public class MouseController : MonoBehaviour
 
         if (selectedCard != null)
         {
-            
             selectedCard.DoAbility(clickedHex);
-            selectedCard.clicked = false;
-            selectedCard.RemoveFromHand();
-            selectedCard.played = false;
-            selectedCard = null;
+            if (selectedCard.card.hexes.Count == 0)
+            {
+                selectedCard.clicked = false;
+                selectedCard.RemoveCard(selectedCard);
+                selectedCard = null;
+            }
 
         }
     }
@@ -160,7 +150,10 @@ public class MouseController : MonoBehaviour
     {
         MouseController.Game = GameData;
     }
-
+    public static void SetGameLogic(GameComponent GameLogic)
+    {
+        MouseController.GameLogic = GameLogic;
+    }
     private bool IsAUnit(GameObject obj)
     {
         return GameLogic.GameObjectToUnit(obj) != null;

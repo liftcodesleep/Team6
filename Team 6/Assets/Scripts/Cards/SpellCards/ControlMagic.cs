@@ -13,6 +13,5 @@ public class ControlMagic : Card
     public override void DoAction(Hex hex)
     {
         hex.GetUnitsArray()[0].SetOwner(Game.GetCurrentPlayer());
-
     }
 }

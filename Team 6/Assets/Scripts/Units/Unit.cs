@@ -32,7 +32,7 @@ public class Unit
     public bool Move(Hex movedToHex)
     {
         //TODO Move should decrement from Unit's MovementRemaining
-        if (this.hex.DistanceFrom(movedToHex) <= MovementRemaining && movedToHex.GetUnits().Count == 0)
+        if (this.hex.DistanceFrom(movedToHex) <= MovementRemaining && (movedToHex.GetUnits().Count == 0))
         {
             Debug.Log("Hex distance is: " + this.hex.DistanceFrom(movedToHex));
             Debug.Log("MovementRemaining is: " + this.MovementRemaining);
@@ -84,7 +84,7 @@ public class Unit
         {
             return;
         }
-        if (this.hex.DistanceFrom(enemy.hex) <= Range && this.GetOwner() != enemy.GetOwner)
+        if (this.hex.DistanceFrom(enemy.hex) <= Range && this.GetOwner() != enemy.GetOwner())
         {
             enemy.HitPoints -= this.Strength;
             this.HitPoints -= enemy.Strength; //For next playtest, attacks are symmetric, consider reducing damage dealt by defender? would like to avoid fractional damage

@@ -20,6 +20,8 @@ public class Hex
     private int Seed;
     private readonly string Name = "Hex.Name";
 
+    public int elevation;
+
     public ManaData[] HexMana = new ManaData[5] {new WhiteMana(), new BlueMana(), new BlackMana(), new RedMana(), new GreenMana()};
 
     private HashSet<Unit> units;
@@ -49,16 +51,84 @@ public class Hex
     }
     public int GenerateSeed()
     {
-
+        float smoothness = 1;
+        int elevationChange = -10;
         float scale = 10;
-        int LocalSeed =  (int)(Mathf.PerlinNoise((Column + HexDimensions.GetOffset() + (int)(Row/2)) / scale, (Row + HexDimensions.GetOffset()) /scale) * 100) ;
+        //int LocalSeed =  (int)(Mathf.PerlinNoise((Column + HexDimensions.GetOffset() + (int)(Row/2)) / scale, (Row + HexDimensions.GetOffset()) /scale) * 100) ;
+        int LocalSeed = (int)(Mathf.PerlinNoise(((Column* smoothness) + HexDimensions.GetOffset() + (int)(Row / 2)) / scale, ((Row* smoothness) + HexDimensions.GetOffset()) / scale) * 100);
 
+        LocalSeed += elevationChange;
         if (LocalSeed > 99)
         {
-            return 16;
+            LocalSeed =  99;
+        }else if(LocalSeed < 0)
+        {
+            LocalSeed = 0;
         }
 
-        return LocalSeed / 6;
+        return (LocalSeed) / 7;
+    }
+
+    public int CalcuateStyle()
+    {
+        float smoothness = 1;
+        
+        float scale = 10;
+        
+        //int LocalSeed = (int)(Mathf.PerlinNoise(((Column * smoothness) + HexDimensions.GetOffset() + (int)(Row / 2)) / scale, ((Row * smoothness) + HexDimensions.GetOffset()) / scale) * 100);
+
+        elevation = (int)(Mathf.PerlinNoise(((Column * smoothness) + HexDimensions.GetOffset() + (int)(Row / 2)) / scale, ((Row * smoothness) + HexDimensions.GetOffset()) / scale) * 100);
+
+
+
+        if (elevation > 75)
+        {
+
+            return 4;
+        }
+        else if (elevation > 53)
+        {
+            if(Random.Range(0,20) == 1)
+            {
+                return 0;
+            }
+
+            if (Random.Range(0, 10) == 1)
+            {
+                return 1;
+            }
+            return 3;
+        }
+        else if (elevation > 38)
+        {
+            if (Random.Range(0, 20) == 1)
+            {
+                return 0;
+            }
+            if (Random.Range(0, 30) == 1)
+            {
+                return 4;
+            }
+            return 2;
+        }
+        else if (elevation > 28)
+        {
+            if (Random.Range(0, 30) == 1)
+            {
+                return 4;
+            }
+            return 1;
+        }
+        else
+        {
+            if (Random.Range(0, 30) == 1)
+            {
+                return 4;
+            }
+            return 0;
+        }
+
+
     }
 
 

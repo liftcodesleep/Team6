@@ -6,8 +6,9 @@ public class PlayerData
 {
     private DeckData deck;
     private Hand hand;
+    private Unit Avatar;
     private HandComponent handComponent;
-    private List<Unit> Units;
+    private List<Unit> Units = new List<Unit>();
     private string Name;
     private int ManaAvailable = 0;
     private int ManaMax;
@@ -29,6 +30,13 @@ public class PlayerData
     {
         this.deck = NewDeck;
     }
+    public void SetAvatar(Unit unit)
+    {
+        this.Avatar = unit;
+    }
+
+
+
     public string GetName()
     {
         return this.Name;
@@ -44,5 +52,13 @@ public class PlayerData
     public DeckData GetDeck()
     {
         return this.deck;
+    }
+    public List<Unit> GetUnits()
+    {
+        return this.Units;
+    }
+    public Unit GetAvatar()
+    {
+        return this.Avatar;
     }
 }

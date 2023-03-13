@@ -22,7 +22,7 @@ public class HolyStrength : Card
         else
         {
             Debug.Log(target.Name);
-            target.heal(2);
+            target.Heal(2);
             target.Strength += 1;
         }
     }

@@ -25,7 +25,10 @@ public class GameData
         new Specter(),
         new Spider(),
         new Knives(),
-        new Goblin()};
+        new Goblin(),
+        new SwordsToPlowshares(),
+        new WrathOfSlippy(),
+        new AncestralRecall()};
 
     public GameData()
     {
@@ -41,14 +44,14 @@ public class GameData
     {
         this.CurrentPlayer = player;
     }
-    public PlayerData GetCurrentPlayer() 
+    public PlayerData GetCurrentPlayer()
     { 
         return this.Players[CurrentPlayer];
     }
 
     public void NextTurn()
     {
-        SetCurrentPlayer((CurrentPlayer + 1) % 2); //AllPlayers.Length);
+        SetCurrentPlayer((CurrentPlayer + 1) % Players.Length); //AllPlayers.Length);
         GetCurrentPlayer().GetHand().DrawNCards(1);
     }
 }

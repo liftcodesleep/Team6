@@ -18,7 +18,12 @@ public class DeckData : CardZoneData
         Cards.Add(new Spider());
         Cards.Add(new Knives());
         Cards.Add(new Goblin());
+        Cards.Add(new AncestralRecall());
+        Cards.Add(new WrathOfSlippy());
+        Cards.Add(new SwordsToPlowshares());
         this.ZoneCapacity = 40;
         this.ZoneOccupation = Cards.Count;
+
+        Shuffle();
     }
 }

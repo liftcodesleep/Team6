@@ -61,6 +61,7 @@ public class HandComponent : MonoBehaviour
     public void RemoveCard(CardComponent cardComponent)
     {
         Owner.GetHand().Cards.Remove(cardComponent.card);
+        Owner.GetHand().RemoveCard();
         cardComponent.SetCardIsVisible(false);
     }
 }

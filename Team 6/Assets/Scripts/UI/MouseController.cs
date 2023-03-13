@@ -68,8 +68,10 @@ public class MouseController : MonoBehaviour
             GameLogic.ToolTip.SetActive(true);
             Unit selectedUnit = GameLogic.GameObjectToUnit(CurrentSelectedItem.gameObject);
             //BRING UP TOOLTIP
-            GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
-                "\nStrength: " + selectedUnit.Strength + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
+            GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + 
+                "\nHealth: " + selectedUnit.HitPoints + "/" + selectedUnit.MaxHitPoints +
+                "\nStrength: " + selectedUnit.Strength + 
+                "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
         }
         else if (CurrentSelectedItem != null && IsAHex(CurrentSelectedItem))
         {

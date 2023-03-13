@@ -37,4 +37,25 @@ public class CardZoneData
             }
         }
     }
+    public void RemoveCard()
+    {
+        ZoneOccupation -= 1;
+    }
+
+    public void Shuffle()
+    {
+        for(int i = 0; i < Cards.Count; i++)
+        {
+            Swap(i, Random.Range(0, Cards.Count));
+        }
+    }
+
+    public void Swap(int target1, int target2)
+    {
+        Card temp = Cards[target1];
+
+        Cards[target1] = Cards[target2];
+        Cards[target2] = temp;
+
+    }
 }

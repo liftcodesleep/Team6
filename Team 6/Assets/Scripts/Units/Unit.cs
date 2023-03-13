@@ -15,7 +15,7 @@ public class Unit
     public int Range = 1;
     public bool CanRangedAttack = false;
 
-    //public Player Owner;
+    public PlayerData Owner;
 
     Queue<Hex> hexPath;
 
@@ -43,6 +43,14 @@ public class Unit
         }
 
         return false;
+    }
+    public void SetOwner(PlayerData owner)
+    {
+        this.Owner = owner;
+    }
+    public PlayerData GetOwner()
+    {
+        return this.Owner;
     }
 
     public void SetHex(Hex hex)
@@ -83,7 +91,7 @@ public class Unit
         }
     }
 
-    public void heal(int amount)
+    public void Heal(int amount)
     {
         if (amount + HitPoints > MaxHitPoints)
         {
@@ -93,5 +101,9 @@ public class Unit
         {
             HitPoints += amount;
         }
+    }
+    public void Damage(int amount)
+    {
+        HitPoints -= amount;
     }
 }

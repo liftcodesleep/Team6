@@ -128,10 +128,7 @@ public class MouseController : MonoBehaviour
                 
             }else if ( IsAUnit(gameObjectClicked) )
             {
-                
                 firstUnit.Attack(secondUnit);
-
-                GameComponent.UnitToGameObject[secondUnit].GetComponent<UnitComponent>().UpdateHealthBar();
             }
         }
 

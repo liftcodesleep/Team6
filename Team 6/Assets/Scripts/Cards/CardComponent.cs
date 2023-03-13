@@ -54,6 +54,10 @@ public class CardComponent : MonoBehaviour
     {
         MeshRenderer[] meshes = this.GetComponentsInChildren<MeshRenderer>();
 
+        if(meshCollider == null)
+        {
+            return;
+        }
         meshCollider.enabled = toggle;
 
         foreach (MeshRenderer mesh in meshes)

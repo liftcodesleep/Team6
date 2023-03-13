@@ -86,12 +86,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9115022645573173194, guid: be4f1936f8630814d96e9fedc6c22599, type: 3}
       propertyPath: m_Name
-      value: skeleton
+      value: Skeleton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1196514058761159259, guid: be4f1936f8630814d96e9fedc6c22599, type: 3}
     - {fileID: 7522361208579139371, guid: be4f1936f8630814d96e9fedc6c22599, type: 3}
+    - {fileID: 5875764923251351535, guid: be4f1936f8630814d96e9fedc6c22599, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8445586727958472048, guid: be4f1936f8630814d96e9fedc6c22599, type: 3}
       insertIndex: -1

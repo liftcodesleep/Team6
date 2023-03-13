@@ -9,21 +9,18 @@ public class UnitComponent : MonoBehaviour
     private Vector3 newPosition;
 
     private Vector3 currentVelocity;
-    private GameObject healthBar;
-
-    float smoothTime = .1f;
+    private float shrinkSpeed = .9f;
+    private float smoothTime = .1f;
 
     public static GameData Game;
     public static GameComponent GameLogic;
     public Unit unit;
 
-    private float shrinkSpeed = .9f;
-
+    public GameObject DeathParticle;
 
     private void Start()
     {
         oldPostion = newPosition = this.transform.position;
-        healthBar = this.gameObject.transform.Find("HealthBar").gameObject;
         
         this.transform.localScale = new Vector3(.01f, .01f, .01f);
     }
@@ -41,7 +38,6 @@ public class UnitComponent : MonoBehaviour
         }
 
         UpdatePosition();
-        UpdateHealthBar();
         UpdateHexPosition();
     }
 
@@ -93,17 +89,11 @@ public class UnitComponent : MonoBehaviour
         
     }
 
-    public void UpdateHealthBar()
-    {
-        
-        healthBar.transform.localScale = new Vector3((float)unit.HitPoints / (float)unit.MaxHitPoints,1,1);
-    }
-
-
     private void HandleDeath()
     {
         if (this.gameObject.transform.localScale.magnitude < .1f)
         {
+            Instantiate(DeathParticle, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
         else

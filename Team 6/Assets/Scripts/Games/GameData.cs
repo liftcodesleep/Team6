@@ -44,7 +44,7 @@ public class GameData
     {
         this.CurrentPlayer = player;
     }
-    public PlayerData GetCurrentPlayer() 
+    public PlayerData GetCurrentPlayer()
     { 
         return this.Players[CurrentPlayer];
     }

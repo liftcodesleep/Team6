@@ -12,11 +12,11 @@ public class WrathOfSlippy : Card
 
     public override void DoAction(Hex hex)
     {
-        foreach(PlayerData player in Game.Players)
+        foreach(Unit unit in Game.units)
         {
-            foreach(Unit unit in player.GetUnits())
+            if (unit.GetOwner().GetAvatar() != unit)
             {
-                unit.Damage(999);
+                unit.Damage(999); 
             }
         }
     }

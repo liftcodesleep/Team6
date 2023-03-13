@@ -37,7 +37,10 @@ public class CardZoneData
             }
         }
     }
-
+    public void RemoveCard()
+    {
+        ZoneOccupation -= 1;
+    }
 
     public void Shuffle()
     {

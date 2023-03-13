@@ -13,18 +13,18 @@ public class UnholyStrength : Card
 
     public override void DoAction(Hex hex)
     {
-        Unit target = hex.Units()[0];
-        if (target.Color == "White")
+        Unit Target = hex.Units()[0];
+        if (Target.Color == "White")
         {
-            target.HitPoints -= 2;
-            target.Strength -= 1;
-            Debug.Log(target.Name);
+            Target.HitPoints -= 2;
+            Target.Strength -= 1;
+            Debug.Log(Target.Name);
         }
         else
         {
-            Debug.Log(target.Name);
-            target.heal(2);
-            target.Strength += 1;
+            Debug.Log(Target.Name);
+            Target.Heal(2);
+            Target.Strength += 1;
         }
 
     }

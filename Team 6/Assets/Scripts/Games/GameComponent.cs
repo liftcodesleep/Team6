@@ -80,8 +80,12 @@ public class GameComponent : MonoBehaviour
         PlayerHandComponent.SetHand(Game.Players[1].GetHand());
 
         Game.SetCurrentPlayer(0);
-        SpawnUnitAt(new AvatarUnit(), player, 5, 8);
-        SpawnUnitAt(new AvatarUnit(), player, 10, 3);
+        Unit PlayerOneAvatar = new AvatarUnit();
+        Unit PlayerTwoAvatar = new AvatarUnit();
+        SpawnUnitAt(PlayerOneAvatar, player, 5, 8);
+        SpawnUnitAt(PlayerTwoAvatar, player, 10, 3);
+        Game.Players[0].SetAvatar(PlayerOneAvatar);
+        Game.Players[1].SetAvatar(PlayerTwoAvatar);
     }
 
     public Unit GameObjectToUnit(GameObject unit)
@@ -111,12 +115,15 @@ public class GameComponent : MonoBehaviour
         Hex spawnedHex = HexMap.GetHex(col, row);
         GameObject spawpoint = HexMap.HexToGameObject[spawnedHex];
         unit.SetHex(spawnedHex);
+        unit.SetOwner(Game.GetCurrentPlayer());
         //GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, Quaternion.identity, spawpoint.transform);
         GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, prefab.transform.rotation, spawpoint.transform);
         
         unitGO.GetComponent<UnitComponent>().unit = unit;
         
         Game.units.Add(unit);
+
+        Game.GetCurrentPlayer().GetUnits().Add(unit);
         UnitToGameObject[unit] = unitGO;
     }
 

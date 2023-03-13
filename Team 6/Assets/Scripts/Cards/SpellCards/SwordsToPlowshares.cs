@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bolt :Card
+public class SwordsToPlowshares : Card
 {
 
-    public Bolt()
+    public SwordsToPlowshares()
     {
-        Name = "Bolt";
+        Name = "SwordsToPlowshares";
     }
 
     public override void DoAction(Hex hex)
     {
         hexes.Add(hex);
-        
+
         if (hexes.Count == numTargets)
         {
             foreach (Hex X in hexes)
             {
                 Unit target = X.Units()[0];
-                target.HitPoints -= 3;
+                target.HitPoints -= 999;
+                target.GetOwner().GetAvatar().Heal(target.HitPoints);
             }
             hexes.Clear();
         }

@@ -25,7 +25,10 @@ public class GameData
         new Specter(),
         new Spider(),
         new Knives(),
-        new Goblin()};
+        new Goblin(),
+        new SwordsToPlowshares(),
+        new WrathOfSlippy(),
+        new AncestralRecall()};
 
     public GameData()
     {

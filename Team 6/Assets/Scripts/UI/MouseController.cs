@@ -16,8 +16,10 @@ public class MouseController : MonoBehaviour
     public static GameData Game;
     public static GameComponent GameLogic;
 
+    private Color[] originalColors;
+    private GameObject oldItem = null;
 
-
+    public Material HighlightedMaterial;
 
     private void Start()
     {
@@ -48,6 +50,20 @@ public class MouseController : MonoBehaviour
             selectedCard = null;
         }
 
+        if (oldItem != null)
+        {
+            Renderer[] items = oldItem.GetComponentsInChildren<Renderer>();
+
+            int i = 0;
+            foreach (var item in items)
+            {
+
+                item.material.color = originalColors[i];
+
+                i++;
+            }
+        }
+
         MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         GameObject firstSelectedItem = CurrentSelectedItem;
@@ -62,6 +78,8 @@ public class MouseController : MonoBehaviour
         {
             selectedCard = CurrentSelectedItem.GetComponentInChildren<CardComponent>();
             selectedCard.clicked = true;
+
+            
         }
         else if (CurrentSelectedItem != null && IsAUnit(CurrentSelectedItem))
         {
@@ -70,6 +88,12 @@ public class MouseController : MonoBehaviour
             //BRING UP TOOLTIP
             GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedUnit.Name + "\nHealth: " + selectedUnit.HitPoints +
                 "\nStrength: " + selectedUnit.Strength + "\nMovement: " + selectedUnit.MovementRemaining + "/" + selectedUnit.Movement;
+
+
+
+            //CurrentSelectedItem.GetComponentInChildren<Renderer>().material.color = Color.green;
+            HighLightCurrentItem();
+
         }
         else if (CurrentSelectedItem != null && IsAHex(CurrentSelectedItem))
         {
@@ -79,6 +103,10 @@ public class MouseController : MonoBehaviour
             //BRING UP TOOLTIP
             GameLogic.ToolTip.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + selectedHex.GetName() + "\nX: " + selectedHex.Column +
                 "\nY: " + selectedHex.Row + "\nMana: " + selectedHex.GetHexMana();
+
+
+            //CurrentSelectedItem.GetComponent<Outline>().enabled = true;
+            HighLightCurrentItem();
         }
         else if (selectedCard != null)
         {
@@ -90,6 +118,9 @@ public class MouseController : MonoBehaviour
         {
             GameLogic.ToolTip.SetActive(false);
         }
+
+        
+
     }
     private void rightMouseClick()
     {
@@ -129,7 +160,7 @@ public class MouseController : MonoBehaviour
                 
                 firstUnit.attack(secondUnit);
 
-                GameComponent.UnitToGameObject[secondUnit].GetComponent<UnitComponent>().UpdateHealthBar();
+                //GameComponent.UnitToGameObject[secondUnit].GetComponent<UnitComponent>().UpdateHealthBar();
             }
         }
 
@@ -168,6 +199,22 @@ public class MouseController : MonoBehaviour
     {
         
         return obj.GetComponentInChildren<CardComponent>() != null;
+    }
+
+
+    private void HighLightCurrentItem()
+    {
+        oldItem = CurrentSelectedItem;
+        Renderer[] items = CurrentSelectedItem.GetComponentsInChildren<Renderer>();
+        originalColors = new Color[items.Length];
+        int i = 0;
+        foreach (var item in items)
+        {
+            originalColors[i] = item.material.color;
+            item.material.color = Color.green;
+
+            i++;
+        }
     }
 
 }

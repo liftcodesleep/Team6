@@ -23,7 +23,7 @@ public class UnitComponent : MonoBehaviour
     private void Start()
     {
         oldPostion = newPosition = this.transform.position;
-        healthBar = this.gameObject.transform.Find("HealthBar").gameObject;
+        //healthBar = this.gameObject.transform.Find("HealthBar").gameObject;
         
         this.transform.localScale = new Vector3(.01f, .01f, .01f);
     }
@@ -41,7 +41,7 @@ public class UnitComponent : MonoBehaviour
         }
 
         UpdatePosition();
-        UpdateHealthBar();
+        //UpdateHealthBar();
         UpdateHexPosition();
     }
 

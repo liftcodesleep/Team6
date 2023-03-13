@@ -64,23 +64,25 @@ public class GameComponent : MonoBehaviour
         GameObject PlayerHandGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
         HandComponent PlayerHandComponent = PlayerHandGO.GetComponent<HandComponent>();
 
+        Game.SetCurrentPlayer(0);
         Game.Players[0].SetName("Player 1");
+        Game.Players[0].color = Color.green;
         Game.Players[0].SetHand(new Hand(Game.Players[0]));
         Game.Players[0].SetDeck(new DeckData(Game.Players[0]));
         Game.Players[0].SetHandComponent(PlayerHandComponent);
         PlayerHandComponent.SetHand(Game.Players[0].GetHand());
+        SpawnUnitAt(new AvatarUnit(), player, 5, 8);
 
         PlayerHandGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
         PlayerHandComponent = PlayerHandGO.GetComponent<HandComponent>();
 
+        Game.SetCurrentPlayer(1);
         Game.Players[1].SetName("Player 2");
+        Game.Players[1].color = Color.red;
         Game.Players[1].SetHand(new Hand(Game.Players[1]));
         Game.Players[1].SetDeck(new DeckData(Game.Players[1]));
         Game.Players[1].SetHandComponent(PlayerHandComponent);
         PlayerHandComponent.SetHand(Game.Players[1].GetHand());
-
-        Game.SetCurrentPlayer(0);
-        SpawnUnitAt(new AvatarUnit(), player, 5, 8);
         SpawnUnitAt(new AvatarUnit(), player, 10, 3);
     }
 
@@ -113,7 +115,12 @@ public class GameComponent : MonoBehaviour
         unit.SetHex(spawnedHex);
         //GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, Quaternion.identity, spawpoint.transform);
         GameObject unitGO = Instantiate(prefab, spawpoint.transform.position, prefab.transform.rotation, spawpoint.transform);
+
         
+
+        unitGO.GetComponent<Outline>().OutlineColor = Game.GetCurrentPlayer().color;
+
+
         unitGO.GetComponent<UnitComponent>().unit = unit;
         
         Game.units.Add(unit);

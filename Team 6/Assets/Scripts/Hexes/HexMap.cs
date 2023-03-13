@@ -56,7 +56,6 @@ public class HexMap : MonoBehaviour
 
                 GameObject hexLooks = Prefabs[h.GetSeed()];
 
-
                 hexLooks = GetPrefab(h);
 
                 GameObject hexGo = (GameObject)Instantiate(

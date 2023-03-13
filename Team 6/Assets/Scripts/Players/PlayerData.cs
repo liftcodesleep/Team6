@@ -12,6 +12,7 @@ public class PlayerData
     private int ManaAvailable = 0;
     private int ManaMax;
 
+    public Color color;
 
     public void SetName(string NewName)
     {

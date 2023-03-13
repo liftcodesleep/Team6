@@ -29,6 +29,7 @@ public class GameData
         new SwordsToPlowshares(),
         new WrathOfSlippy(),
         new ControlMagic(),
+        new MindTwist(),
         new AncestralRecall()};
 
     public GameData()

@@ -19,6 +19,7 @@ public class DeckData : CardZoneData
         Cards.Add(new Knives());
         Cards.Add(new Goblin());
         Cards.Add(new AncestralRecall());
+        Cards.Add(new MindTwist());
         Cards.Add(new WrathOfSlippy());
         Cards.Add(new ControlMagic());
         Cards.Add(new SwordsToPlowshares());

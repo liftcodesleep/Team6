@@ -32,13 +32,13 @@ public class Unit
     public bool Move(Hex movedToHex)
     {
         //TODO Move should decrement from Unit's MovementRemaining
-        if (this.hex.DistanceFrom(movedToHex) <= MovementRemaining && (movedToHex.GetUnits().Count == 0))
+        if (this.hex.DistanceFrom(movedToHex) <= MovementRemaining)
         {
-            Debug.Log("Hex distance is: " + this.hex.DistanceFrom(movedToHex));
-            Debug.Log("MovementRemaining is: " + this.MovementRemaining);
+            //Debug.Log("Hex distance is: " + this.hex.DistanceFrom(movedToHex));
+            //Debug.Log("MovementRemaining is: " + this.MovementRemaining);
             SetHex(movedToHex);
-            this.MovementRemaining -= (int)this.hex.DistanceFrom(movedToHex);
-            Debug.Log("IntMovementRemaining is: " + (int)this.MovementRemaining);
+            //this.MovementRemaining -= (int)this.hex.DistanceFrom(movedToHex);
+            //Debug.Log("IntMovementRemaining is: " + (int)this.MovementRemaining);
             return true;
         }
 

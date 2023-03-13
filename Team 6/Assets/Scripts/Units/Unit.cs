@@ -25,14 +25,13 @@ public class Unit
     public Unit()
     {
         HitPoints = MaxHitPoints;
-
     }
 
 
     public bool Move(Hex movedToHex)
     {
         //TODO Move should decrement from Unit's MovementRemaining
-        if (this.hex.DistanceFrom(movedToHex) <= MovementRemaining)
+        if (this.hex.DistanceFrom(movedToHex) <= MovementRemaining && (movedToHex.GetUnits().Count == 0))
         {
             //Debug.Log("Hex distance is: " + this.hex.DistanceFrom(movedToHex));
             //Debug.Log("MovementRemaining is: " + this.MovementRemaining);
@@ -58,7 +57,7 @@ public class Unit
 
         if (this.hex != null)
         {
-            hex.RemoveUnit(this);
+            this.hex.RemoveUnit(this);
         }
 
         this.hex = hex;

@@ -12,7 +12,7 @@ public class HolyStrength : Card
 
     public override void DoAction(Hex hex)
     {
-        Unit target = hex.Units()[0];
+        Unit target = hex.GetUnitsArray()[0];
         if (target.Color == "Black")
         {
             target.HitPoints -= 2;

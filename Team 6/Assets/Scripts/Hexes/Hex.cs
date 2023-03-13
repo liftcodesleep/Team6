@@ -157,7 +157,7 @@ public class Hex
         }
     }
 
-    public Unit[] Units()
+    public Unit[] GetUnitsArray()
     {
         return units.ToArray();
     }

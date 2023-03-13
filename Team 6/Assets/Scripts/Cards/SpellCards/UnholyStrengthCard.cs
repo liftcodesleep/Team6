@@ -13,7 +13,7 @@ public class UnholyStrength : Card
 
     public override void DoAction(Hex hex)
     {
-        Unit Target = hex.Units()[0];
+        Unit Target = hex.GetUnitsArray()[0];
         if (Target.Color == "White")
         {
             Target.HitPoints -= 2;

@@ -28,6 +28,7 @@ public class GameData
         new Goblin(),
         new SwordsToPlowshares(),
         new WrathOfSlippy(),
+        new ControlMagic(),
         new AncestralRecall()};
 
     public GameData()

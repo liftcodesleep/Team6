@@ -84,7 +84,7 @@ public class Unit
         {
             return;
         }
-        if (this.hex.DistanceFrom(enemy.hex) <= Range)
+        if (this.hex.DistanceFrom(enemy.hex) <= Range && this.GetOwner() != enemy.GetOwner)
         {
             enemy.HitPoints -= this.Strength;
             this.HitPoints -= enemy.Strength; //For next playtest, attacks are symmetric, consider reducing damage dealt by defender? would like to avoid fractional damage

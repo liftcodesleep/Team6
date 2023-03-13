@@ -32,7 +32,7 @@ public class Unit
     public bool Move(Hex movedToHex)
     {
         //TODO Move should decrement from Unit's MovementRemaining
-        if (this.hex.DistanceFrom(movedToHex) <= MovementRemaining)
+        if (this.hex.DistanceFrom(movedToHex) <= MovementRemaining && movedToHex.GetUnits().Count == 0)
         {
             Debug.Log("Hex distance is: " + this.hex.DistanceFrom(movedToHex));
             Debug.Log("MovementRemaining is: " + this.MovementRemaining);
@@ -77,7 +77,7 @@ public class Unit
         return hex.BaseMovementCost();
     }
 
-    public void attack(Unit enemy)
+    public void Attack(Unit enemy)
     {
         //STOP HITTING YOURSELF
         if (enemy == this)

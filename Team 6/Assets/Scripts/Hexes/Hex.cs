@@ -49,6 +49,11 @@ public class Hex
     {
         return this.Name;
     }
+    public HashSet<Unit> GetUnits()
+    {
+        return units;
+    }
+
     public int GenerateSeed()
     {
         float smoothness = 1;

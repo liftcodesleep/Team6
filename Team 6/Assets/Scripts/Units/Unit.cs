@@ -25,20 +25,19 @@ public class Unit
     public Unit()
     {
         HitPoints = MaxHitPoints;
-
     }
 
 
     public bool Move(Hex movedToHex)
     {
         //TODO Move should decrement from Unit's MovementRemaining
-        if (this.hex.DistanceFrom(movedToHex) <= MovementRemaining)
+        if (this.hex.DistanceFrom(movedToHex) <= MovementRemaining && (movedToHex.GetUnits().Count == 0))
         {
-            Debug.Log("Hex distance is: " + this.hex.DistanceFrom(movedToHex));
-            Debug.Log("MovementRemaining is: " + this.MovementRemaining);
+            //Debug.Log("Hex distance is: " + this.hex.DistanceFrom(movedToHex));
+            //Debug.Log("MovementRemaining is: " + this.MovementRemaining);
             SetHex(movedToHex);
-            this.MovementRemaining -= (int)this.hex.DistanceFrom(movedToHex);
-            Debug.Log("IntMovementRemaining is: " + (int)this.MovementRemaining);
+            //this.MovementRemaining -= (int)this.hex.DistanceFrom(movedToHex);
+            //Debug.Log("IntMovementRemaining is: " + (int)this.MovementRemaining);
             return true;
         }
 
@@ -58,7 +57,7 @@ public class Unit
 
         if (this.hex != null)
         {
-            hex.RemoveUnit(this);
+            this.hex.RemoveUnit(this);
         }
 
         this.hex = hex;
@@ -77,14 +76,14 @@ public class Unit
         return hex.BaseMovementCost();
     }
 
-    public void attack(Unit enemy)
+    public void Attack(Unit enemy)
     {
         //STOP HITTING YOURSELF
         if (enemy == this)
         {
             return;
         }
-        if (this.hex.DistanceFrom(enemy.hex) <= Range)
+        if (this.hex.DistanceFrom(enemy.hex) <= Range && this.GetOwner() != enemy.GetOwner())
         {
             enemy.HitPoints -= this.Strength;
             this.HitPoints -= enemy.Strength; //For next playtest, attacks are symmetric, consider reducing damage dealt by defender? would like to avoid fractional damage

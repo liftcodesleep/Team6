@@ -8,7 +8,7 @@ public class PlayerData
     private Hand hand;
     private Unit Avatar;
     private HandComponent handComponent;
-    private List<Unit> Units = new List<Unit>();
+    private List<Unit> Units = new List<Unit>(); //Should be hash set
     private string Name;
     private int ManaAvailable = 0;
     private int ManaMax;

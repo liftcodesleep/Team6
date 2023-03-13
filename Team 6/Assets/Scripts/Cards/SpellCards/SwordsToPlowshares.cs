@@ -18,7 +18,7 @@ public class SwordsToPlowshares : Card
         {
             foreach (Hex X in hexes)
             {
-                Unit target = X.Units()[0];
+                Unit target = X.GetUnitsArray()[0];
                 target.GetOwner().GetAvatar().Heal(target.HitPoints);
                 target.HitPoints -= 999;
             }

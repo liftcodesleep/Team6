@@ -34,6 +34,7 @@ public class Hex
         this.Seed = GenerateSeed();
         HexMana[Seed % 5].SetCount(1);
         this.Name = Seed.ToString();
+        this.units = new HashSet<Unit>();
 
     }
 
@@ -49,6 +50,11 @@ public class Hex
     {
         return this.Name;
     }
+    public HashSet<Unit> GetUnits()
+    {
+        return units;
+    }
+
     public int GenerateSeed()
     {
         float smoothness = 1;
@@ -134,14 +140,7 @@ public class Hex
 
     public void AddUnit(Unit unit)
     {
-
-        if(units == null)
-        {
-            units = new HashSet<Unit>();
-        }
-
         units.Add(unit);
-
     }
 
     public void RemoveUnit(Unit unit)
@@ -152,7 +151,7 @@ public class Hex
         }
     }
 
-    public Unit[] Units()
+    public Unit[] GetUnitsArray()
     {
         return units.ToArray();
     }

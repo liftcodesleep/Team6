@@ -18,7 +18,7 @@ public class Bolt :Card
         {
             foreach (Hex X in hexes)
             {
-                Unit target = X.Units()[0];
+                Unit target = X.GetUnitsArray()[0];
                 target.HitPoints -= 3;
             }
             hexes.Clear();

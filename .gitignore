@@ -3,3 +3,5 @@
 *.sqlite
 .vs/Team 6/v17/.wsuo
 *.lock
+Team 6/UserSettings/Layouts/default-2022.dwlt
+*.dwlt

@@ -9,7 +9,7 @@ public class GoblinUnit : Unit
     {
         this.Name = "Goblin";
         this.Color = "Red";
-        this.MaxHitPoints = this.HitPoints = 2;
+        this.MaxHitPoints = this.HitPoints = 1;
         this.Strength = 2;
         this.Movement = 2;
         this.MovementRemaining = 2;

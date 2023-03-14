@@ -8,6 +8,7 @@ public class Skeleton: Card
     public Skeleton()
     {
         Name = "Skeleton";
+        RulesText = "Summon a Skeleton creature";
         Color = "Black";
     }
 

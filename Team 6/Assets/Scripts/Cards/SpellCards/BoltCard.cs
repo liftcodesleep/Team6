@@ -8,6 +8,7 @@ public class Bolt :Card
     public Bolt()
     {
         Name = "Bolt";
+        RulesText = "Deal 3 damage to any target.";
     }
 
     public override void DoAction(Hex hex)

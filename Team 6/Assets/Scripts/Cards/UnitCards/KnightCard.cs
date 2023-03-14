@@ -8,6 +8,7 @@ public class WhiteKnight : Card
     public WhiteKnight()
     {
         Name = "Knight";
+        RulesText = "Summon a White Knight creature";
         Color = "White";
     }
 

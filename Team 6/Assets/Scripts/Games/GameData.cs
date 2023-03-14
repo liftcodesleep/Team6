@@ -16,6 +16,7 @@ public class GameData
 
     public static Card[] AllCards = {
         new GrizzlyBears(),
+        new PlagueRats(),
         new HolyStrength(),
         new Bolt(),
         new WhiteKnight(),
@@ -35,6 +36,7 @@ public class GameData
     public GameData()
     {
         Card.SetGameData(this);
+        Unit.SetGameData(this);
         HandComponent.SetGameData(this);
         CardComponent.SetGameData(this);
         UnitComponent.SetGameData(this);

@@ -5,8 +5,9 @@ using UnityEngine;
 public abstract class Card 
 {
     public string Name;
-    public string Description; //TODO Flavor text?
+    public string RulesText;
     public string Color;
+    public string FlavorText;
     public ManaData[] ManaCost = new ManaData[5] { new WhiteMana(), new BlueMana(), new BlackMana(), new RedMana(), new GreenMana() };
 
 

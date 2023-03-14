@@ -8,6 +8,7 @@ public class AncestralRecall : Card
     public AncestralRecall()
     {
         Name = "AncestralRecall";
+        RulesText = "Draw 3 cards.";
     }
 
     public override void DoAction(Hex hex)

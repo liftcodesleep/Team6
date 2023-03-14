@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Unit 
 {
+    public static GameData Game;
 
     public string Name = "Unit.Name";
     public string Color = "Unit.Color";
@@ -14,7 +15,7 @@ public class Unit
     public int MovementRemaining = 1;
     public int Range = 1;
     public bool CanRangedAttack = false;
-
+    
     public PlayerData Owner;
 
     Queue<Hex> hexPath;
@@ -64,7 +65,15 @@ public class Unit
         hex.AddUnit(this);
         
     }
+    public static void SetGameData(GameData GameData)
+    {
+        Unit.Game = GameData;
+    }
 
+    public string GetName()
+    {
+        return this.Name;
+    }
 
     public void SetHexPath(Hex[] hexPath)
     {

@@ -4,10 +4,11 @@
     "\\Team 6",
     "\\Team 6\\Assets",
     "\\Team 6\\Assets\\Scripts",
-    "\\Team 6\\Assets\\Scripts\\Cards\\SpellCards",
+    "\\Team 6\\Assets\\Scripts\\Cards",
     "\\Team 6\\Assets\\Scripts\\Cards\\UnitCards",
-    "\\Team 6\\Assets\\Scripts\\Players"
+    "\\Team 6\\Assets\\Scripts\\CardZones",
+    "\\Team 6\\Assets\\Scripts\\Games"
   ],
-  "SelectedNode": "\\Team 6\\Assets\\Scripts\\UI",
+  "SelectedNode": "\\Team 6\\Assets\\Scripts\\Cards\\UnitCards\\GoblinCard.cs",
   "PreviewInSolutionExplorer": false
 }

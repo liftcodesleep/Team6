@@ -13,6 +13,7 @@ public class GameComponent : MonoBehaviour
     public GameObject Minotaur;
     public GameObject Specter;
     public GameObject Knives;
+    public GameObject PlagueRats;
     public GameObject Goblin;
 
     public GameObject[] Spiders;
@@ -55,41 +56,40 @@ public class GameComponent : MonoBehaviour
         }
     }
 
+    public void InitializeNPlayers(int n)
+    {
+        Game.Players = new PlayerData[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            PlayerData CurrentPlayer = new PlayerData();
+            Game.Players[i] = CurrentPlayer;
+
+            GameObject PlayerHandGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
+            HandComponent PlayerHandComponent = PlayerHandGO.GetComponent<HandComponent>();
+
+            CurrentPlayer.SetName("Player " + Game.Players.Length);
+            CurrentPlayer.SetHand(new Hand(CurrentPlayer));
+            CurrentPlayer.SetDeck(new DeckData(CurrentPlayer));
+            CurrentPlayer.SetHandComponent(PlayerHandComponent);
+            PlayerHandComponent.SetHand(CurrentPlayer.GetHand());
+
+            Game.SetCurrentPlayer(i);
+            Unit PlayerAvatar = new AvatarUnit();
+            SpawnUnitAt(PlayerAvatar, player, Random.Range(1, 10), Random.Range(1, 10));
+            CurrentPlayer.SetAvatar(PlayerAvatar);
+        }
+    }
+
     public void MakePlayers()
     {
         //Main Menu Prompts Player Count? Names?
-        Game.Players = new PlayerData[] { new PlayerData(), new PlayerData() };
 
+        int PlayerCount = 2; //get user input eventually
 
-        GameObject PlayerHandGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
-        HandComponent PlayerHandComponent = PlayerHandGO.GetComponent<HandComponent>();
+        InitializeNPlayers(PlayerCount);
 
-        Game.Players[0].SetName("Player 1");
-        Game.Players[0].SetHand(new Hand(Game.Players[0]));
-        Game.Players[0].SetDeck(new DeckData(Game.Players[0]));
-        Game.Players[0].SetHandComponent(PlayerHandComponent);
-        PlayerHandComponent.SetHand(Game.Players[0].GetHand());
-
-        PlayerHandGO = Instantiate(HandPreFab, HandPreFab.transform.position, HandPreFab.transform.rotation, Camera.main.transform);
-        PlayerHandComponent = PlayerHandGO.GetComponent<HandComponent>();
-
-        Game.Players[1].SetName("Player 2");
-        Game.Players[1].SetHand(new Hand(Game.Players[1]));
-        Game.Players[1].SetDeck(new DeckData(Game.Players[1]));
-        Game.Players[1].SetHandComponent(PlayerHandComponent);
-        PlayerHandComponent.SetHand(Game.Players[1].GetHand());
-
-        Game.SetCurrentPlayer(0);
-        Unit PlayerOneAvatar = new AvatarUnit();
-        SpawnUnitAt(PlayerOneAvatar, player, 5, 8);
-        Game.Players[0].SetAvatar(PlayerOneAvatar);
-        
-        Game.SetCurrentPlayer(1);
-        Unit PlayerTwoAvatar = new AvatarUnit();
-        SpawnUnitAt(PlayerTwoAvatar, player, 10, 3);
-        Game.Players[1].SetAvatar(PlayerTwoAvatar);
-
-        Game.SetCurrentPlayer(Random.Range(0, 2));
+        Game.SetCurrentPlayer(Random.Range(0, PlayerCount));
     }
 
     public Unit GameObjectToUnit(GameObject unit)

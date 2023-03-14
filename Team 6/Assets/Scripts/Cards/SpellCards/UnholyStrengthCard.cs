@@ -8,6 +8,7 @@ public class UnholyStrength : Card
     public UnholyStrength()
     {
         Name = "Unholy Strength";
+        RulesText = "Give any [DARK] creature +1 Strength and heal them 2 HP. Reverse for [LIGHT] creature.";
         this.Color = "Black";
     }
 

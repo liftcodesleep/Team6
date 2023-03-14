@@ -8,6 +8,7 @@ public class Knives : Card
     public Knives()
     {
         Name = "Knives";
+        RulesText = "Summon a Knives creature";
         Color = "Black";
     }
     Random random = new Random();

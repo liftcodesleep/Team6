@@ -7,6 +7,7 @@ public class Specter : Card
     public Specter()
     {
         Name = "Specter";
+        RulesText = "Summon a Specter creature";
         Color = "Black";
     }
 

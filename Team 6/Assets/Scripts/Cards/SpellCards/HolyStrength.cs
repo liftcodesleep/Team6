@@ -8,6 +8,8 @@ public class HolyStrength : Card
     public HolyStrength()
     {
         Name = "Holy Strength";
+        RulesText = "Give any [LIGHT] creature +1 Strength and heal them 2 HP. Reverse for [DARK] creature.";
+
     }
 
     public override void DoAction(Hex hex)

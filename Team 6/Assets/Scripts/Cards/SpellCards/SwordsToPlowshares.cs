@@ -8,6 +8,7 @@ public class SwordsToPlowshares : Card
     public SwordsToPlowshares()
     {
         Name = "SwordsToPlowshares";
+        RulesText = "Destroy target creature, its controller gains life equal to its Strength";
     }
 
     public override void DoAction(Hex hex)

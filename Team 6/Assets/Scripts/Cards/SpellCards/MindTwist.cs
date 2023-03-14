@@ -8,6 +8,7 @@ public class MindTwist : Card
     public MindTwist()
     {
         Name = "MindTwist";
+        RulesText = "Destroy each opponents hand.";
     }
 
     public override void DoAction(Hex hex)

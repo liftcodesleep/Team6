@@ -8,6 +8,7 @@ public class Spider : Card
     public Spider()
     {
         Name = "Spider";
+        RulesText = "Summon a Spider creature";
         Color = "Black";
     }
     Random random = new Random();

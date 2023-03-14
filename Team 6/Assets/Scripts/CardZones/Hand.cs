@@ -12,6 +12,10 @@ public class Hand : CardZoneData
 
     public void DrawNCards(int n)
     {
+        if(ZoneOccupation + n > ZoneCapacity)
+        {
+            n = ZoneCapacity - ZoneOccupation;
+        }
         GetNCardsFromZone(n, Owner.GetDeck());
     }
     public void RemoveCard(Card card)

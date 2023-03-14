@@ -8,6 +8,7 @@ public class Goblin : Card
     public Goblin()
     {
         Name = "Goblin";
+        RulesText = "Summon a Goblin creature";
         Color = "Red";
     }
 

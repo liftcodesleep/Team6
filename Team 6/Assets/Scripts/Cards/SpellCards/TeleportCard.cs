@@ -8,6 +8,7 @@ public class Teleport : Card
     public Teleport()
     {
         Name = "Teleport";
+        RulesText = "Move any creature from its current position to another.";
         Color = "Blue";
         numTargets = 2;
     }

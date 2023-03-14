@@ -5,6 +5,7 @@ using UnityEngine;
 public class CardComponent : MonoBehaviour
 {
     public static GameData Game;
+
     private Vector3 startPosition;
     private Vector3 selectedPosition;
     private Vector3 currentVelocity;
@@ -74,7 +75,9 @@ public class CardComponent : MonoBehaviour
     public void SetCardText(Card card)
     {
         this.card = card;
-        textMesh.text = card.Name + "\nOwner: " + Game.GetCurrentPlayer().GetName();
+        textMesh.text = card.Name 
+            + "\nOwner: " + Game.GetCurrentPlayer().GetName()
+            + "\n" + card.RulesText;
     }
     public void RemoveCard(CardComponent cardComponent)
     {

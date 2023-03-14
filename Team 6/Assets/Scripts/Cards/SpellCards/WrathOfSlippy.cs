@@ -8,6 +8,7 @@ public class WrathOfSlippy : Card
     public WrathOfSlippy()
     {
         Name = "WrathOfSlippy";
+        RulesText = "Destroy all creatures.";
     }
 
     public override void DoAction(Hex hex)

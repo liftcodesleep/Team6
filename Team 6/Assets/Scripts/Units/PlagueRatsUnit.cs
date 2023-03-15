@@ -21,6 +21,9 @@ public class PlagueRatsUnit : Unit
         {
             if(unit.GetName() == this.Name)
             {
+                unit.MaxHitPoints++;
+                unit.HitPoints++;
+                unit.Strength++;
                 count++;
             }
         }

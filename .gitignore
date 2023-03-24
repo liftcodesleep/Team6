@@ -57,9 +57,4 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-*.vsidx
-*.sqlite
-.vs/Team 6/v17/.wsuo
-*.lock
-*.blend
-Models/
+ 
